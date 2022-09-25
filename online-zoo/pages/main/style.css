@@ -1,0 +1,324 @@
+/* --------------------------<FONTS>-------------------------- */
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../assets/fonts/Roboto-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}
+/* --------------------------</FONTS>-------------------------- */
+
+/* --------------------------<HTML>-------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+/* --------------------------</HTML>-------------------------- */
+
+/* --------------------------<BODY>-------------------------- */
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+/* --------------------------<HEADER>-------------------------- */
+header {
+  min-width: 1600px;
+  height: 80px;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper__header {
+  width: 1160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 82px;
+  height: 52px;
+  border: 1px solid #FFFFFF;
+  border-radius: 2px;
+  margin-right: 63px;
+}
+
+.logo-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 120%;
+  text-align: center;
+  margin: 0;
+}
+
+.logo-svg {
+  position: absolute;
+  top: 22.5px;
+  left: 9.5px;
+}
+
+.nav {
+  margin-right: auto;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  gap: 58px;
+  padding: 0;
+}
+
+li:first-child .nav-link {
+background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: 0.3s;
+}
+
+.figma-link {
+  text-decoration: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #FFFFFF;
+}
+/* --------------------------</HEADER>-------------------------- */
+
+/* --------------------------<MAIN>-------------------------- */
+
+/* --------------------------<SECTION 1>-------------------------- */
+.section1 {
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  background: url(../../assets/images/giant_panda.jpg) center top -80px / cover no-repeat;
+}
+
+.wrapper__section1 {
+  width: 1160px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.big-orange {
+  width: 465px;
+  height: 465px;
+  border-radius: 465px;
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  margin: 12px 108px 69px 0;
+}
+
+.text-watch {
+  width: 500px;
+  position: relative;
+  margin: 74px 0 0 73px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 106.5px;
+  line-height: 75%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.text-favorite {
+  color: #FFEE2E;
+}
+
+.btn {
+  width: 298px;
+  height: 54px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  border-radius: 25px;
+  border: none;
+}
+
+.btn-watch {
+  margin-right: 98px;
+}
+/* --------------------------</SECTION 1>-------------------------- */
+
+/* --------------------------<SECTION 2>-------------------------- */
+.section2 {
+  height: 723px;
+  display: flex;
+  justify-content: center;
+  background: url(../../assets/images/flower_foto.jpg) right top 12px no-repeat;
+}
+
+.wrapper__section2 {
+  width: 1160px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 140px;
+}
+
+.img-section2 {
+  width: 609px;
+  height: 403px;
+}
+
+.div-section2-text {
+  width: 465px;
+  height: 403px;
+}
+
+.title-section2,
+.titile-description-section2,
+.subtitle-section2,
+.subtitle-description-section2 {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  color: #333B41;
+}
+
+.title-section2 {
+  font-size: 48px;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+
+.titile-description-section2 {
+  font-size: 16px;
+  line-height: 130%;
+  margin-bottom: 54px;
+}
+
+.subtitle-section2 {
+  font-size: 24px;
+  line-height: 120%;
+  margin-bottom: 34px;
+}
+
+.subtitle-description-section2 {
+  font-size: 16px;
+  line-height: 140%;
+}
+/* --------------------------</SECTION 2>-------------------------- */
+
+/* --------------------------<SECTION 3>-------------------------- */
+.section3 {
+  height: 1106px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url(../../assets/images/palm_foto.jpg) left bottom no-repeat, url(../../assets/images/strelitzia.jpg) right bottom no-repeat;
+}
+
+.wrapper__section3 {
+  width: 1158px;
+  height: 872px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: baseline;
+  margin-bottom: 80px;
+}
+
+.foto-card {
+  width: 366px;
+  height: 426px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px transparent;
+  border-radius: 5px;
+  overflow: hidden;
+  background-image: linear-gradient(113.96deg, #FA6F32 1.49%, #FE9013 101.44%);
+}
+
+
+.card-description {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  padding: 8px 10px 14px 14px;
+}
+
+.title-card {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.subtitle-card {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 120%;
+  color: #000000;
+  margin-top: -2px;
+}
+/* --------------------------</SECTION 3>-------------------------- */
+
+
+
+
+
