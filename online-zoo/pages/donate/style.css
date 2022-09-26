@@ -302,7 +302,8 @@ background-clip: text;
 }
 
 .line {
-  width: 920px;
+  position: relative;
+  width: 915px;
   height: 2px;
   background: #72828E;
   display: flex;
@@ -310,37 +311,59 @@ background-clip: text;
   align-items: center;
 }
 
+.sub-line {
+  position: absolute;
+  width: 950px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: -17px;
+}
+
+.round1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: solid 2px transparent;
+  border-radius: 50%;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.round1:hover,
+.round1:hover .round2 {
+  border: solid 2px #FE9013;
+}
+
+.sub-line .round1:nth-child(3) {
+  border: solid 2px #FE9013;
+}
+
+.sub-line .round1:nth-child(3) .round2 {
+  border: solid 2px #FE9013;
+}
+
+.round2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 23px;
+  height: 23px;
+  border: solid 2px transparent;
+  border-radius: 50%;
+  transition: .3s;
+}
+
 .point {
-  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 10px;
   background: #FFEE2E;
 }
 
-.active::before {
-  position: absolute;
-  content: "";
-  width: 19px;
-  height: 19px;
-  left: -6.5px;
-  top: -6.5px;
-  border-radius: 19px;
-  border: solid 2px #FE9013;
-}
-
-.active::after {
-  position: absolute;
-  content: "";
-  width: 36px;
-  height: 36px;
-  left: -15px;
-  top: -15px;
-  border-radius: 36px;
-  border: solid 2px #FE9013;
-}
-
-.prograss-amount {
+.progress-amount {
   width: 1040px;
   display: grid;
   grid-template-rows: 1fr;
@@ -439,6 +462,7 @@ background-clip: text;
   outline: none;
   border: 1px solid #FE9013;
   background: none;
+  cursor: pointer;
 }
 
 input:checked {
@@ -453,6 +477,7 @@ input:checked {
   font-size: 16px;
   line-height: 140%;
   color: #333B41;
+  cursor: pointer;
 }
 
 .btn {
