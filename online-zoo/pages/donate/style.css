@@ -629,14 +629,32 @@ footer {
   color: #BDBDBD;
 }
 
-.email-input::placeholder {
+.email-input::-webkit-input-placeholder {
   color: #BDBDBD;
   opacity: 1;
 }
+/* .email-input:focus::-webkit-input-placeholder {
+  color: red;
+} */
 
-.email-input:focus .input-border {
-  background: #4B9200;
+/* Firefox < 19 */
+.email-input:-moz-placeholder {
+  color: #BDBDBD;
+  opacity: 1;
 }
+/* .email-input:focus:-moz-placeholder {
+  color: red;
+} */
+
+/* Firefox > 19 */
+.email-input::-moz-placeholder {
+  color: #BDBDBD;
+  opacity: 1;
+}
+/* .email-input:focus::-moz-placeholder {
+  color: red;
+} */
+
 .email-input:focus .email-input::placeholder {
   color: #4B9200;
 }
@@ -678,7 +696,6 @@ footer {
   font-size: 16px;
   line-height: 130%;
   color: #FFFFFF;
-  opacity: 0.6;
   cursor: pointer;
 }
 
