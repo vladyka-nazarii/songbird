@@ -128,6 +128,21 @@ background-clip: text;
   transition: 0.3s;
 }
 
+.nav-link:hover,
+.nav-link:active,
+.figma-link:hover,
+.figma-link:active {
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
 .figma-link {
   text-decoration: none;
   font-family: 'Roboto';
@@ -136,6 +151,7 @@ background-clip: text;
   font-size: 16px;
   line-height: 140%;
   color: #FFFFFF;
+  transition: .3s;
 }
 /* --------------------------</HEADER>-------------------------- */
 
@@ -382,6 +398,14 @@ background-clip: text;
   color: #929699;
 }
 
+.amount-input::-webkit-outer-spin-button,
+.amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.amount-input {
+  -moz-appearance: textfield;
+}
+
 .amount-input::placeholder {
   color: #929699;
   opacity: 1;
@@ -445,6 +469,15 @@ input:checked {
   background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
   border-radius: 25px;
   border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #E47209;
+}
+
+.btn:active {
+  background: #4B9200;
 }
 
 .btn-section4 {
@@ -528,6 +561,16 @@ footer {
   transition: 0.3s;
 }
 
+.social-link:hover,
+.social-link:active {
+  color: #4B9200;
+}
+
+.social-link:hover .logo-social,
+.social-link:active .logo-social {
+  background: #4B9200;
+}
+
 .center-footer {
   margin-right: auto;
 }
@@ -567,7 +610,7 @@ footer {
   border-radius: 2px;
   background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
   padding: 1px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .email-input {
@@ -591,6 +634,20 @@ footer {
   opacity: 1;
 }
 
+.email-input:focus .input-border {
+  background: #4B9200;
+}
+.email-input:focus .email-input::placeholder {
+  color: #4B9200;
+}
+
+.email-input:focus .submit-footer,
+.submit-footer:hover,
+.submit-footer:active {
+  border: 1px solid #4B9200;
+  color: #4B9200;
+}
+
 .submit-footer {
   width: 129px;
   height: 42px;
@@ -603,6 +660,7 @@ footer {
   font-size: 16px;
   line-height: 140%;
   color: #000000;
+  cursor: pointer;
 }
 
 .right-down-footer {
@@ -621,5 +679,12 @@ footer {
   line-height: 130%;
   color: #FFFFFF;
   opacity: 0.6;
+  cursor: pointer;
+}
+
+.designed-by:hover,
+.designed-by:active {
+  color: #4B9200;
+  text-decoration: underline;
 }
 /* --------------------------</FOOTER>-------------------------- */

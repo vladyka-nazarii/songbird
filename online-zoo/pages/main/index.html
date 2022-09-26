@@ -11,7 +11,7 @@
 <body>
   <header>
     <div class="wrapper__header">
-      <a href="../main/index.html" class="nav-link"><div class="logo">
+      <a href="../main/index.html" class="logo-link"><div class="logo">
         <h1 class="logo-text">PetStory online</h1>
         <img class="logo-svg" src="../../assets/icons/bamboo.svg" alt="">
       </div></a>
@@ -261,7 +261,7 @@
   <footer>
     <div class="wrapper__footer">
       <div class="left-footer">
-        <a href="../main/index.html" class="nav-link"><div class="logo logo-footer">
+        <a href="../main/index.html" class="logo-link"><div class="logo logo-footer">
           <p class="logo-text">PetStory online</p>
           <img class="logo-svg logo-svg-footer" src="../../assets/icons/bamboo.svg" alt="">
         </div></a>
@@ -306,9 +306,12 @@
       <div class="right-footer">
         <div class="right-up-footer">
           <h2 class="title-footer">Subscribe to our news</h2>
-          <div class="input-border">
-            <input class="email-input" type="email" placeholder="Enter your email">
-          </div><button class="submit-footer">Submit</button>
+          <form action="">
+            <div class="input-border">
+              <input class="email-input" type="email" id="email" name="mail"placeholder="Enter your email" required>
+            </div>
+            <input class="submit-footer" type="submit" value="Submit">
+          </form>
         </div>
         <div class="right-down-footer">
           <p class="designed-by">Designed by Alisa Samborskaya</p>
