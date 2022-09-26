@@ -406,6 +406,11 @@ background-clip: text;
   margin: 0 198px 60px 99px;
 }
 
+.emergency-link {
+  text-decoration: none;
+  color: #333B41;
+}
+
 .emergency-text {
 border-bottom: solid 1px #FE9013;
 padding-bottom: 1.5px;
@@ -612,7 +617,13 @@ footer {
 }
 
 .logo-footer {
+  align-items: flex-start;
+  border: 0.5px solid rgba(255, 255, 255, 0.6);
   margin-bottom: 68px;
+}
+
+.logo-svg-footer {
+  top: 20px;
 }
 
 .btn-footer {
@@ -708,7 +719,7 @@ footer {
   color: #BDBDBD;
 }
 
-::placeholder {
+.email-input::placeholder {
   color: #BDBDBD;
   opacity: 1;
 }
@@ -744,3 +755,4 @@ footer {
   color: #FFFFFF;
   opacity: 0.6;
 }
+/* --------------------------</FOOTER>-------------------------- */
