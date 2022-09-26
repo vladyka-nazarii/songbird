@@ -128,6 +128,21 @@ background-clip: text;
   transition: 0.3s;
 }
 
+.nav-link:hover,
+.nav-link:active,
+.figma-link:hover,
+.figma-link:active {
+  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
 .figma-link {
   text-decoration: none;
   font-family: 'Roboto';
@@ -136,6 +151,7 @@ background-clip: text;
   font-size: 16px;
   line-height: 140%;
   color: #FFFFFF;
+  transition: .3s;
 }
 /* --------------------------</HEADER>-------------------------- */
 
@@ -382,6 +398,14 @@ background-clip: text;
   color: #929699;
 }
 
+.amount-input::-webkit-outer-spin-button,
+.amount-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.amount-input {
+  -moz-appearance: textfield;
+}
+
 .amount-input::placeholder {
   color: #929699;
   opacity: 1;
@@ -445,6 +469,15 @@ input:checked {
   background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
   border-radius: 25px;
   border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #E47209;
+}
+
+.btn:active {
+  background: #4B9200;
 }
 
 .btn-section4 {
