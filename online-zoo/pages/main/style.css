@@ -690,6 +690,16 @@ footer {
   transition: 0.3s;
 }
 
+.social-link:hover,
+.social-link:active {
+  color: #4B9200;
+}
+
+.social-link:hover .logo-social,
+.social-link:active .logo-social {
+  background: #4B9200;
+}
+
 .center-footer {
   margin-right: auto;
 }
@@ -753,18 +763,33 @@ footer {
   opacity: 1;
 }
 
+.email-input:focus .input-border {
+  background: #4B9200;
+}
+.email-input:focus .email-input::placeholder {
+  color: #4B9200;
+}
+
+.email-input:focus .submit-footer,
+.submit-footer:hover,
+.submit-footer:active {
+  border: 1px solid #4B9200;
+  color: #4B9200;
+}
+
 .submit-footer {
   width: 129px;
   height: 42px;
   background: #F1F3F2;
-  border: 1px solid #4B9200;
+  border: 1px solid #333B41;
   border-radius: 5px;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 140%;
-  color: #4B9200;
+  color: #000000;
+  cursor: pointer;
 }
 
 .right-down-footer {
@@ -783,5 +808,12 @@ footer {
   line-height: 130%;
   color: #FFFFFF;
   opacity: 0.6;
+  cursor: pointer;
+}
+
+.designed-by:hover,
+.designed-by:active {
+  color: #4B9200;
+  text-decoration: underline;
 }
 /* --------------------------</FOOTER>-------------------------- */
