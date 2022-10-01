@@ -154,16 +154,30 @@ background-clip: text;
   color: #FFFFFF;
   transition: .3s;
 }
+
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger:hover .svg-burger {
+  fill: #FE9013;
+}
+
+.burger:active .svg-burger {
+  fill: #4B9200;
+}
 /* --------------------------</HEADER>-------------------------- */
 
 /* --------------------------<MAIN>-------------------------- */
 
 /* --------------------------<SECTION 1>-------------------------- */
 .section1 {
-  height: 700px;
+  height: 780px;
   display: flex;
   justify-content: center;
-  background: url(../../assets/images/giant_panda.jpg) center top -80px / cover no-repeat;
+  background: url(../../assets/images/giant_panda.jpg) center top / cover no-repeat;
+  margin-top: -80px;
 }
 
 .wrapper__section1 {
@@ -178,7 +192,7 @@ background-clip: text;
   height: 465px;
   border-radius: 50%;
   background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
-  margin: 12px 108px 69px 0;
+  margin: 92px 108px 69px 0;
 }
 
 .text-watch {
@@ -520,6 +534,7 @@ padding-bottom: 1.5px;
 }
 
 .icon-div {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
@@ -527,6 +542,10 @@ padding-bottom: 1.5px;
   align-items: center;
   border-radius: 4px;
   background-color: #FFFFFF;
+}
+
+.green-arrow {
+  display: none;
 }
 
 .svg-arrow {
@@ -550,15 +569,14 @@ padding-bottom: 1.5px;
 /* --------------------------<SECTION 5>-------------------------- */
 .section5 {
   height: 919px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background: url(../../assets/images/leav_foto.jpg) right bottom -133px no-repeat;
+  padding-top: 140px;
 }
 
 .wrapper__section5 {
   max-width: 1160px;
   margin-top: 140px;
+  margin: 0 auto;
 }
 
 .title-section5 {
@@ -671,7 +689,7 @@ padding-bottom: 1.5px;
 
 /* --------------------------<FOOTER>-------------------------- */
 footer {
-  min-width: 1600px;
+  /* min-width: 1600px; */
   height: 443px;
   background: #111115;
 }
@@ -745,7 +763,8 @@ footer {
 }
 
 .center-footer {
-  margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .nav-list-footer {
@@ -776,16 +795,6 @@ footer {
   margin-bottom: 14px;
 }
 
-/* .input-border {
-  display: inline-block;
-  width: 228px;
-  height: 42px;
-  border-radius: 2px;
-  background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
-  padding: 1px;
-  margin-right: 5px;
-} */
-
 .email-input {
   width: 228px;
   height: 42px;
@@ -801,6 +810,7 @@ footer {
   font-size: 16px;
   line-height: 140%;
   color: #BDBDBD;
+  margin-right: 5px;
 }
 
 .email-input::-webkit-input-placeholder {
@@ -885,6 +895,33 @@ footer {
   text-decoration: underline;
 }
 /* --------------------------</FOOTER>-------------------------- */
+
+.logo-footer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 82px;
+  height: 52px;
+  border: 1px solid #FFFFFF;
+  border-radius: 2px;
+  margin-right: 63px;
+}
+
+.logo-text-footer {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 120%;
+  text-align: center;
+  margin: 0;
+}
+
+.logo-svg-footer {
+  position: absolute;
+  top: 22.5px;
+  left: 9.5px;
+}
 
 .footer-submit-input {
   width: 228px;
@@ -987,6 +1024,10 @@ footer {
   .wrapper__section4 {
     margin: 69px 50px 100px 50px;
   }
+  /* --------------------------<SECTION 5*1600>-------------------------- */
+  .section5 {
+    padding: 140px 50px 0;
+  }
 }
 
 /* ----------------------<1000>---------------------- */
@@ -1012,7 +1053,7 @@ footer {
     width: 367px;
     height: 367px;
     border-radius: 50%;
-    margin: -11px 91px 47px 0;
+    margin: 69px 91px 47px 0;
   }
   
   .text-watch {
@@ -1027,12 +1068,12 @@ footer {
 
   /* --------------------------<SECTION 2*1000>-------------------------- */
   .section2 {
-    height: 590px;
+    height: 670px;
     background: url(../../assets/images/flower_foto.jpg) right -200px top 12px no-repeat;
   }
   
   .wrapper__section2 {
-    margin: 20px 30px;
+    margin: 100px 30px;
   }
   
   .img-section2 {
@@ -1048,7 +1089,7 @@ footer {
   /* --------------------------<SECTION 3*1000>-------------------------- */
   .section3 {
     height: 1074px;
-    background: url(../../assets/images/palm_foto.jpg) left -195px bottom / 39% no-repeat, url(../../assets/images/strelitzia.jpg) right bottom / 24% no-repeat;
+    background: url(../../assets/images/palm_foto.jpg) left -194px bottom / 388px no-repeat, url(../../assets/images/strelitzia.jpg) right bottom / 240px no-repeat;
   }
 
   .wrapper__section3 {
@@ -1119,11 +1160,12 @@ footer {
   /* --------------------------<SECTION 5*1000>-------------------------- */
   .section5 {
     height: 842px;
-    background: url(../../assets/images/leav_foto.jpg) right bottom -90px / 20% no-repeat;
+    background: url(../../assets/images/leav_foto.jpg) right bottom -90px / 200px no-repeat;
+    padding: 100px 0 0;
   }
   .wrapper__section5 {
     width: 100%;
-    margin: 100px 0 0 0;
+    margin: 0;
     padding: 0 30px;
   }
 
@@ -1165,11 +1207,314 @@ footer {
   }
 
   .left-footer {
-    margin-right: -8px;
+    margin: 0;
+  }
+
+  .center-footer {
+    margin-right: auto;
   }
 
   .nav-list-footer {
     gap: 48px;
+    margin-left: -8px;
   }
 }
+/* ----------------------<640>---------------------- */
+@media (max-width: 640px) {
+    /* ----------------------<HEADER*640>---------------------- */
+    header {
+      height: 34px;
+    }
 
+    .wrapper__header {
+      margin: 0 20px;
+    }
+
+    .logo {
+      width: 47px;
+      border: none;
+    }
+    
+    .logo-text {
+      font-size: 12.3px;
+    }
+
+    .logo-svg {
+      width: 7.5px;
+      top: 25px;
+      left: 3.5px;
+    }
+  
+    .nav, .figma-link {
+      display: none;
+    }
+
+    .burger {
+      display: block;
+    }
+  /* --------------------------<SECTION 1*640>-------------------------- */
+  .section1 {
+    height: 373px;
+    background: url(../../assets/images/giant_panda.jpg) center bottom / cover no-repeat;
+    margin-top: -34px;
+  }
+  
+  .wrapper__section1 {
+    margin: 0 72px 0 20px;
+  }
+  
+  .big-orange {
+    width: 238px;
+    height: 238px;
+    border-radius: 50%;
+    margin: 44px 0 0;
+  }
+  
+  .text-watch {
+    width: 256px;
+    margin: 38px 0 0 38px;
+    font-size: 54.3px;
+  }
+
+  .btn-section1 {
+    align-self: flex-start;
+    margin: -3px 0 0;
+  }
+  /* --------------------------<SECTION 2*640>-------------------------- */
+  .section2 {
+    height: 507px;
+    background: url(../../assets/images/flower_foto.jpg) right -30px top -5px / 160px no-repeat;
+  }
+  
+  .wrapper__section2 {
+    margin: 60px 80px 0 20px;
+  }
+  
+  .img-section2 {
+    display: none;
+  }
+  
+  .div-section2-text {
+    width: 495px;
+    height: 403px;
+  }
+
+  .title-section2, .subtitle-section2 {
+    margin: 0 0 20px 4px;
+  }
+
+  .titile-description-section2 {
+    margin-bottom: 30px;
+  }
+  /* --------------------------<SECTION 3*640>-------------------------- */
+  .section3 {
+    height: 970px;
+    background: url(../../assets/images/palm_foto.jpg) left -248px bottom / 380px no-repeat, url(../../assets/images/strelitzia.jpg) right bottom / 174px no-repeat;
+  }
+
+  .wrapper__section3 {
+    margin: 0 20px 60px 20px;
+  }
+
+  .container-cards {
+    height: 756px;
+  }
+
+  .container-cards .border-card:nth-child(3),
+  .container-cards .border-card:nth-child(6) {
+    display: none;
+  }
+
+  .border-card {
+    width: 285px;
+    height: 332px;
+  }
+
+  .btn-cards {
+    position: static;
+  }
+
+  .left {
+    margin-left: 37.2%;
+    left: 0;
+    transform: translateY(0) translateX(0)
+  }
+  
+  .right {
+    margin-right: 37.2%;
+    right: 0;
+    transform: translateY(0) translateX(0)
+  }
+
+  .card-description {
+    padding: 0px 2px 0 6px;
+  }
+
+  .title-card {
+    font-size: 12.5px;
+  }
+  
+  .subtitle-card {
+    font-size: 11.7px;
+  }
+
+  .svg-food {
+    height: 28px;
+  }
+  /* --------------------------<SECTION 4*640>-------------------------- */
+  .section4 {
+    height: 781px;
+  }
+
+  .wrapper__section4 {
+    width: 100%;
+    margin: 20px 0 20px;
+    padding: 0 20px;
+  }
+
+  .title-section4 {
+    font-size: 42px;
+    margin: 10px 0 20px;
+  }
+
+  .biger-text-section4 {
+    margin: 0 0 20px;
+    font-size: 22px;
+  }
+
+  .covid-text-section4 {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+
+  .text-section4 {
+    width: 100%;
+    margin: 0 0 30px;
+  }
+
+  .subtitle-section4 {
+    margin-bottom: 20px;
+  }
+
+  .pay-feed-block {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 12px 0 0;
+  }
+
+  .green-arrow {
+    display: block;
+    position: absolute;
+    top: -17px;
+    right: -58px;
+    z-index: 1;
+  }
+
+  .svg-arrow {
+    display: none;
+  }
+
+  .widjet {
+    margin-bottom: 40px;
+  }
+  /* --------------------------<SECTION 5*640>-------------------------- */
+  .section5 {
+    height: 668px;
+    background: url(../../assets/images/leav_foto.jpg) right -5px bottom -68px / 122px no-repeat;
+    padding: 60px 0 0;
+  }
+  .wrapper__section5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  .title-section5 {
+    margin-bottom: 0;
+  }
+
+  .testimonials {
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0 40px;
+  }
+
+  .testimonials .border-review-div:nth-child(2) {
+    display: none;
+  }
+
+  .testimonials .border-review-div:nth-child(3) {
+    order: 1;
+  }
+
+  .border-review-div {
+    width: 600px;
+    height: 109px;
+  }
+
+  .user-review {
+    height: 38px;
+    overflow: hidden;
+  }
+
+  .scroll-border {
+    display: none;
+  }
+
+  .btn-section5 {
+    width: 240px;
+  }
+  /* --------------------------<FOOTER*640>-------------------------- */
+  footer {
+    width: 100%;
+    height: 282px;
+  }
+  .wrapper__footer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 20px;
+  }
+
+  .left-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo-footer {
+    margin-bottom: 33px;
+  }
+
+  .logo-social {
+    margin: 0;
+  }
+
+  .social-list {
+    gap: 20px;
+  }
+
+  .nav-footer {
+    position: relative;
+    top: 52px;
+  }
+
+  .nav-list-footer {
+    gap: 37px;
+  }
+
+  .right-footer {
+    height: 100%;
+    margin-left: auto;
+  }
+
+  .title-footer, .email-form, .text-social {
+    display: none;
+  }
+}
