@@ -722,6 +722,14 @@ footer {
   margin-bottom: 44px;
 }
 
+.btn-link {
+  text-decoration: none;
+}
+
+.mobile {
+  display: none;
+}
+
 .logo-social {
   width: 26px;
   height: 26px;
@@ -765,6 +773,7 @@ footer {
 .center-footer {
   display: flex;
   justify-content: flex-start;
+  margin-right: auto;
 }
 
 .nav-list-footer {
@@ -1211,12 +1220,21 @@ footer {
   }
 
   .center-footer {
-    margin-right: auto;
+    width: 20px;
+  }
+
+  .nav-footer {
+    white-space: nowrap;
+    position: relative;
+    left: -8px;
   }
 
   .nav-list-footer {
     gap: 48px;
-    margin-left: -8px;
+  }
+
+  .right-up-footer {
+    margin-right: 32px;
   }
 }
 /* ----------------------<640>---------------------- */
@@ -1337,13 +1355,13 @@ footer {
   .left {
     margin-left: 37.2%;
     left: 0;
-    transform: translateY(0) translateX(0)
+    transform: translateY(-4px) translateX(0)
   }
   
   .right {
     margin-right: 37.2%;
     right: 0;
-    transform: translateY(0) translateX(0)
+    transform: translateY(-4px) translateX(0)
   }
 
   .card-description {
@@ -1451,8 +1469,12 @@ footer {
   }
 
   .border-review-div {
-    width: 600px;
+    width: 100%;
     height: 109px;
+  }
+
+  .user-info {
+    padding: 13px 0 12px 10px;
   }
 
   .user-review {
@@ -1472,6 +1494,7 @@ footer {
     width: 100%;
     height: 282px;
   }
+
   .wrapper__footer {
     width: 100%;
     height: 100%;
@@ -1492,6 +1515,15 @@ footer {
     margin-bottom: 33px;
   }
 
+  .btn-footer-link {
+    align-self: flex-end;
+    text-decoration: none;
+  }
+
+  .btn-footer {
+    margin-bottom: 44px;
+  }
+
   .logo-social {
     margin: 0;
   }
@@ -1503,6 +1535,7 @@ footer {
   .nav-footer {
     position: relative;
     top: 52px;
+    left: 0;
   }
 
   .nav-list-footer {
@@ -1517,4 +1550,267 @@ footer {
   .title-footer, .email-form, .text-social {
     display: none;
   }
+}
+/* ----------------------</640>---------------------- */
+/* ----------------------<320>---------------------- */
+@media (max-width: 320px) {
+  /* ----------------------<HEADER*320>---------------------- */
+  .wrapper__header {
+    margin: 0 10px;
+  }
+  /* --------------------------<SECTION 1*320>-------------------------- */
+  .section1 {
+    height: 187px;
+    background: url(../../assets/images/giant_panda.jpg) center bottom / cover no-repeat;
+    margin-top: 0;
+  }
+
+  .wrapper__section1 {
+    position: relative;
+    height: 261px;
+    margin: 0 10px 0 10px;
+  }
+
+  .big-orange {
+    width: 119px;
+    height: 119px;
+    border-radius: 50%;
+    margin: 22px 28px 66px 0;
+  }
+
+  .text-watch {
+    width: 128px;
+    margin: 18px 0 0 19px;
+    font-size: 28px;
+  }
+
+  .btn-section1 {
+    align-self: center;
+    margin: 0;
+  }
+  /* --------------------------<SECTION 2*320>-------------------------- */
+  .section2 {
+    height: 532px;
+    background: url(../../assets/images/flower_foto.jpg) right -41px top 38px / 73px no-repeat;
+  }
+
+  .wrapper__section2 {
+    margin: 104px 10px 0;
+  }
+
+  .div-section2-text {
+    width: 100%;
+    height: 100%;
+  }
+
+  .title-section2 {
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .titile-description-section2 {
+    margin: 0 0 20px 2px;
+  }
+
+  .subtitle-section2 {
+    font-size: 24px;
+    margin: 0 0 10px 2px;
+  }
+
+  .subtitle-description-section2 {
+    line-height: 138%;
+  }
+  /* --------------------------<SECTION 3*320>-------------------------- */
+  .section3 {
+    height: 1522px;
+    background: url(../../assets/images/palm_foto.jpg) left -81px bottom / 139px no-repeat, url(../../assets/images/strelitzia.jpg) right -22px bottom -4px / 94px no-repeat;
+  }
+
+  .wrapper__section3 {
+    margin: 0 17px 20px 17px;
+  }
+
+  .container-cards {
+    height: 1388px;
+  }
+
+  .btn-cards {
+    display: none;
+  }
+  /* --------------------------<SECTION 4*320>-------------------------- */
+  .section4 {
+    height: 1082px;
+  }
+
+  .wrapper__section4 {
+    width: 100%;
+    margin: 20px 10px;
+    padding: 0;
+  }
+
+  .title-section4 {
+    font-size: 24px;
+    margin: 20px 0 10px;
+  }
+
+  .biger-text-section4 {
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 18px;
+  }
+
+  .covid-text-section4, .text-section4 {
+    display: none;
+  }
+
+  .subtitle-section4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .pay-feed-block {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 11px 0;
+  }
+
+  .green-arrow {
+    transform:rotate(85deg);
+    top: 197px;
+    right: -62px;
+  }
+
+  .pay-feed-block .widjet:first-child .green-arrow {
+    top: 190px;
+    right: -62px;
+  }
+
+  .svg-arrow {
+    display: none;
+  }
+
+  .border-div {
+    margin-bottom: 6px;
+  }
+
+  .widjet {
+    margin-bottom: 28px;
+  }
+
+  .pay-feed-block .widjet:first-child {
+    margin-bottom: 44px;
+  }
+  /* --------------------------<SECTION 5*320>-------------------------- */
+  .section5 {
+    height: 580px;
+    background: url(../../assets/images/leav_mobile.jpg) right bottom -30px / 51px no-repeat;
+    padding: 30px 0 0;
+  }
+
+  .wrapper__section5 {
+    padding: 0 10px;
+  }
+
+  .title-section5 {
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+
+  .testimonials {
+    margin: 0 0 30px;
+  }
+
+  .user-info {
+    gap: 6px;
+    padding: 8px 0 12px 11px;
+  }
+
+  .user-review {
+    margin: 0 13px 0 17px;
+  }
+  /* --------------------------<FOOTER*320>-------------------------- */
+  footer {
+    height: 334px;
+  }
+
+  .wrapper__footer {
+    padding: 20px 10px;
+  }
+
+  .left-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-footer {
+    width: 100%;
+    height: 23px;
+    border: none;
+    margin-bottom: 30px;
+  }
+
+  .logo-text-footer {
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+  }
+
+  .logo-svg-footer {
+    top: -3px;
+    left: 103px;
+  }
+
+  .logo-btn-footer .btn-link {
+    display: none;
+  }
+  
+  .social-list {
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 29px;
+  }
+  
+  .mobile {
+    display: block;
+  }
+
+  .left-footer .btn-link {
+    order: 1;
+  }
+
+  .btn-footer {
+    margin-bottom: 20px;
+  }
+
+  .center-footer {
+    order: 1;
+  }
+
+  .right-down-footer {
+    margin-bottom: 30px;
+  }
+
+  .designed-by {
+    font-size: 15px;
+  }
+
+.nav-footer {
+  position: static;
+  top: 0;
+  left: 0;
+  margin: 0 11px;
+}
+
+.nav-list-footer {
+  gap: 30px;
+}
+
+.right-footer {
+  height: 100%;
+  margin-left: auto;
+}
+
+.title-footer, .email-form, .text-social {
+  display: none;
+}
 }
