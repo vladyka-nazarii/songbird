@@ -116,7 +116,7 @@ header {
   padding: 0;
 }
 
-li:nth-child(4) .nav-link {
+.nav-list li:nth-child(4) .nav-link {
 background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
