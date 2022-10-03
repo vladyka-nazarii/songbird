@@ -894,6 +894,8 @@ footer {
 @media (max-width: 640px) {
   /* ----------------------<HEADER*640>---------------------- */
   header {
+    position: sticky;
+    top: 0;
     height: 34px;
   }
 
