@@ -708,13 +708,31 @@ footer {
 }
 
 .logo-footer {
-  align-items: flex-start;
-  border: 0.5px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 82px;
+  height: 52px;
+  border: 1px solid #FFFFFF;
+  border-radius: 2px;
+  margin-right: 63px;
   margin-bottom: 68px;
 }
 
+.logo-text-footer {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 120%;
+  text-align: center;
+  margin: 0;
+}
+
 .logo-svg-footer {
+  position: absolute;
   top: 20px;
+  left: 9.5px;
 }
 
 .btn-footer {
@@ -840,10 +858,6 @@ footer {
   color: #4B9200;
 }
 
-.email-input:focus .email-input::placeholder {
-  color: #4B9200;
-}
-
 .email-input:focus .submit-footer,
 .submit-footer:hover,
 .submit-footer:active {
@@ -864,20 +878,6 @@ footer {
   line-height: 140%;
   color: #000000;
   cursor: pointer;
-}
-.submit-footer:default {
-  border: 1px solid #333B41;
-  color: #bbb;
-}
-
-.email-input:invalid ~ .submit-footer{
-  border: 1px solid #D31414;
-  color: #D31414;
-}
-
-.email-input:focus ~ .submit-footer {
-  border: 1px solid #4B9200;
-  color: #4B9200;
 }
 
 .right-down-footer {
@@ -905,112 +905,8 @@ footer {
 }
 /* --------------------------</FOOTER>-------------------------- */
 
-.logo-footer {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 82px;
-  height: 52px;
-  border: 1px solid #FFFFFF;
-  border-radius: 2px;
-  margin-right: 63px;
-}
-
-.logo-text-footer {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 19px;
-  line-height: 120%;
-  text-align: center;
-  margin: 0;
-}
-
-.logo-svg-footer {
-  position: absolute;
-  top: 22.5px;
-  left: 9.5px;
-}
-
-.footer-submit-input {
-  width: 228px;
-  height: 42px;
-  border-radius: 2px;
-  border: 1px solid #F9804B;
-  color: #BDBDBD;
-  background: transparent;
-  margin-right: 6px;
-  padding: 8px;
-  outline: none;
-  font-size: 16px;
-  transition: 0.3s;
-  cursor: pointer;
-}
-.footer-submit-input:valid {
-  border-color: #4B9200;
-  transition: 0.3s;
-}
-.footer-submit-input:valid .footer-button {
-  border-color: #4B9200;
-  transition: 0.3s;
-}
-.footer-submit-input:valid + .footer-submit-button {
-  border-color: #4B9200;
-  color: #4B9200;
-  transition: 0.3s;
-}
-.footer-submit-input:invalid:placeholder-shown {
-  border-color: #F9804B;
-}
-.footer-submit-input:invalid:placeholder-shown + .footer-submit-button {
-  border-color: black;
-  color: black;
-  transition: 0.3s;
-}
-.footer-submit-input:invalid {
-  border-color: red;
-  transition: 0.3s;
-}
-.footer-submit-input:invalid + .footer-submit-button {
-  border-color: red;
-  color: red;
-  transition: 0.3s;
-}
-.footer-submit-input:active:placeholder-shown {
-  border-color: #4B9200;
-  transition: 0.3s;
-}
-.footer-submit-input:focus:placeholder-shown {
-  border-color: #4B9200;
-  transition: 0.3s;
-}
-.footer-submit-input::placeholder {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 140%;
-  color: #BDBDBD;
-}
-.footer-submit-button {
-  width: 129px;
-  height: 42px;
-  background-color: #F1F3F2;
-  border: 1px solid black;
-  border-radius: 5px;
-  color: black;
-  margin-top: 14px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 140%;
-  outline: none;
-  cursor: pointer;
-}
-.footer-submit-button:hover.activ.more {
-  color: #F9804B;
-  border-color: #F9804B;
-  transition: 0.3s;
-}
-
 /* --------------------------<ADAPTIVE>-------------------------- */
+
 /* ----------------------<1600>---------------------- */
 @media (max-width: 1600px) {
     /* ----------------------<HEADER*1600>---------------------- */
