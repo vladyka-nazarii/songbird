@@ -1468,6 +1468,7 @@ footer {
   .border-review-div {
     width: 100%;
     height: 109px;
+    margin: 0;
   }
 
   .user-info {
