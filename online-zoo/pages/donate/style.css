@@ -189,7 +189,7 @@ background-clip: text;
 }
 
 .wrapper__section2 {
-  width: 1160px;
+  max-width: 1160px;
   margin-top: 40px;
 }
 
@@ -561,13 +561,12 @@ background-clip: text;
 
 /* --------------------------<FOOTER>-------------------------- */
 footer {
-  /* min-width: 1600px; */
   height: 443px;
   background: #111115;
 }
 
 .wrapper__footer {
-  width: 1160px;
+  max-width: 1160px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -674,7 +673,8 @@ footer {
   font-weight: 400;
   font-size: 16px;
   line-height: 140%;
-  gap: 58px;
+  gap: 31%;
+  white-space: nowrap;
 }
 
 .right-footer {
@@ -789,6 +789,23 @@ footer {
   .section1 {
     background: url(../../assets/images/giant_panda.jpg) center bottom -196px / 1600px no-repeat;
   }
+  /* --------------------------<SECTION 2*1600>-------------------------- */
+  .wrapper__section2 {
+    margin: 40px 50px 0;
+  }
+  /* --------------------------<FOOTER*1600>-------------------------- */  
+  .wrapper__footer {
+    width: 90%;
+  }
+
+  .left-footer {
+    margin-right: 9%;
+  }
+  }
+  @media (max-width: 1100px) {
+  .right-down-footer {
+    margin-bottom: 40px;
+  }
 }
 /* ----------------------<1000>---------------------- */
 @media (max-width: 1000px) {
@@ -812,7 +829,8 @@ footer {
 
   .wrapper__section2 {
     width: 100%;
-    padding: 0 30px 30px;
+    padding: 40px 30px 30px;
+    margin: 0;
   }
 
   .title-info {
@@ -889,7 +907,47 @@ footer {
   .right-up-footer {
     margin-right: 32px;
   }
+
+  .right-down-footer {
+    margin: 0;
+  }
 }
+
+/* ----------------------<960>---------------------- */
+@media (max-width: 960px) {
+  /* --------------------------<FOOTER*960>-------------------------- */
+  .nav-list-footer {
+    gap: 20%;
+  }
+
+  .right-down-footer {
+    margin-bottom: 40px;
+  }
+}
+/* ----------------------<780>---------------------- */
+@media (max-width: 780px) {
+  /* ----------------------<HEADER*780>---------------------- */
+  .logo {
+    margin-right: 20px;
+  }
+
+  .nav-list {
+    gap: 30px;
+  }
+  /* ----------------------<SECTION 2*780>---------------------- */
+  .section2 {
+    height: 1550px;
+  }
+
+  .bg-div {
+    height: 1000px;
+  }
+  .amount-radio-label {
+    font-size: 20px;
+  }
+}
+/* ----------------------</780>---------------------- */
+
 /* ----------------------<640>---------------------- */
 @media (max-width: 640px) {
   /* ----------------------<HEADER*640>---------------------- */
@@ -931,6 +989,10 @@ footer {
     background: url(../../assets/images/giant_panda.jpg) left -272px bottom -167px / 1373px no-repeat;
   }
   /* --------------------------<SECTION 2*640>-------------------------- */
+  .section2 {
+    height: 1333px;
+  }
+
   .wrapper__section2 {
     margin: 0;
     padding: 30px 20px;
@@ -953,6 +1015,7 @@ footer {
   }
 
   .bg-div {
+    height: 918px;
     padding: 30px 0 0;
   }
 
@@ -974,6 +1037,10 @@ footer {
   .amount {
     padding-left: 10px;
     margin-bottom: 7px;
+  }
+
+  .amount-radio-label {
+    font-size: 26px;
   }
 
   .progress {
@@ -1066,8 +1133,116 @@ footer {
   .title-footer, .email-form, .text-social {
     display: none;
   }
+
+  .right-down-footer {
+    margin: 0;
+  }
 }
 /* ----------------------</640>---------------------- */
+
+/* ----------------------<620>---------------------- */
+@media (max-width: 620px) {
+  /* --------------------------<SECTION 2*620>-------------------------- */
+  .section2 {
+    height: 1650px;
+  }
+
+  .wrapper__section2 {
+    padding: 30px 3%;
+  }
+
+  .biger-text-section2 {
+    margin: 0;
+  }
+
+  .panda {
+    width: 100%;
+  }
+  /* --------------------------<FOOTER*620>-------------------------- */
+  /* --------------------------<FOOTER*320>-------------------------- */
+  footer {
+    height: 334px;
+  }
+
+  .wrapper__footer {
+    padding: 20px 10px;
+  }
+
+  .left-footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-footer {
+    width: 100%;
+    height: 23px;
+    border: none;
+    margin-bottom: 30px;
+  }
+
+  .logo-text-footer {
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+  }
+
+  .logo-svg-footer {
+    top: -3px;
+    left: 103px;
+  }
+
+  .logo-btn-footer .btn-link {
+    display: none;
+  }
+  
+  .social-list {
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 29px;
+  }
+  
+  .mobile {
+    display: block;
+  }
+
+  .left-footer .btn-link {
+    order: 1;
+  }
+
+  .btn-footer {
+    margin-bottom: 20px;
+  }
+
+  .center-footer {
+    order: 1;
+  }
+
+  .right-down-footer {
+    margin-bottom: 30px;
+  }
+
+  .designed-by {
+    font-size: 15px;
+  }
+
+.nav-footer {
+  position: static;
+  top: 0;
+  left: 0;
+  margin: 0 11px;
+}
+
+.nav-list-footer {
+  gap: 30px;
+}
+
+.right-footer {
+  height: 100%;
+  margin-left: auto;
+}
+}
+/* ----------------------</560>---------------------- */
+
 /* ----------------------<320>---------------------- */
 @media (max-width: 320px) {
   /* ----------------------<HEADER*320>---------------------- */
@@ -1209,89 +1384,4 @@ footer {
   .share {
     width: 101%;
   }
-  /* --------------------------<FOOTER*320>-------------------------- */
-  footer {
-    height: 334px;
-  }
-
-  .wrapper__footer {
-    padding: 20px 10px;
-  }
-
-  .left-footer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo-footer {
-    width: 100%;
-    height: 23px;
-    border: none;
-    margin-bottom: 30px;
-  }
-
-  .logo-text-footer {
-    width: 100%;
-    text-align: center;
-    font-size: 19px;
-  }
-
-  .logo-svg-footer {
-    top: -3px;
-    left: 103px;
-  }
-
-  .logo-btn-footer .btn-link {
-    display: none;
-  }
-  
-  .social-list {
-    flex-direction: row;
-    gap: 30px;
-    margin-bottom: 29px;
-  }
-  
-  .mobile {
-    display: block;
-  }
-
-  .left-footer .btn-link {
-    order: 1;
-  }
-
-  .btn-footer {
-    margin-bottom: 20px;
-  }
-
-  .center-footer {
-    order: 1;
-  }
-
-  .right-down-footer {
-    margin-bottom: 30px;
-  }
-
-  .designed-by {
-    font-size: 15px;
-  }
-
-.nav-footer {
-  position: static;
-  top: 0;
-  left: 0;
-  margin: 0 11px;
-}
-
-.nav-list-footer {
-  gap: 30px;
-}
-
-.right-footer {
-  height: 100%;
-  margin-left: auto;
-}
-
-.title-footer, .email-form, .text-social {
-  display: none;
-}
 }
