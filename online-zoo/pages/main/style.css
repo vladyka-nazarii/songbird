@@ -247,7 +247,7 @@ background-clip: text;
 
 /* --------------------------<SECTION 2>-------------------------- */
 .section2 {
-  height: 723px;
+  min-height: 723px;
   display: flex;
   justify-content: center;
   background: url(../../assets/images/flower_foto.jpg) right top 12px no-repeat;
@@ -255,7 +255,8 @@ background-clip: text;
 }
 
 .wrapper__section2 {
-  width: 1160px;
+  max-width: 1160px;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   margin-top: 140px;
@@ -309,7 +310,7 @@ background-clip: text;
 
 /* --------------------------<SECTION 3>-------------------------- */
 .section3 {
-  height: 1106px;
+  min-height: 1106px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -432,7 +433,7 @@ background-clip: text;
 
 /* --------------------------<SECTION 4>-------------------------- */
 .section4 {
-  height: 1004px;
+  min-height: 1004px;
   display: flex;
   justify-content: center;
   background: linear-gradient(315.75deg, rgba(254, 210, 144, 0.7) 30.06%, #FEBDAB 100.95%, rgba(254, 210, 144, 0.7) 106.36%),
@@ -568,7 +569,7 @@ padding-bottom: 1.5px;
 
 /* --------------------------<SECTION 5>-------------------------- */
 .section5 {
-  height: 919px;
+  min-height: 919px;
   background: url(../../assets/images/leav_foto.jpg) right bottom -133px no-repeat;
   padding-top: 140px;
 }
@@ -689,13 +690,12 @@ padding-bottom: 1.5px;
 
 /* --------------------------<FOOTER>-------------------------- */
 footer {
-  /* min-width: 1600px; */
   height: 443px;
   background: #111115;
 }
 
 .wrapper__footer {
-  width: 1160px;
+  max-width: 1160px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -921,6 +921,10 @@ footer {
   .wrapper__section2 {
     margin: 140px 50px;
   }
+
+  .img-section2 {
+    margin-right: 20px;
+  }
   /* --------------------------<SECTION 3*1600>-------------------------- */
   .wrapper__section3 {
     margin: 0 100px 80px 100px;
@@ -932,6 +936,14 @@ footer {
   /* --------------------------<SECTION 5*1600>-------------------------- */
   .section5 {
     padding: 140px 50px 0;
+  }
+  /* --------------------------<FOOTER*1000>-------------------------- */
+  .wrapper__footer {
+    width: 90%;
+  }
+
+  .left-footer {
+    margin-right: 9%;
   }
 }
 
@@ -1133,6 +1145,21 @@ footer {
     margin-right: 32px;
   }
 }
+/* ----------------------</1000>---------------------- */
+
+/* ----------------------<780>---------------------- */
+@media (max-width: 780px) {
+  /* ----------------------<HEADER*780>---------------------- */
+  .logo {
+    margin-right: 20px;
+  }
+
+  .nav-list {
+    gap: 30px;
+  }
+}
+/* ----------------------</780>---------------------- */
+
 /* ----------------------<640>---------------------- */
 @media (max-width: 640px) {
     /* ----------------------<HEADER*640>---------------------- */
@@ -1176,7 +1203,7 @@ footer {
   }
   
   .wrapper__section1 {
-    margin: 0 72px 0 20px;
+    margin: 0 11.1% 0 3.1%;
   }
   
   .big-orange {
@@ -1450,6 +1477,26 @@ footer {
   }
 }
 /* ----------------------</640>---------------------- */
+
+/* ----------------------<560>---------------------- */
+@media (max-width: 560px) {
+  /* --------------------------<SECTION 1*560>-------------------------- */
+  .wrapper__section1 {
+    margin: 0 10px 0 10px;
+  }
+
+  .big-orange {
+    margin-right: 50px;
+  }
+
+  .btn-section1 {
+    margin: 20px 0 0;
+  }
+}
+/* ----------------------</560>---------------------- */
+
+
+
 /* ----------------------<320>---------------------- */
 @media (max-width: 320px) {
   /* ----------------------<HEADER*320>---------------------- */
