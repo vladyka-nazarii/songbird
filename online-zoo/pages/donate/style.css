@@ -1151,6 +1151,14 @@ footer {
     padding: 30px 3%;
   }
 
+  .bg-div {
+    height: 1000px;
+  }
+
+  .amount-radio-label {
+    font-size: 20px;
+  }
+
   .biger-text-section2 {
     margin: 0;
   }
