@@ -1099,7 +1099,7 @@ footer {
   }
   /* --------------------------<SECTION 5*1000>-------------------------- */
   .section5 {
-    height: 842px;
+    min-height: 842px;
     background: url(../../assets/images/leav_foto.jpg) right bottom -90px / 200px no-repeat;
     padding: 100px 0 0;
   }
