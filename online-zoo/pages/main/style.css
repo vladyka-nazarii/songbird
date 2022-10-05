@@ -1127,6 +1127,7 @@ footer {
 
   .border-review-div {
     width: 293px;
+    margin: 0;
   }
 
   .scroll-border {
@@ -1204,6 +1205,10 @@ footer {
   .right {
     right: -44%;
     transform: scale(0.7);
+  }
+
+  .border-review-div {
+    margin: 0 5px;
   }
   /* --------------------------<FOOTER*960>-------------------------- */
   .nav-list-footer {
