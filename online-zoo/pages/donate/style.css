@@ -55,6 +55,9 @@ body {
   color: #ffffff;
 }
 
+body.lock {
+  overflow: hidden;
+}
 /* --------------------------<HEADER>-------------------------- */
 header {
   position: relative;
@@ -155,9 +158,19 @@ background-clip: text;
   transition: .3s;
 }
 
-.burger {
+.burger,
+.logo-burger,
+.burger-close {
+  flex-shrink: 0;
   display: none;
   cursor: pointer;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .burger:hover .svg-burger {
@@ -166,6 +179,19 @@ background-clip: text;
 
 .burger:active .svg-burger {
   fill: #4B9200;
+}
+
+.overlay {
+  transition: 0.3s;
+}
+
+.overlay.active {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
 }
 /* --------------------------</HEADER>-------------------------- */
 
@@ -976,8 +1002,74 @@ footer {
     left: 3.5px;
   }
 
-  .nav, .figma-link {
-    display: none;
+  .menu {
+    width: 100%;
+    height: 329px;
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+    gap: 15px;
+    padding: 10px;
+    top: 0;
+    left: 100%;
+    transition: .3s;
+    z-index: 1;
+  }
+
+  .menu.active {
+    left: 0;
+  }
+
+  .logo-burger {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 66px;
+    height: 42px;
+    border: 0.8px solid #FE9013;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .logo-text-burger {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15.2px;
+    line-height: 120%;
+    text-align: center;
+    margin: 0;
+    color: #FE9013;
+  }
+
+  .logo-svg-burger {
+    position: absolute;
+    top: 18px;
+    left: 7.3px;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 14.6px;
+  }
+
+  .nav-list .nav-link {
+    font-weight: 400;
+    color: #333B41;
+  }
+
+  .figma-link {
+    font-weight: 400;
+    color: #333B41;
+  }
+
+  .burger-close {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 20px;
   }
 
   .burger {
