@@ -639,6 +639,7 @@ padding-bottom: 1.5px;
 }
 
 .wrapper__section5 {
+  position: relative;
   max-width: 1160px;
   margin-top: 140px;
   margin: 0 auto;
@@ -655,15 +656,27 @@ padding-bottom: 1.5px;
   margin-bottom: 47px;
 }
 
+.carousel {
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 0;
+}
+
 .testimonials {
   display: flex;
   justify-content: space-between;
+  gap: 1.4%;
   margin-bottom: 21px;
 }
 
 .border-review-div {
   width: 268px;
   height: 391px;
+  flex-shrink: 0;
   border-radius: 20px;
   background: 
   linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
@@ -734,19 +747,35 @@ padding-bottom: 1.5px;
 }
 
 .scroll-bg {
+  -webkit-appearance: none;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   background: #F5F7F6;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.scroll {
-  width: 115px;
+.scroll-bg::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 36px;
+  width: 12.5%;
   height: 6px;
   background: #FE9013;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.scroll-bg::-moz-range-thumb {
+  height: 36px;
+  width: 12.5%;
+  height: 6px;
+  background: #FE9013;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .btn-section5 {
@@ -1171,15 +1200,12 @@ footer {
   }
 
   .testimonials {
+    gap: 3.2%;
     margin: 30px 0 20px;
   }
 
   .testimonials .border-review-div:nth-child(2) {
     display: none;
-  }
-
-  .testimonials .border-review-div:nth-child(3) {
-    order: 1;
   }
 
   .border-review-div {
@@ -1460,6 +1486,7 @@ footer {
   }
 
   .container-cards {
+    max-width: 600px;
     height: 756px;
   }
 
@@ -1705,23 +1732,27 @@ footer {
     padding: 20px;
   }
   /* --------------------------<SECTION 3*620>-------------------------- */
+  .slide-container {
+    width: 300px;
+  }
+
   .container-cards {
-    width: 98%;
-    height: 100%;
+    max-width: 295px;
+    height: 1440px;
   }
 
-  .border-card {
-    margin: 10px auto;
+  .container-cards .border-card:nth-child(2) {
+    margin-bottom: 60px;
   }
 
-  .left, .right {
-    position: absolute;
-    margin: 0;
-    transform: translateY(-50%);
+  .left {
+    top: 50%;
+    left: 25%;
   }
 
-  .container-cards :nth-child(7) {
-    margin-top: 70px;
+  .right {
+    top: 50%;
+    right: 25%;
   }
   /* --------------------------<SECTION 4*620>-------------------------- */
   .pay-feed-block {
@@ -1895,6 +1926,10 @@ footer {
   .container-cards {
     width: 100%;
     height: 1388px;
+  }
+
+  .container-cards .border-card:nth-child(2) {
+    margin-bottom: 0;
   }
 
   .border-card {

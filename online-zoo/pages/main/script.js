@@ -56,3 +56,46 @@ nextBtn.addEventListener('click', () => {
 });                                                     //slide next container by click on next btn
 window.addEventListener("resize", setOffset);
 window.addEventListener('load', setOffset);
+// TESTIMONIALS SLIDER
+const reviewsContainers = document.querySelector('.testimonials');
+const review = document.querySelectorAll('.border-review-div');
+const carousel = document.querySelector('.carousel');
+const scroller = document.querySelector('.scroll-bg');
+function genReviews() {
+  const reviewCopy = [];
+  review.forEach(e => reviewCopy.push(e.cloneNode(true)));
+  review.forEach(e => reviewCopy.push(e.cloneNode(true)));
+  reviewCopy.pop();
+  reviewCopy.forEach(e => reviewsContainers.append(e));
+};
+function chngeReviews() {
+  const avatar = document.querySelectorAll('.avatar');
+  const name = document.querySelectorAll('.user-name');
+  avatar[4].src = "../../assets/icons/bay.jpg";
+  name[4].innerHTML = "Michael Bay";
+  avatar[5].src = "../../assets/icons/nolan.jpg";
+  name[5].innerHTML = "Christopher Nolan";
+  avatar[6].src = "../../assets/icons/toro.jpg";
+  name[6].innerHTML = "Guillermo del Toro";
+  avatar[7].src = "../../assets/icons/ritchie.jpg";
+  name[7].innerHTML = "Guy Ritchie";
+  avatar[8].src = "../../assets/icons/shyamalan.jpg";
+  name[8].innerHTML = "M. Night Shyamalan";
+  avatar[9].src = "../../assets/icons/eggers.jpg";
+  name[9].innerHTML = "Robert Eggers";
+  avatar[10].src = "../../assets/icons/tarantino.jpg";
+  name[10].innerHTML = "Quentin Tarantino";
+};
+function setScroller() {
+  carousel.scrollBy(width * (scroller.value - value), 0);
+  console.log(width * (scroller.value - value));
+  value = scroller.value;
+};
+genReviews();
+chngeReviews();
+let width = review[3].offsetLeft - review[2].offsetLeft;
+let value = scroller.value;
+scroller.addEventListener("input", setScroller);
+window.addEventListener("resize", () => width = review[3].offsetLeft - review[2].offsetLeft);
+console.log(review[3].offsetLeft - review[2].offsetLeft);
+console.log(width);
