@@ -58,6 +58,10 @@ body {
 body.lock {
   overflow: hidden;
 }
+
+:root {
+  --offset: 0;
+}
 /* --------------------------<HEADER>-------------------------- */
 header {
   position: relative;
@@ -66,7 +70,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
 }
 
 .wrapper__header {
@@ -274,7 +278,7 @@ background-clip: text;
 
 /* --------------------------<SECTION 2>-------------------------- */
 .section2 {
-  min-height: 713px;
+  min-height: 723px;
   display: flex;
   justify-content: center;
   background: url(../../assets/images/flower_foto.jpg) right top 12px no-repeat;
@@ -337,7 +341,7 @@ background-clip: text;
 
 /* --------------------------<SECTION 3>-------------------------- */
 .section3 {
-  min-height: 1116px;
+  min-height: 1106px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -345,20 +349,46 @@ background-clip: text;
 }
 
 .wrapper__section3 {
-  max-width: 1178px;
+  max-width: 1158px;
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
+}
+
+.slide-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  gap: 20px;
 }
 
 .container-cards {
+  width: 100%;
+  height: 872px;
+  flex-shrink: 0;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: space-between;
   align-items: baseline;
+  gap: 15px;
+  left: 0;
+}
+
+.container-cards.prev {
+  transition: 1s;
+  left: var(--offset);
+}
+.container-cards.next {
+  transition: 1s;
+  left: calc(var(--offset)*-1)
+}
+
+.container-cards .border-card:last-child {
+  display: none;
 }
 
 .btn-cards {
@@ -370,15 +400,16 @@ background-clip: text;
   background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
   cursor: pointer;
   top: 50%;
+  z-index: 1;
 }
 
 .left {
-  left: -10px;
+  left: -1.8%;
   transform: translateY(-53%) translateX(-100%)
 }
 
 .right {
-  right: -10px;
+  right: -1.8%;
   transform: translateY(-53%) translateX(100%)
 }
 
@@ -388,7 +419,6 @@ background-clip: text;
   border-radius: 5px;
   background-image: linear-gradient(113.96deg, #FA6F32 1.49%, #FE9013 101.44%);
   padding: 1px;
-  margin: 10px;
 }
 
 .foto-card {
@@ -965,7 +995,7 @@ footer {
   }
   /* --------------------------<SECTION 3*1600>-------------------------- */
   .wrapper__section3 {
-    margin: 0 100px 70px 100px;
+    margin: 0 100px 80px 100px;
   }
   /* --------------------------<SECTION 4*1600>-------------------------- */
   .wrapper__section4 {
@@ -982,6 +1012,37 @@ footer {
 
   .left-footer {
     margin-right: 9%;
+  }
+}
+@media (max-width: 1340px) {
+  .container-cards {
+    height: 950px;
+  }
+
+  .left {
+    top: 46%;
+    left: 34.4%;
+    transform: translateY(0) translateX(0)
+  }
+  
+  .right {
+    top: 46%;
+    right: 34.4%;
+    transform: translateY(0) translateX(0)
+  }
+}
+@media (max-width: 1160px) {
+  .wrapper__section3 {
+    margin: 0 30px 80px 30px;
+  }
+
+  .container-cards {
+    height: 800px;
+  }
+
+  .border-card {
+    width: 294px;
+    height: 354px;
   }
 }
 @media (max-width: 1100px) {
@@ -1052,36 +1113,6 @@ footer {
   .section3 {
     min-height: 1074px;
     background: url(../../assets/images/palm_foto.jpg) left -194px bottom / 388px no-repeat, url(../../assets/images/strelitzia.jpg) right bottom / 240px no-repeat;
-  }
-
-  .wrapper__section3 {
-    margin: 0 30px 80px 30px;
-  }
-
-  .container-cards {
-    height: 800px;
-  }
-
-  .border-card {
-    width: 294px;
-    height: 354px;
-    margin: 0;
-  }
-
-  .btn-cards {
-    position: static;
-  }
-
-  .left {
-    margin-left: 34.4%;
-    left: 0;
-    transform: translateY(0) translateX(0)
-  }
-  
-  .right {
-    margin-right: 34.4%;
-    right: 0;
-    transform: translateY(0) translateX(0)
   }
   /* --------------------------<SECTION 4*1000>-------------------------- */
   .section4 {
@@ -1208,29 +1239,20 @@ footer {
     min-height: 790px;
   }
   /* --------------------------<SECTION 3*960>-------------------------- */
+  .slide-container {
+    max-width: 630px;
+  }
+
   .container-cards {
-    height: 100%;
-    align-self: center;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .border-card {
-    margin: 10px auto;
-  }
-
-  .btn-cards {
-    position: absolute;
+    height: 1170px;
   }
 
   .left {
-    left: -44%;
-    transform: scale(0.7);
+    left: -10.5%;
   }
 
   .right {
-    right: -44%;
-    transform: scale(0.7);
+    right: -10.5%;
   }
 
   .border-review-div {
@@ -1245,7 +1267,19 @@ footer {
     margin-bottom: 40px;
   }
 }
+@media (max-width: 800px) {
+  .left {
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
+  .right {
+    top: 64.7%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
 /* ----------------------<780>---------------------- */
 @media (max-width: 780px) {
   /* ----------------------<HEADER*780>---------------------- */
@@ -1300,13 +1334,12 @@ footer {
     top: 0;
     left: 100%;
     transition: .3s;
-    z-index: 1;
+    z-index: 2;
   }
 
   .menu.active {
     left: 0;
   }
-
 
   .logo-burger {
     display: flex;
@@ -1428,7 +1461,6 @@ footer {
 
   .container-cards {
     height: 756px;
-    width: 100%;
   }
 
   .container-cards .border-card:nth-child(3),
@@ -1442,20 +1474,16 @@ footer {
     margin: 0;
   }
 
-  .btn-cards {
-    position: static;
-  }
-
   .left {
-    margin-left: 37.2%;
-    left: 0;
-    transform: translateY(-4px) translateX(0)
+    top: 49.5%;
+    left: 37.7%;
+    transform: translateY(-50%) translateX(0)
   }
   
   .right {
-    margin-right: 37.2%;
-    right: 0;
-    transform: translateY(-4px) translateX(0)
+    top: 49.5%;
+    right: 37.7%;
+    transform: translateY(-50%) translateX(0)
   }
 
   .card-description {
