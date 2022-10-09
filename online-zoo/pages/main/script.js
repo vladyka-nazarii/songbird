@@ -54,7 +54,6 @@ nextBtn.addEventListener('click', () => {
       genContainer(2);
       cardsContainers.forEach(e => e.classList.remove('next'))}}
 });                                                     //slide next container by click on next btn
-window.addEventListener("resize", setOffset);
 window.addEventListener('load', setOffset);
 // TESTIMONIALS SLIDER
 const reviewsContainers = document.querySelector('.testimonials');
@@ -95,7 +94,11 @@ genReviews();
 chngeReviews();
 let width = review[3].offsetLeft - review[2].offsetLeft;
 let value = scroller.value;
+if (document.body.clientWidth <= 1240) {scroller.max = "8"}
 scroller.addEventListener("input", setScroller);
-window.addEventListener("resize", () => width = review[3].offsetLeft - review[2].offsetLeft);
-console.log(review[3].offsetLeft - review[2].offsetLeft);
-console.log(width);
+window.addEventListener("resize", () => {
+  setOffset();
+  width = review[3].offsetLeft - review[2].offsetLeft;
+  if (document.body.clientWidth <= 1240) {scroller.max = "8"};
+  if (document.body.clientWidth > 1240) {scroller.max = "7"};
+});
