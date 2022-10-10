@@ -1615,11 +1615,16 @@ footer {
     margin-bottom: 0;
   }
 
+  .carousel {
+    height: 357px;
+    margin: 30px 0 40px;
+  }
+
   .testimonials {
     width: 100%;
     flex-direction: column;
     gap: 15px;
-    margin: 30px 0 40px;
+    margin: 0;
   }
 
   .border-review-div {
