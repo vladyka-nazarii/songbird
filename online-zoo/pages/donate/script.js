@@ -12,3 +12,12 @@ document.querySelector('.burger-close').addEventListener("click", ()=>{closeMenu
 document.querySelector('.nav-list').addEventListener("click", ()=>{closeMenu()});                 //close .menu by click on .nav-list
 document.querySelector('.overlay').addEventListener("click", ()=>{closeMenu()});                  //close .menu by click on .overlay
 document.addEventListener('keydown', (event)=>{if (event.key === 'Escape') {closeMenu()}});       //close .menu by Escape key
+// AMOUNT
+const radios = document.querySelectorAll('.amount-radio');
+const amount = document.querySelector('.amount-input');
+radios.forEach(e => e.addEventListener("input", () => amount.value = e.value));
+amount.addEventListener("input", () => {
+  if (amount.value > 9999) amount.value = +amount.value.toString().slice(0,4);
+  radios.forEach(e => {if (e.value == amount.value) e.checked = true});
+  radios.forEach(e => {if (e.checked == true && e.value != amount.value) e.checked = false});
+});
