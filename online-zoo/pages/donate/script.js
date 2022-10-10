@@ -20,5 +20,4 @@ amount.addEventListener("input", () => {
   if (amount.value > 9999) amount.value = +amount.value.toString().slice(0,4);
   radios.forEach(e => {if (e.value == amount.value) e.checked = true});
   radios.forEach(e => {if (e.checked == true && e.value != amount.value) e.checked = false});
-  console.log(amount.value)
 });
