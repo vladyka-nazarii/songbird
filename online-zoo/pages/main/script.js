@@ -38,6 +38,7 @@ function setOffset() {
 genContainer(0);
 genContainer(2);
 prevBtn.addEventListener('click', () => {
+  if (!cardsContainers[0].classList.contains('prev') && !cardsContainers[0].classList.contains('next')) {
   cardsContainers.forEach(e => e.classList.add('prev'));
   cardsContainers[0].ontransitionend = (e) => {
     if (e.target.className === "container-cards prev") {
@@ -45,8 +46,9 @@ prevBtn.addEventListener('click', () => {
       cardsContainers[1].innerHTML = cardsContainers[0].innerHTML;
       genContainer(0);
       cardsContainers.forEach(e => e.classList.remove('prev'))}}
-});                                                     //slide prev container by click on prev btn
+}});                                                     //slide prev container by click on prev btn
 nextBtn.addEventListener('click', () => {
+  if (!cardsContainers[0].classList.contains('prev') && !cardsContainers[0].classList.contains('next')) {
   cardsContainers.forEach(e => e.classList.add('next'));
   cardsContainers[2].ontransitionend = (e) => {
     if (e.target.className === "container-cards next") {
@@ -54,7 +56,7 @@ nextBtn.addEventListener('click', () => {
       cardsContainers[1].innerHTML = cardsContainers[2].innerHTML;
       genContainer(2);
       cardsContainers.forEach(e => e.classList.remove('next'))}}
-});                                                     //slide next container by click on next btn
+}});                                                     //slide next container by click on next btn
 window.addEventListener('load', setOffset);
 // TESTIMONIALS SLIDER
 const reviewsContainers = document.querySelector('.testimonials');
