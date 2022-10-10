@@ -1,11 +1,12 @@
 // BURGER MENU
-const openMenu = () => {
+function openMenu() {
   document.querySelector('.menu').classList.add('active');                                        //open .menu
   document.querySelector('.overlay').classList.add('active');                                     //make .overlay visible
   document.body.classList.add('lock');};                                                          //lock scroll
-const closeMenu = () => {
+function closeMenu() {
   document.querySelector('.menu').classList.remove('active');                                     //close .menu
   document.querySelector('.overlay').classList.remove('active');                                  //make .overlay unvisible
+  document.querySelectorAll('.border-review-div').forEach(e => e.classList.remove('active'));
   document.body.classList.remove('lock');};                                                       //unlock scroll
 document.querySelector('.burger').addEventListener("click", ()=>{openMenu()});                    //open .menu by click on .burger
 document.querySelector('.burger-close').addEventListener("click", ()=>{closeMenu()});             //close .menu by click on .burger-close
@@ -57,15 +58,15 @@ nextBtn.addEventListener('click', () => {
 window.addEventListener('load', setOffset);
 // TESTIMONIALS SLIDER
 const reviewsContainers = document.querySelector('.testimonials');
-const review = document.querySelectorAll('.border-review-div');
+const reviews = document.querySelectorAll('.border-review-div');
 const carousel = document.querySelector('.carousel');
 const scroller = document.querySelector('.scroll-bg');
 function genReviews() {
-  const reviewCopy = [];
-  review.forEach(e => reviewCopy.push(e.cloneNode(true)));
-  review.forEach(e => reviewCopy.push(e.cloneNode(true)));
-  reviewCopy.pop();
-  reviewCopy.forEach(e => reviewsContainers.append(e));
+  const reviewsCopy = [];
+  reviews.forEach(e => reviewsCopy.push(e.cloneNode(true)));
+  reviews.forEach(e => reviewsCopy.push(e.cloneNode(true)));
+  reviewsCopy.pop();
+  reviewsCopy.forEach(e => reviewsContainers.append(e));
 };
 function chngeReviews() {
   const avatar = document.querySelectorAll('.avatar');
@@ -86,19 +87,27 @@ function chngeReviews() {
   name[10].innerHTML = "Quentin Tarantino";
 };
 function setScroller() {
-  carousel.scrollBy(width * (scroller.value - value), 0);
-  console.log(width * (scroller.value - value));
-  value = scroller.value;
+  carousel.scroll(width * scroller.value, 0);
 };
 genReviews();
 chngeReviews();
-let width = review[3].offsetLeft - review[2].offsetLeft;
-let value = scroller.value;
+let width = reviews[1].offsetLeft - reviews[0].offsetLeft;
 if (document.body.clientWidth <= 1240) {scroller.max = "8"}
 scroller.addEventListener("input", setScroller);
 window.addEventListener("resize", () => {
   setOffset();
-  width = review[3].offsetLeft - review[2].offsetLeft;
+  width = reviews[1].offsetLeft - reviews[0].offsetLeft;
   if (document.body.clientWidth <= 1240) {scroller.max = "8"};
   if (document.body.clientWidth > 1240) {scroller.max = "7"};
 });
+// TESTIMONIALS POP-UP
+const openReview = () => {
+  reviews.classList.add('active');                                        //open .menu
+  document.querySelector('.overlay').classList.add('active');                                     //make .overlay visible
+  document.body.classList.add('lock');};                                                          //lock scroll
+document.querySelectorAll('.border-review-div').forEach(e => e.addEventListener("click", (event)=>{
+  e.classList.add('active');
+  document.querySelector('.overlay').classList.add('active');                                     //make .overlay visible
+  document.body.classList.add('lock');
+  if (event.target.className === 'review-close') closeMenu();
+}));
