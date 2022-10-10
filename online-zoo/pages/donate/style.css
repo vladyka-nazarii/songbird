@@ -459,8 +459,8 @@ background-clip: text;
   border-radius: 1.5px;
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 26px;
   line-height: 140%;
   color: #4B9200;
   padding: 8px;
@@ -475,6 +475,8 @@ background-clip: text;
 }
 
 .amount-input::placeholder {
+  font-weight: 400;
+  font-size: 16px;
   color: #929699;
   opacity: 1;
 }
@@ -1253,6 +1255,10 @@ footer {
 
   .biger-text-section2 {
     margin: 0;
+  }
+
+  .amount-input {
+    font-size: 13px;
   }
 
   .panda {
