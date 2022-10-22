@@ -21,3 +21,4 @@ amount.addEventListener("input", () => {
   radios.forEach(e => {if (e.value == amount.value) e.checked = true});
   radios.forEach(e => {if (e.checked == true && e.value != amount.value) e.checked = false});
 });
+console.log(document.head.nextSibling)
