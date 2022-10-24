@@ -1,4 +1,5 @@
 let moves = 0;
+let time = '00:00';
 let size = 3;
 let order = [];
 let position = [];
@@ -7,8 +8,9 @@ const audio = new Audio();
 audio.src = "./assets/bass.mp3";
 
 function startGame() {
+  makeHeader();
   makeField();
-  makeSizes();
+  makeFooter();
   addEventSizes();
   setSize();
   setOrder();
@@ -20,7 +22,7 @@ function startGame() {
 function makeField() {
   const field = document.createElement('div');
   field.classList.add('field');
-  document.body.append(field, document.body.childNodes[0]);
+  document.body.append(field);
 };
 
 function setSize() {
@@ -144,6 +146,7 @@ function finishMove() {
   findMovable();
   addEvent();
   moves += 1;
+  document.querySelector(".moves").innerHTML = `${moves}`;
 }
 
 function moveTop() {
@@ -153,9 +156,11 @@ function moveTop() {
   if (topElement.style.top === '') {
     top = 0;
   } else {
-    top = +topElement.style.top.slice(0, -2);
+    // top = +topElement.style.top.slice(0, -2);
+    top = +topElement.style.top.slice(0, -1);
   };
-  topElement.style.top = `${top + field.clientWidth / size}px`;
+  // topElement.style.top = `${top + field.clientWidth / size}px`;
+  topElement.style.top = `${top + 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i - size;
   [order[i], order[j]] = [order[j], order[i]];
@@ -169,9 +174,11 @@ function moveBottom() {
   if (bottomElement.style.top === '') {
     top = 0;
   } else {
-    top = +bottomElement.style.top.slice(0, -2);
+    // top = +bottomElement.style.top.slice(0, -2);
+    top = +bottomElement.style.top.slice(0, -1);
   };
-  bottomElement.style.top = `${top - field.clientWidth / size}px`;
+  // bottomElement.style.top = `${top - field.clientWidth / size}px`;
+  bottomElement.style.top = `${top - 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i + size;
   [order[i], order[j]] = [order[j], order[i]];
@@ -185,9 +192,11 @@ function moveLeft() {
   if (leftElement.style.left === '') {
     left = 0;
   } else {
-    left = +leftElement.style.left.slice(0, -2);
+    // left = +leftElement.style.left.slice(0, -2);
+    left = +leftElement.style.left.slice(0, -1);
   };
-  leftElement.style.left = `${left + field.clientWidth / size}px`;
+  // leftElement.style.left = `${left + field.clientWidth / size}px`;
+  leftElement.style.left = `${left + 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i - 1;
   [order[i], order[j]] = [order[j], order[i]];
@@ -201,27 +210,47 @@ function moveright() {
   if (rightElement.style.left === '') {
     left = 0;
   } else {
-    left = +rightElement.style.left.slice(0, -2);
+    // left = +rightElement.style.left.slice(0, -2);
+    left = +rightElement.style.left.slice(0, -1);
   };
-  rightElement.style.left = `${left - field.clientWidth / size}px`;
+  // rightElement.style.left = `${left - field.clientWidth / size}px`;
+  rightElement.style.left = `${left - 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i + 1;
   [order[i], order[j]] = [order[j], order[i]];
   finishMove();
 };
 
-function makeSizes() {
-  const sizes = document.createElement('div');
-  sizes.classList.add('sizes');
-  document.body.append(sizes);
+function makeHeader() {
+  const header = document.createElement('div');
+  header.classList.add('header');
+  header.innerHTML = '<div class="btn-div"><button class="btn">Shuffle and start</button><button class="btn">Stop</button><button class="btn">Save</button><button class="btn">Results</button></div>'
+  const movesTime = document.createElement('div');
+  movesTime.classList.add('moves-time');
+  const move = document.createElement('p');
+  move.classList.add('moves-container');
+  move.innerHTML = `Moves: <span class="moves">${moves}</span>`;
+  movesTime.append(move);
+  const timer = document.createElement('p');
+  timer.classList.add('time-container');
+  timer.innerHTML = `Time: <span class="time">00:00</span>`;
+  movesTime.append(timer);
+  header.append(movesTime);
+  document.body.append(header);
+};
+
+function makeFooter() {
+  const footer = document.createElement('div');
+  footer.classList.add('footer');
   const frameSize = document.createElement('p');
   frameSize.classList.add('size-text');
   frameSize.innerHTML = `Frame size: ${size}x${size}`;
-  sizes.append(frameSize);
+  footer.append(frameSize);
   const otherSizes = document.createElement('p');
   otherSizes.classList.add('size-text');
   otherSizes.innerHTML = `Other sizes: <span class="size">3x3</span> <span class="size">4x4</span> <span class="size">5x5</span> <span class="size">6x6</span> <span class="size">7x7</span> <span class="size">8x8</span>`;
-  sizes.append(otherSizes);
+  footer.append(otherSizes);
+  document.body.append(footer);
 }
 
 function resize() {
@@ -242,5 +271,13 @@ function addEventSizes() {
     })
   });
 };
+
+function showTime() {
+  let seconds
+
+  showDate();
+  showGreeting();
+  setTimeout(showTime, 1000);
+}
 
 window.addEventListener('load', startGame);

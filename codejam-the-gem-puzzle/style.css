@@ -39,7 +39,34 @@
   z-index: -1;
 }
 
-.sizes {
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5%;
+  margin-top: 3%;
+}
+
+.btn {
+  padding: 1%;
+}
+
+.btn-div {
+  width: 80vw;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+.moves-time {
+  width: 45vw;
+  max-width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
   display: flex;
   flex-direction: column;
   align-items: center;
