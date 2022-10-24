@@ -169,6 +169,7 @@ function finishMove() {
   moves += 1;
   document.querySelector(".moves").innerHTML = `${moves}`;
   timerIsActive = true;
+  checkWin();
 }
 
 function moveTop() {
@@ -241,6 +242,17 @@ function moveright() {
   const j = i + 1;
   [order[i], order[j]] = [order[j], order[i]];
   finishMove();
+};
+
+function checkWin() {
+  if (order.every((e, i) => e === i + 1)) {
+    const field = document.querySelector('.field');
+    const layout = document.createElement('div');
+    layout.classList.add('layout');
+    layout.innerHTML = `Hooray! You solved the puzzle in ${Math.floor(time / 60) > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${time % 60 > 9 ? time % 60 : `0${time % 60}`} and ${moves} moves!`
+    field.append(layout);
+    timerIsActive = false;
+  }
 };
 
 function makeHeader() {
