@@ -1,22 +1,25 @@
 let moves = 0;
-let time = '00:00';
-let size = 3;
+let time = 0;
+let timerIsActive = false;
+let size = 4;
 let order = [];
 let position = [];
 let elements;
 const audio = new Audio();
-audio.src = "./assets/bass.mp3";
+audio.src = "./assets/sounds/bass.mp3";
 
 function startGame() {
   makeHeader();
+  addEventHeader();
   makeField();
   makeFooter();
-  addEventSizes();
+  addEventFooter();
   setSize();
   setOrder();
   genPuzzle();
   findMovable();
   addEvent();
+  showTime();
 };
 
 function makeField() {
@@ -147,6 +150,7 @@ function finishMove() {
   addEvent();
   moves += 1;
   document.querySelector(".moves").innerHTML = `${moves}`;
+  timerIsActive = true;
 }
 
 function moveTop() {
@@ -224,7 +228,15 @@ function moveright() {
 function makeHeader() {
   const header = document.createElement('div');
   header.classList.add('header');
-  header.innerHTML = '<div class="btn-div"><button class="btn">Shuffle and start</button><button class="btn">Stop</button><button class="btn">Save</button><button class="btn">Results</button></div>'
+  header.innerHTML =
+  `<div class="btn-div">
+    <button class="btn">Shuffle and start</button>
+    <button class="btn">Stop</button>
+    <button class="btn">Save</button>
+    <button class="btn">Results</button>
+    <img class="mute" src="./assets/img/sound_on.svg" alt="mute">
+    <img class="mute hide" src="./assets/img/sound_off.svg" alt="mute">
+  </div>`
   const movesTime = document.createElement('div');
   movesTime.classList.add('moves-time');
   const move = document.createElement('p');
@@ -254,14 +266,19 @@ function makeFooter() {
 }
 
 function resize() {
+  time = 0;
+  document.querySelector('.time').innerHTML = '00:00';
+  moves = 0;
+  document.querySelector(".moves").innerHTML = `${moves}`;
   setSize();
   setOrder();
   genPuzzle();
   findMovable();
   addEvent();
+  timerIsActive = false;
 }
 
-function addEventSizes() {
+function addEventFooter() {
   document.querySelectorAll('.size').forEach((e, i) => {
     e.addEventListener('click', () => {
       if (size !== i + 3) {
@@ -273,11 +290,35 @@ function addEventSizes() {
 };
 
 function showTime() {
-  let seconds
-
-  showDate();
-  showGreeting();
+  if (timerIsActive) {
+    time += 1;
+    if (time < 60) {
+      document.querySelector('.time').innerHTML = `00:${time > 9 ? time : `0${time}`}`;
+    } else {
+      document.querySelector('.time').innerHTML = `${Math.floor(time / 60) > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${time % 60 > 9 ? time % 60 : `0${time % 60}`}`;
+    }
+  }
   setTimeout(showTime, 1000);
-}
+};
+
+function addEventHeader() {
+  document.querySelectorAll('.btn')[0].addEventListener('click', () => {
+    resize();
+    timerIsActive = true;
+  });
+  document.querySelectorAll('.btn')[1].addEventListener('click', () => {
+    timerIsActive = false;
+  });
+  document.querySelectorAll('.mute')[0].addEventListener('click', () => {
+    audio.volume = 0;
+    document.querySelectorAll('.mute')[0].classList.add('hide');
+    document.querySelectorAll('.mute')[1].classList.remove('hide');
+  });
+  document.querySelectorAll('.mute')[1].addEventListener('click', () => {
+    audio.volume = 1;
+    document.querySelectorAll('.mute')[0].classList.remove('hide');
+    document.querySelectorAll('.mute')[1].classList.add('hide');
+  });
+};
 
 window.addEventListener('load', startGame);

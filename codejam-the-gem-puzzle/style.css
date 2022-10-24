@@ -14,7 +14,6 @@
   height: 80vw;
   max-height: 750px;
   border: 1px solid #d3d3d3;
-  background-color: #f1f1f1;
   margin: 3% auto 0;
 }
 
@@ -25,10 +24,12 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
-  border: solid 1px red;
+  background-color: pink;
+  border: solid 4px white;
   cursor: pointer;
   transition: .3s;
+  font-size: 40px;
+  font-weight: 600;
   top: 0;
   left: 0;
 }
@@ -51,12 +52,30 @@
   padding: 1%;
 }
 
+.btn:hover {
+  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 20px 0 rgba(0,0,0,0.19);
+}
+
 .btn-div {
   width: 80vw;
   max-width: 400px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 2%;
+}
+
+.mute {
+  width: 30px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.mute:hover {
+  scale: 1.2;
+}
+
+.mute.hide {
+  display: none;
 }
 
 .moves-time {
@@ -81,4 +100,38 @@
   text-decoration: underline;
   color: blue;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .element {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .element {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .element {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .element {
+    font-size: 16px;
+  }
+
+  .mute {
+    width: 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .element {
+    font-size: 14px;
+  }
 }
