@@ -32,6 +32,7 @@ function startGame() {
     });
     findMovable();
     addEventTiles();
+    console.log(localStorage.getItem('score'));
   } else {
     setOrder();
     genPuzzle();
@@ -366,6 +367,11 @@ function setLocalStorage() {
   });
   localStorage.setItem('elementsTop', elementsTop);
   localStorage.setItem('elementsleft', elementsleft);
+  localStorage.setItem('score', {
+    size: '4x4',
+    moves: 25,
+    time: '01:15'
+  })
 };
 
 function getLocalStorage() {
