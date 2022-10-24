@@ -1,5 +1,5 @@
 let moves = 0;
-let size = 3;
+let size = 4;
 const order = [];
 const position = [];
 let elements;
@@ -8,6 +8,7 @@ audio.src = "./assets/bass.mp3";
 
 function startGame() {
   makeField();
+  makeSizes();
   setSize();
   setOrder();
   genPuzzle();
@@ -49,11 +50,16 @@ function checkResolvable() {
       }
     }
   }
-  console.log(result);
-  if ((result % 2 + size % 2) % 2 !== 1) {
+  console.log(result % 2, Math.floor(order.indexOf(size ** 2) / size));
+  if (size % 2 === 1 && result % 2 === 1) {
+    console.log('again');
+    checkResolvable();
+  };
+  if (size % 2 === 0 && (result % 2 + Math.floor(order.indexOf(size ** 2) / size)) % 2 === 0) {
+    console.log('again');
     checkResolvable();
   }
-}
+};
 
 function genPuzzle() {
   const field = document.querySelector('.field');
@@ -204,5 +210,14 @@ function moveright() {
   finishMove();
 };
 
+function makeSizes() {
+  const sizes = document.createElement('div');
+  sizes.classList.add('sizes');
+  document.body.append(sizes);
+  const frameSize = document.createElement('p');
+  frameSize.classList.add('size-text');
+  frameSize.innerHTML = 'Frame size: 4x4';
+  sizes.append(frameSize);
+}
 
 window.addEventListener('load', startGame);
