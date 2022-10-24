@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --size: 0px;
+}
+
+.field {
+  width: 400px;
+  height:400px;
+  border: 1px solid #d3d3d3;
+  background-color: #f1f1f1;
+  margin: 100px auto 0;
+}
+
+.element {
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  border: solid 1px red;
+  cursor: pointer;
+  transition: .3s;
+  top: 0;
+  left: 0;
+}
+
+.empty, .empty :only-child {
+  opacity: 0;
+  cursor: default;
+  z-index: -1;
+}
+
+.top {
+  transform: translateY(100%);
+}
+
+.bottom {
+  transform: translateY(-100%);
+}
+
+.right {
+  transform: translateX(100%);
+}
+
+.left {
+  transform: translateX(-100%);
+}
