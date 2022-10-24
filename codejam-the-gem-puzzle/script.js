@@ -1,8 +1,9 @@
-const audio = new Audio();
 let moves = 0;
 let size = 3;
-let order = [];
+const order = [];
+const position = [];
 let elements;
+const audio = new Audio();
 audio.src = "./assets/bass.mp3";
 
 function startGame() {
@@ -12,7 +13,8 @@ function startGame() {
   genPuzzle();
   findMovable();
   addEvent();
-  console.log(order.indexOf(size ** 2) + 1);
+  console.log(order, 'order');
+  console.log(position, 'position');
 };
 
 function makeField() {
@@ -45,6 +47,7 @@ function genPuzzle() {
     const element = document.createElement('div');
     element.classList.add('element');
     element.innerHTML = `${order[i]}`;
+    position.push(order[i]);
     field.append(element);
   };
   elements = document.querySelectorAll('.element');
@@ -53,22 +56,24 @@ function genPuzzle() {
 
 function findMovable() {
   elements = document.querySelectorAll('.element');
-  const empty = order.indexOf(size ** 2) + 1;
-  if (empty - size > 0) {
-    console.log(empty - size, 'top', order[empty - size - 1]);
-    elements[empty - size - 1].classList.add('top-click');
+  const empty = order.indexOf(size ** 2);
+  console.log(empty);
+  
+  if (empty - size >= 0) {
+    // console.log(empty - size, 'top', order[empty - size]);
+    elements[empty - size ].classList.add('top-click');
   };
-  if (empty + size <= size ** 2) {
-    // console.log(empty + size, 'bottom', order[empty + size - 1]);
-    elements[empty + size - 1].classList.add('bottom-click');
-  };
-  if (empty % size !== 1) {
-    // console.log(empty - 1, 'left', order[empty - 1 - 1]);
-    elements[empty - 1 - 1].classList.add('left-click');
+  if (empty + size < size ** 2) {
+    // console.log(empty + size, 'bottom', order[empty + size]);
+    elements[empty + size].classList.add('bottom-click');
   };
   if (empty % size !== 0) {
-    // console.log(empty + 1, 'right', order[empty + 1 - 1]);
-    elements[empty + 1 - 1].classList.add('right-click');
+    // console.log(empty - 1, 'left', order[empty - 1]);
+    elements[empty - 1].classList.add('left-click');
+  };
+  if (empty % size !== 2) {
+    // console.log(empty + 1, 'right', order[empty + 1]);
+    elements[empty + 1].classList.add('right-click');
   }
 };
 
@@ -124,7 +129,8 @@ function finishMove() {
   findMovable();
   addEvent();
   moves += 1;
-  console.log(order.indexOf(size ** 2) + 1);
+  console.log(order, 'order');
+  console.log(position, 'position');
 }
 
 function moveTop() {
@@ -137,11 +143,26 @@ function moveTop() {
     top = +topElement.style.top.slice(0, -2);
   };
   topElement.style.top = `${top + field.clientWidth / size}px`;
-  order[order.indexOf(size ** 2)];
-  [order[order.indexOf(size ** 2)], order[order.indexOf(size ** 2 - size)]] = [order[order.indexOf(size ** 2 - size)], order[order.indexOf(size ** 2)]];
+  const i = order.indexOf(size ** 2);
+  const j = i - size;
+  [order[i], order[j]] = [order[j], order[i]];
   finishMove();
 };
-function moveBottom() {};
+function moveBottom() {
+  const field = document.querySelector('.field');
+  const bottomElement = document.querySelector('.bottom-click');
+  let top;
+  if (bottomElement.style.top === '') {
+    top = 0;
+  } else {
+    top = +bottomElement.style.top.slice(0, -2);
+  };
+  bottomElement.style.top = `${top - field.clientWidth / size}px`;
+  const i = order.indexOf(size ** 2);
+  const j = i + size;
+  [order[i], order[j]] = [order[j], order[i]];
+  finishMove();
+};
 function moveLeft() {};
 function moveright() {};
 
