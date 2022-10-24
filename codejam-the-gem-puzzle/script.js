@@ -8,18 +8,36 @@ let elements;
 const audio = new Audio();
 audio.src = "./assets/sounds/bass.mp3";
 
-function startGame() {
+function makePage() {
   makeHeader();
   addEventHeader();
   makeField();
   makeFooter();
   addEventFooter();
   setSize();
-  setOrder();
-  genPuzzle();
-  findMovable();
-  addEvent();
   showTime();
+}
+
+function startGame() {
+  if (localStorage.getItem('saved')) {
+    order = localStorage.getItem('position').split(',').map(e => +e);
+    genPuzzle();
+    order = localStorage.getItem('order').split(',').map(e => +e);
+    const elementsTop = localStorage.getItem('elementsTop').split(',');
+    const elementsleft = localStorage.getItem('elementsleft').split(',');
+    const elements = document.querySelectorAll('.element');
+    elements.forEach((e, i) => {
+      e.style.top = elementsTop[i];
+      e.style.left = elementsleft[i];
+    });
+    findMovable();
+    addEventTiles();
+  } else {
+    setOrder();
+    genPuzzle();
+    findMovable();
+    addEventTiles();
+  }
 };
 
 function makeField() {
@@ -112,7 +130,7 @@ function removeMovable() {
   }
 };
 
-function addEvent() {
+function addEventTiles() {
   if (document.querySelector('.top-click')) {
     document.querySelector('.top-click').addEventListener('click', moveTop)
   };
@@ -147,7 +165,7 @@ function finishMove() {
   removeEvent();
   removeMovable();
   findMovable();
-  addEvent();
+  addEventTiles();
   moves += 1;
   document.querySelector(".moves").innerHTML = `${moves}`;
   timerIsActive = true;
@@ -245,7 +263,7 @@ function makeHeader() {
   movesTime.append(move);
   const timer = document.createElement('p');
   timer.classList.add('time-container');
-  timer.innerHTML = `Time: <span class="time">00:00</span>`;
+  timer.innerHTML = `Time: <span class="time">${Math.floor(time / 60) > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${time % 60 > 9 ? time % 60 : `0${time % 60}`}</span>`;
   movesTime.append(timer);
   header.append(movesTime);
   document.body.append(header);
@@ -274,7 +292,7 @@ function resize() {
   setOrder();
   genPuzzle();
   findMovable();
-  addEvent();
+  addEventTiles();
   timerIsActive = false;
 }
 
@@ -292,11 +310,7 @@ function addEventFooter() {
 function showTime() {
   if (timerIsActive) {
     time += 1;
-    if (time < 60) {
-      document.querySelector('.time').innerHTML = `00:${time > 9 ? time : `0${time}`}`;
-    } else {
-      document.querySelector('.time').innerHTML = `${Math.floor(time / 60) > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${time % 60 > 9 ? time % 60 : `0${time % 60}`}`;
-    }
+    document.querySelector('.time').innerHTML = `${Math.floor(time / 60) > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${time % 60 > 9 ? time % 60 : `0${time % 60}`}`;
   }
   setTimeout(showTime, 1000);
 };
@@ -308,6 +322,9 @@ function addEventHeader() {
   });
   document.querySelectorAll('.btn')[1].addEventListener('click', () => {
     timerIsActive = false;
+  });
+  document.querySelectorAll('.btn')[2].addEventListener('click', () => {
+    setLocalStorage();
   });
   document.querySelectorAll('.mute')[0].addEventListener('click', () => {
     audio.volume = 0;
@@ -321,4 +338,32 @@ function addEventHeader() {
   });
 };
 
-window.addEventListener('load', startGame);
+function setLocalStorage() {
+  localStorage.setItem('saved', true);
+  localStorage.setItem('moves', moves);
+  localStorage.setItem('time', time);
+  localStorage.setItem('size', size);
+  localStorage.setItem('order', order);
+  localStorage.setItem('position', position);
+  const elements = document.querySelectorAll('.element');
+  const elementsTop = [];
+  const elementsleft = [];
+  elements.forEach(e => {
+    elementsTop.push(e.style.top);
+    elementsleft.push(e.style.left);
+  });
+  localStorage.setItem('elementsTop', elementsTop);
+  localStorage.setItem('elementsleft', elementsleft);
+};
+
+function getLocalStorage() {
+  if (localStorage.getItem('moves')) {moves = +localStorage.getItem('moves')};
+  if (localStorage.getItem('time')) {time = +localStorage.getItem('time')};
+  if (localStorage.getItem('time')) {size = +localStorage.getItem('size')};
+};
+
+window.addEventListener('load', () => {
+  getLocalStorage();
+  makePage();
+  startGame();
+});
