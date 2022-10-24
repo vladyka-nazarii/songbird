@@ -148,6 +148,7 @@ function moveTop() {
   [order[i], order[j]] = [order[j], order[i]];
   finishMove();
 };
+
 function moveBottom() {
   const field = document.querySelector('.field');
   const bottomElement = document.querySelector('.bottom-click');
@@ -163,6 +164,7 @@ function moveBottom() {
   [order[i], order[j]] = [order[j], order[i]];
   finishMove();
 };
+
 function moveLeft() {
   const field = document.querySelector('.field');
   const leftElement = document.querySelector('.left-click');
@@ -178,7 +180,22 @@ function moveLeft() {
   [order[i], order[j]] = [order[j], order[i]];
   finishMove();
 };
-function moveright() {};
+
+function moveright() {
+  const field = document.querySelector('.field');
+  const rightElement = document.querySelector('.right-click');
+  let left;
+  if (rightElement.style.left === '') {
+    left = 0;
+  } else {
+    left = +rightElement.style.left.slice(0, -2);
+  };
+  rightElement.style.left = `${left - field.clientWidth / size}px`;
+  const i = order.indexOf(size ** 2);
+  const j = i + 1;
+  [order[i], order[j]] = [order[j], order[i]];
+  finishMove();
+};
 
 
 window.addEventListener('load', startGame);
