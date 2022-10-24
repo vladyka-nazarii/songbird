@@ -13,8 +13,6 @@ function startGame() {
   genPuzzle();
   findMovable();
   addEvent();
-  console.log(order, 'order');
-  console.log(position, 'position');
 };
 
 function makeField() {
@@ -31,7 +29,7 @@ function setOrder() {
   for (let i = 1; i <= size ** 2; i++) {
     order.push(i);
   };
-  shuffle(order);
+  checkResolvable();
 }
 
 function shuffle(array) {
@@ -41,8 +39,25 @@ function shuffle(array) {
   }
 };
 
+function checkResolvable() {
+  let result = 0;
+  shuffle(order);
+  for (let i = 0; i < order.length; i++) {
+    for (let j = i + 1; j < order.length; j++) {
+      if (order[i] > order[j] && order[i] !== size ** 2 && order[j] !== size ** 2) {
+        result += 1;
+      }
+    }
+  }
+  console.log(result);
+  if ((result % 2 + size % 2) % 2 !== 1) {
+    checkResolvable();
+  }
+}
+
 function genPuzzle() {
   const field = document.querySelector('.field');
+  field.innerHTML = '';
   for (let i = 0; i < size ** 2; i++) {
     const element = document.createElement('div');
     element.classList.add('element');
@@ -57,22 +72,16 @@ function genPuzzle() {
 function findMovable() {
   elements = document.querySelectorAll('.element');
   const empty = order.indexOf(size ** 2);
-  console.log(empty);
-
   if (empty - size >= 0) {
-    // console.log(empty - size, 'top', order[empty - size]);
     elements[position.indexOf(order[empty - size])].classList.add('top-click');
   };
   if (empty + size < size ** 2) {
-    // console.log(empty + size, 'bottom', order[empty + size]);
     elements[position.indexOf(order[empty + size])].classList.add('bottom-click');
   };
   if (empty % size !== 0) {
-    // console.log(empty - 1, 'left', order[empty - 1]);
     elements[position.indexOf(order[empty - 1])].classList.add('left-click');
   };
-  if (empty % size !== 2) {
-    // console.log(empty + 1, 'right', order[empty + 1]);
+  if (empty % size !== size - 1) {
     elements[position.indexOf(order[empty + 1])].classList.add('right-click');
   }
 };
@@ -129,8 +138,6 @@ function finishMove() {
   findMovable();
   addEvent();
   moves += 1;
-  console.log(order, 'order');
-  console.log(position, 'position');
 }
 
 function moveTop() {
