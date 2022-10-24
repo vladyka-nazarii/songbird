@@ -9,11 +9,13 @@
 }
 
 .field {
-  width: 400px;
-  height:400px;
+  width: 80vw;
+  max-width: 750px;
+  height: 80vw;
+  max-height: 750px;
   border: 1px solid #d3d3d3;
   background-color: #f1f1f1;
-  margin: 100px auto 0;
+  margin: 3% auto 0;
 }
 
 .element {
@@ -37,18 +39,19 @@
   z-index: -1;
 }
 
-.top {
-  transform: translateY(100%);
+.sizes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
 }
 
-.bottom {
-  transform: translateY(-100%);
+.size-text {
+  margin-bottom: 10px;
 }
 
-.right {
-  transform: translateX(100%);
-}
-
-.left {
-  transform: translateX(-100%);
+.size {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
 }

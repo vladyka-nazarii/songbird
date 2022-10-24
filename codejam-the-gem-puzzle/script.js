@@ -1,7 +1,7 @@
 let moves = 0;
-let size = 4;
-const order = [];
-const position = [];
+let size = 3;
+let order = [];
+let position = [];
 let elements;
 const audio = new Audio();
 audio.src = "./assets/bass.mp3";
@@ -9,6 +9,7 @@ audio.src = "./assets/bass.mp3";
 function startGame() {
   makeField();
   makeSizes();
+  addEventSizes();
   setSize();
   setOrder();
   genPuzzle();
@@ -27,6 +28,7 @@ function setSize() {
 };
 
 function setOrder() {
+  order = [];
   for (let i = 1; i <= size ** 2; i++) {
     order.push(i);
   };
@@ -49,14 +51,11 @@ function checkResolvable() {
         result += 1;
       }
     }
-  }
-  console.log(result % 2, Math.floor(order.indexOf(size ** 2) / size));
+  };
   if (size % 2 === 1 && result % 2 === 1) {
-    console.log('again');
     checkResolvable();
   };
   if (size % 2 === 0 && (result % 2 + Math.floor(order.indexOf(size ** 2) / size)) % 2 === 0) {
-    console.log('again');
     checkResolvable();
   }
 };
@@ -64,6 +63,7 @@ function checkResolvable() {
 function genPuzzle() {
   const field = document.querySelector('.field');
   field.innerHTML = '';
+  position = [];
   for (let i = 0; i < size ** 2; i++) {
     const element = document.createElement('div');
     element.classList.add('element');
@@ -216,8 +216,31 @@ function makeSizes() {
   document.body.append(sizes);
   const frameSize = document.createElement('p');
   frameSize.classList.add('size-text');
-  frameSize.innerHTML = 'Frame size: 4x4';
+  frameSize.innerHTML = `Frame size: ${size}x${size}`;
   sizes.append(frameSize);
+  const otherSizes = document.createElement('p');
+  otherSizes.classList.add('size-text');
+  otherSizes.innerHTML = `Other sizes: <span class="size">3x3</span> <span class="size">4x4</span> <span class="size">5x5</span> <span class="size">6x6</span> <span class="size">7x7</span> <span class="size">8x8</span>`;
+  sizes.append(otherSizes);
 }
+
+function resize() {
+  setSize();
+  setOrder();
+  genPuzzle();
+  findMovable();
+  addEvent();
+}
+
+function addEventSizes() {
+  document.querySelectorAll('.size').forEach((e, i) => {
+    e.addEventListener('click', () => {
+      if (size !== i + 3) {
+        size = i + 3;
+        resize();
+      }
+    })
+  });
+};
 
 window.addEventListener('load', startGame);
