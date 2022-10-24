@@ -58,22 +58,22 @@ function findMovable() {
   elements = document.querySelectorAll('.element');
   const empty = order.indexOf(size ** 2);
   console.log(empty);
-  
+
   if (empty - size >= 0) {
     // console.log(empty - size, 'top', order[empty - size]);
-    elements[empty - size ].classList.add('top-click');
+    elements[position.indexOf(order[empty - size])].classList.add('top-click');
   };
   if (empty + size < size ** 2) {
     // console.log(empty + size, 'bottom', order[empty + size]);
-    elements[empty + size].classList.add('bottom-click');
+    elements[position.indexOf(order[empty + size])].classList.add('bottom-click');
   };
   if (empty % size !== 0) {
     // console.log(empty - 1, 'left', order[empty - 1]);
-    elements[empty - 1].classList.add('left-click');
+    elements[position.indexOf(order[empty - 1])].classList.add('left-click');
   };
   if (empty % size !== 2) {
     // console.log(empty + 1, 'right', order[empty + 1]);
-    elements[empty + 1].classList.add('right-click');
+    elements[position.indexOf(order[empty + 1])].classList.add('right-click');
   }
 };
 
@@ -163,7 +163,21 @@ function moveBottom() {
   [order[i], order[j]] = [order[j], order[i]];
   finishMove();
 };
-function moveLeft() {};
+function moveLeft() {
+  const field = document.querySelector('.field');
+  const leftElement = document.querySelector('.left-click');
+  let left;
+  if (leftElement.style.left === '') {
+    left = 0;
+  } else {
+    left = +leftElement.style.left.slice(0, -2);
+  };
+  leftElement.style.left = `${left + field.clientWidth / size}px`;
+  const i = order.indexOf(size ** 2);
+  const j = i - 1;
+  [order[i], order[j]] = [order[j], order[i]];
+  finishMove();
+};
 function moveright() {};
 
 
