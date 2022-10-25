@@ -100,6 +100,8 @@ function genPuzzle() {
   };
   elements = document.querySelectorAll('.element');
   elements[order.indexOf(size ** 2)].classList.add('empty');
+  elements[order.indexOf(size ** 2)].addEventListener('dragover', dragOver);
+  elements[order.indexOf(size ** 2)].addEventListener('drop', dragDrop);
 };
 
 function findMovable() {
@@ -121,46 +123,99 @@ function findMovable() {
 
 function removeMovable() {
   if (document.querySelector('.top-click')) {
-    document.querySelector('.top-click').classList.remove('top-click')
+    document.querySelector('.top-click').classList.remove('top-click');
   };
   if (document.querySelector('.bottom-click')) {
-    document.querySelector('.bottom-click').classList.remove('bottom-click')
+    document.querySelector('.bottom-click').classList.remove('bottom-click');
   };
   if (document.querySelector('.left-click')) {
-    document.querySelector('.left-click').classList.remove('left-click')
+    document.querySelector('.left-click').classList.remove('left-click');
   };
   if (document.querySelector('.right-click')) {
-    document.querySelector('.right-click').classList.remove('right-click')
+    document.querySelector('.right-click').classList.remove('right-click');
   }
+};
+
+function dragStart() {
+  setTimeout(() => {
+    this.classList.add('hiden');
+  }, 0);
+};
+
+function dragEnd() {
+  this.classList.remove('hiden');
+};
+
+function dragOver(evt) {
+  evt.preventDefault();
+};
+
+function dragEnter(evt) {
+  evt.preventDefault();
+};
+
+function dragLeave(evt) {
+  evt.preventDefault();
+};
+
+function dragDrop() {
+  if (document.querySelector('.hiden').classList.value === 'element top-click hiden') {moveTop()};
+  if (document.querySelector('.hiden').classList.value === 'element bottom-click hiden') {moveBottom()};
+  if (document.querySelector('.hiden').classList.value === 'element left-click hiden') {moveLeft()};
+  if (document.querySelector('.hiden').classList.value === 'element right-click hiden') {moveright()};
 };
 
 function addEventTiles() {
   if (document.querySelector('.top-click')) {
-    document.querySelector('.top-click').addEventListener('click', moveTop)
+    document.querySelector('.top-click').addEventListener('click', moveTop);
+    document.querySelector('.top-click').setAttribute('draggable', true);
+    document.querySelector('.top-click').addEventListener('dragstart', dragStart);
+    document.querySelector('.top-click').addEventListener('dragend', dragEnd);
   };
   if (document.querySelector('.bottom-click')) {
-    document.querySelector('.bottom-click').addEventListener('click', moveBottom)
+    document.querySelector('.bottom-click').addEventListener('click', moveBottom);
+    document.querySelector('.bottom-click').setAttribute('draggable', true);
+    document.querySelector('.bottom-click').addEventListener('dragstart', dragStart);
+    document.querySelector('.bottom-click').addEventListener('dragend', dragEnd);
   };
   if (document.querySelector('.left-click')) {
-    document.querySelector('.left-click').addEventListener('click', moveLeft)
+    document.querySelector('.left-click').addEventListener('click', moveLeft);
+    document.querySelector('.left-click').setAttribute('draggable', true);
+    document.querySelector('.left-click').addEventListener('dragstart', dragStart);
+    document.querySelector('.left-click').addEventListener('dragend', dragEnd);
   };
   if (document.querySelector('.right-click')) {
-    document.querySelector('.right-click').addEventListener('click', moveright)
+    document.querySelector('.right-click').addEventListener('click', moveright);
+    document.querySelector('.right-click').setAttribute('draggable', true);
+    document.querySelector('.right-click').addEventListener('dragstart', dragStart);
+    document.querySelector('.right-click').addEventListener('dragend', dragEnd);
   }
 };
 
 function removeEvent() {
   if (document.querySelector('.top-click')) {
-    document.querySelector('.top-click').removeEventListener('click', moveTop)
+    document.querySelector('.top-click').removeEventListener('click', moveTop);
+    document.querySelector('.top-click').setAttribute('draggable', false);
+    document.querySelector('.top-click').removeEventListener('dragstart', dragStart);
+    document.querySelector('.top-click').removeEventListener('dragend', dragEnd);
   };
   if (document.querySelector('.bottom-click')) {
-    document.querySelector('.bottom-click').removeEventListener('click', moveBottom)
+    document.querySelector('.bottom-click').removeEventListener('click', moveBottom);
+    document.querySelector('.bottom-click').setAttribute('draggable', false);
+    document.querySelector('.bottom-click').removeEventListener('dragstart', dragStart);
+    document.querySelector('.bottom-click').removeEventListener('dragend', dragEnd);
   };
   if (document.querySelector('.left-click')) {
-    document.querySelector('.left-click').removeEventListener('click', moveLeft)
+    document.querySelector('.left-click').removeEventListener('click', moveLeft);
+    document.querySelector('.left-click').setAttribute('draggable', false);
+    document.querySelector('.left-click').removeEventListener('dragstart', dragStart);
+    document.querySelector('.left-click').removeEventListener('dragend', dragEnd);
   };
   if (document.querySelector('.right-click')) {
-    document.querySelector('.right-click').removeEventListener('click', moveright)
+    document.querySelector('.right-click').removeEventListener('click', moveright);
+    document.querySelector('.right-click').setAttribute('draggable', false);
+    document.querySelector('.right-click').removeEventListener('dragstart', dragStart);
+    document.querySelector('.right-click').removeEventListener('dragend', dragEnd);
   }
 };
 
@@ -186,6 +241,14 @@ function moveTop() {
     top = +topElement.style.top.slice(0, -1);
   };
   topElement.style.top = `${top + 100 / size}%`;
+  const empty = document.querySelector('.empty');
+  let topEmpty;
+  if (empty.style.top === '') {
+    topEmpty = 0;
+  } else {
+    topEmpty = +empty.style.top.slice(0, -1);
+  };
+  empty.style.top = `${topEmpty - 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i - size;
   [order[i], order[j]] = [order[j], order[i]];
@@ -202,6 +265,14 @@ function moveBottom() {
     top = +bottomElement.style.top.slice(0, -1);
   };
   bottomElement.style.top = `${top - 100 / size}%`;
+  const empty = document.querySelector('.empty');
+  let topEmpty;
+  if (empty.style.top === '') {
+    topEmpty = 0;
+  } else {
+    topEmpty = +empty.style.top.slice(0, -1);
+  };
+  empty.style.top = `${topEmpty + 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i + size;
   [order[i], order[j]] = [order[j], order[i]];
@@ -218,6 +289,14 @@ function moveLeft() {
     left = +leftElement.style.left.slice(0, -1);
   };
   leftElement.style.left = `${left + 100 / size}%`;
+  const empty = document.querySelector('.empty');
+  let leftEmpty;
+  if (empty.style.left === '') {
+    leftEmpty = 0;
+  } else {
+    leftEmpty = +empty.style.left.slice(0, -1);
+  };
+  empty.style.left = `${leftEmpty - 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i - 1;
   [order[i], order[j]] = [order[j], order[i]];
@@ -234,6 +313,14 @@ function moveright() {
     left = +rightElement.style.left.slice(0, -1);
   };
   rightElement.style.left = `${left - 100 / size}%`;
+  const empty = document.querySelector('.empty');
+  let leftEmpty;
+  if (empty.style.left === '') {
+    leftEmpty = 0;
+  } else {
+    leftEmpty = +empty.style.left.slice(0, -1);
+  };
+  empty.style.left = `${leftEmpty + 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i + 1;
   [order[i], order[j]] = [order[j], order[i]];
