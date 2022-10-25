@@ -33,12 +33,13 @@
   font-weight: 600;
   top: 0;
   left: 0;
+  /* z-index: 2; */
 }
 
 .empty, .empty :only-child {
   opacity: 0;
   cursor: default;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .header {
@@ -77,6 +78,10 @@
 
 .mute.hide {
   display: none;
+}
+
+.hiden {
+  opacity: 0;
 }
 
 .moves-time {
