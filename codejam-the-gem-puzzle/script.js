@@ -28,6 +28,7 @@ function startGame() {
 };
 
 function loadGame() {
+  setSize();
   order = localStorage.getItem('position').split(',').map(e => +e);
   genPuzzle();
   order = localStorage.getItem('order').split(',').map(e => +e);
