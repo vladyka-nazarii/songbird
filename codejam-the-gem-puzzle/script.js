@@ -18,6 +18,7 @@ function makePage() {
   addEventFooter();
   setSize();
   showTime();
+  loadResults();
 }
 
 function startGame() {
@@ -41,7 +42,6 @@ function loadGame() {
   });
   findMovable();
   addEventTiles();
-  loadResults();
 }
 
 function makeField() {
