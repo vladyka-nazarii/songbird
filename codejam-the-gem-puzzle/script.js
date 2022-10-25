@@ -21,27 +21,27 @@ function makePage() {
 }
 
 function startGame() {
-  if (localStorage.getItem('saved')) {
-    order = localStorage.getItem('position').split(',').map(e => +e);
-    genPuzzle();
-    order = localStorage.getItem('order').split(',').map(e => +e);
-    const elementsTop = localStorage.getItem('elementsTop').split(',');
-    const elementsleft = localStorage.getItem('elementsleft').split(',');
-    const elements = document.querySelectorAll('.element');
-    elements.forEach((e, i) => {
-      e.style.top = elementsTop[i];
-      e.style.left = elementsleft[i];
-    });
-    findMovable();
-    addEventTiles();
-    loadResults();
-  } else {
-    setOrder();
-    genPuzzle();
-    findMovable();
-    addEventTiles();
-  }
+  setOrder();
+  genPuzzle();
+  findMovable();
+  addEventTiles();
 };
+
+function loadGame() {
+  order = localStorage.getItem('position').split(',').map(e => +e);
+  genPuzzle();
+  order = localStorage.getItem('order').split(',').map(e => +e);
+  const elementsTop = localStorage.getItem('elementsTop').split(',');
+  const elementsleft = localStorage.getItem('elementsleft').split(',');
+  const elements = document.querySelectorAll('.element');
+  elements.forEach((e, i) => {
+    e.style.top = elementsTop[i];
+    e.style.left = elementsleft[i];
+  });
+  findMovable();
+  addEventTiles();
+  loadResults();
+}
 
 function makeField() {
   const field = document.createElement('div');
@@ -182,10 +182,8 @@ function moveTop() {
   if (topElement.style.top === '') {
     top = 0;
   } else {
-    // top = +topElement.style.top.slice(0, -2);
     top = +topElement.style.top.slice(0, -1);
   };
-  // topElement.style.top = `${top + field.clientWidth / size}px`;
   topElement.style.top = `${top + 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i - size;
@@ -200,10 +198,8 @@ function moveBottom() {
   if (bottomElement.style.top === '') {
     top = 0;
   } else {
-    // top = +bottomElement.style.top.slice(0, -2);
     top = +bottomElement.style.top.slice(0, -1);
   };
-  // bottomElement.style.top = `${top - field.clientWidth / size}px`;
   bottomElement.style.top = `${top - 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i + size;
@@ -218,10 +214,8 @@ function moveLeft() {
   if (leftElement.style.left === '') {
     left = 0;
   } else {
-    // left = +leftElement.style.left.slice(0, -2);
     left = +leftElement.style.left.slice(0, -1);
   };
-  // leftElement.style.left = `${left + field.clientWidth / size}px`;
   leftElement.style.left = `${left + 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i - 1;
@@ -236,10 +230,8 @@ function moveright() {
   if (rightElement.style.left === '') {
     left = 0;
   } else {
-    // left = +rightElement.style.left.slice(0, -2);
     left = +rightElement.style.left.slice(0, -1);
   };
-  // rightElement.style.left = `${left - field.clientWidth / size}px`;
   rightElement.style.left = `${left - 100 / size}%`;
   const i = order.indexOf(size ** 2);
   const j = i + 1;
@@ -267,6 +259,7 @@ function makeHeader() {
     <button class="btn">Shuffle and start</button>
     <button class="btn">Stop</button>
     <button class="btn">Save</button>
+    <button class="btn">Load</button>
     <button class="btn">Results</button>
     <img class="mute" src="./assets/img/sound_on.svg" alt="mute">
     <img class="mute hide" src="./assets/img/sound_off.svg" alt="mute">
@@ -354,6 +347,10 @@ function addEventHeader() {
     setLocalStorage();
   });
   document.querySelectorAll('.btn')[3].addEventListener('click', () => {
+    getLocalStorage();
+    loadGame();
+  });
+  document.querySelectorAll('.btn')[4].addEventListener('click', () => {
     document.querySelector('.results').classList.toggle('active');
   });
   document.querySelectorAll('.mute')[0].addEventListener('click', () => {
@@ -437,7 +434,6 @@ function getLocalStorage() {
 };
 
 window.addEventListener('load', () => {
-  getLocalStorage();
   makePage();
   startGame();
 });
