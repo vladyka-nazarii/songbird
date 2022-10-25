@@ -4,12 +4,14 @@ let timerIsActive = false;
 let size = 4;
 let order = [];
 let position = [];
+let results = [];
 let elements;
 const audio = new Audio();
 audio.src = "./assets/sounds/bass.mp3";
 
 function makePage() {
   makeHeader();
+  makeResultsPage();
   addEventHeader();
   makeField();
   makeFooter();
@@ -32,6 +34,7 @@ function startGame() {
     });
     findMovable();
     addEventTiles();
+    loadResults();
   } else {
     setOrder();
     genPuzzle();
@@ -252,6 +255,7 @@ function checkWin() {
     layout.innerHTML = `Hooray! You solved the puzzle in ${Math.floor(time / 60) > 9 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`}:${time % 60 > 9 ? time % 60 : `0${time % 60}`} and ${moves} moves!`
     field.append(layout);
     timerIsActive = false;
+    saveResults();
   }
 };
 
@@ -280,6 +284,17 @@ function makeHeader() {
   header.append(movesTime);
   document.body.append(header);
 };
+
+function makeResultsPage() {
+  const header = document.querySelector('.header');
+  const resultsDiv = document.createElement('div');
+  resultsDiv.classList.add('results');
+  const title = document.createElement('p');
+  title.classList.add('title');
+  title.innerHTML = 'Results:';
+  resultsDiv.append(title);
+  header.append(resultsDiv);
+}
 
 function makeFooter() {
   const footer = document.createElement('div');
@@ -338,6 +353,9 @@ function addEventHeader() {
   document.querySelectorAll('.btn')[2].addEventListener('click', () => {
     setLocalStorage();
   });
+  document.querySelectorAll('.btn')[3].addEventListener('click', () => {
+    document.querySelector('.results').classList.toggle('active');
+  });
   document.querySelectorAll('.mute')[0].addEventListener('click', () => {
     audio.volume = 0;
     document.querySelectorAll('.mute')[0].classList.add('hide');
@@ -348,6 +366,50 @@ function addEventHeader() {
     document.querySelectorAll('.mute')[0].classList.remove('hide');
     document.querySelectorAll('.mute')[1].classList.add('hide');
   });
+};
+
+function saveResults() {
+  results.push({
+    size: `${size}x${size}`,
+    moves: moves,
+    time: time,
+  });
+  results.sort((a, b) => a.time - b.time);
+  if (results.length > 10) {
+    results.pop();
+  }
+  const resultsPage = document.querySelector('.results');
+  resultsPage.innerHTML = '<p class="title">Results:</p>';
+  results.forEach((e, i) => {
+    localStorage.setItem(`result_${i}`, [e.size, e.moves, e.time]);
+    const item = document.createElement('p');
+    item.classList.add('results-item');
+    item.innerHTML = `${i + 1}. Size: ${e.size} Time: ${Math.floor(e.time / 60) > 9 ? Math.floor(e.time / 60) : `0${Math.floor(e.time / 60)}`}:${e.time % 60 > 9 ? e.time % 60 : `0${e.time % 60}`} Moves: ${e.moves}`
+    resultsPage.append(item);
+  });
+}
+
+function loadResults() {
+  for (let i = 0; i < 10; i++) {
+    if (localStorage.getItem(`result_${i}`)) {
+      results.push({
+        size: localStorage.getItem(`result_${i}`).split(',')[0],
+        moves: localStorage.getItem(`result_${i}`).split(',').map(e => +e)[1],
+        time: localStorage.getItem(`result_${i}`).split(',').map(e => +e)[2],
+      });
+    }
+  };
+  results.sort((a, b) => a.time - b.time);
+  if (results.length > 0) {
+    const resultsPage = document.querySelector('.results');
+    resultsPage.innerHTML = '<p class="title">Results:</p>';
+    results.forEach((e, i) => {
+      const item = document.createElement('p');
+      item.classList.add('results-item');
+      item.innerHTML = `${i + 1}. Size: ${e.size} Time: ${Math.floor(e.time / 60) > 9 ? Math.floor(e.time / 60) : `0${Math.floor(e.time / 60)}`}:${e.time % 60 > 9 ? e.time % 60 : `0${e.time % 60}`} Moves: ${e.moves}`
+      resultsPage.append(item);
+    });
+  }
 };
 
 function setLocalStorage() {
