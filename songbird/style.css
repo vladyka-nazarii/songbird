@@ -167,9 +167,21 @@
 }
 
 .volume-controls {
+  display: flex;
+  align-items: center;
   width: 20%;
-  margin-top: 8px;
+  margin-top: 3px;
 }
+
+.volume-svg {
+  width: 50px;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
 
 .volume {
   -webkit-appearance: none;
