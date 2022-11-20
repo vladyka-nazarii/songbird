@@ -2,9 +2,13 @@ import birdsData from './src/birds.js';
 import birdsDataEn from './src/birds-en.js';
 
 const audio = new Audio();
+const sounds = new Audio();
 let currentData = birdsData;
 let stage = 0;
 let birdToGuess;
+let guess = false;
+const atempts = [];
+let score = 0;
 
 function getRandomBird() {
   const duration = document.querySelector(".end");
@@ -17,7 +21,7 @@ function getRandomBird() {
 
 getRandomBird();
 
-// Audio Player
+// AUDIO PLAYER
 
 const playBtn = document.querySelector(".play-btn");
 const volumeSlider = document.querySelector(".volume");
@@ -70,17 +74,20 @@ setInterval(() => {
 }, 100);
 
 //click volume slider to change volume
-function chengeVolume() {
+function changeVolume() {
   const fullVolume = document.querySelector(".full-volume");
   const halfVolume = document.querySelector(".half-volume");
   const muteVolume = document.querySelector(".mute-volume");
   const newVolume = volumeSlider.value / 100;
   audio.volume = newVolume;
+  sounds.volume = newVolume;
   volumeSlider.style = `background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${audio.volume * 100}%, rgb(115, 115, 115) ${audio.currentTime / audio.duration * 100}%, rgb(115, 115, 115) 100%);`;
   if (audio.muted) {audio.muted = !audio.muted};
   if (audio.volume === 0) {
     audio.muted = true;
+    sounds.muted = true;
     audio.volume = 1;
+    sounds.volume = 1;
     fullVolume.classList.add("hide");
     halfVolume.classList.add("hide");
     muteVolume.classList.remove("hide");
@@ -102,6 +109,7 @@ function mute() {
   const muteVolume = document.querySelector(".mute-volume");
   if (!audio.muted && audio.volume !== 0) {
     audio.muted = true;
+    sounds.muted = true;
     fullVolume.classList.add("hide");
     halfVolume.classList.add("hide");
     muteVolume.classList.remove("hide");
@@ -109,6 +117,7 @@ function mute() {
     volumeSlider.value = 0;
   } else if (audio.muted || audio.volume === 0) {
     audio.muted = false;
+    sounds.muted = false;
     muteVolume.classList.add("hide");
     volumeSlider.style = `background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${audio.volume * 100}%, rgb(115, 115, 115) ${audio.volume * 100}%, rgb(115, 115, 115) 100%);`;
     volumeSlider.value = audio.volume * 100;
@@ -138,5 +147,57 @@ function getTimeCodeFromNum(num) {
 
 //events of player
 playBtn.addEventListener('click', play)
-volumeSlider.addEventListener('input', chengeVolume);
+volumeSlider.addEventListener('input', changeVolume);
 volumeIcon.addEventListener("click", mute);
+
+// GUESS BIRD
+
+const birdList = document.querySelectorAll(".answer-item");
+birdList.forEach((e, i) => {
+  e.addEventListener('click', () => checkGuess(i));
+});
+
+function checkGuess(index) {
+  const btns = document.querySelectorAll(".li-btn");
+  if (index === birdToGuess) {
+    if (!guess) {
+      btns[index].classList.add("green");
+      sounds.src = "./assets/audio/win.mp3";
+      sounds.play();
+      atempts.push(index);
+      win();
+    }
+  } else {
+    if (!guess && !atempts.includes(index)) {
+      btns[index].classList.add("red");
+      sounds.src = "./assets/audio/error.mp3";
+      sounds.play();
+      atempts.push(index);
+    }
+  };
+  showBird(index);
+};
+
+function showBird(id) {
+  const selectedBird = document.querySelector(".selected-bird");
+  const selectedBirdImg = document.querySelector(".selected-bird-img");
+  const selectedBirdName = document.querySelector(".selected-bird-name");
+  const selectedBirdSpecies = document.querySelector(".selected-bird-species");
+  const selectedBirdDescription = document.querySelector(".description-text");
+  selectedBirdImg.src = currentData[stage][id].image;
+  selectedBirdName.innerHTML = currentData[stage][id].name;
+  selectedBirdSpecies.innerHTML = currentData[stage][id].species;
+  selectedBirdDescription.innerHTML = currentData[stage][id].description;
+  selectedBird.classList.add("show");
+};
+
+function win() {
+  const scoreHtml = document.querySelector(".score");
+  const birdImg = document.querySelector(".bird-img");
+  const birdName = document.querySelector(".bird-name");
+  guess = true;
+  score += 6 - atempts.length;
+  scoreHtml.innerHTML = score;
+  birdImg.src = currentData[stage][birdToGuess].image;
+  birdName.innerHTML = currentData[stage][birdToGuess].name;
+};
