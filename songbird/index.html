@@ -29,7 +29,7 @@
     <div class="random-bird">
       <img class="bird-img" src="./assets/img/bird.jpg" alt="bird">
       <div class="bird-name-player">
-        <h3 class="bird-name"> * * * * * * </h3>
+        <h3 class="bird-name">* * * * * *</h3>
         <div class="player">
           <div class="play-btn">
             <svg class="play-svg active" viewBox="-200 0 1200 1000">
@@ -39,19 +39,28 @@
               <path fill="#00bc8c" d="M17.991 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345zM42.877 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345z"></path>
             </svg>
           </div>
-          <div class="timebar"></div>
+          <div class="timebar">
+            <input class="progress" type="range" value="0">
+            <div class="timebar-time">
+              <div class="start">00:00</div>
+              <div class="end">00:00</div>
+            </div>
+          </div>
+          <div class="volume">
+            <input type="range" min="0" max="100" value="100">
+          </div>
         </div>
       </div>
     </div>
     <div class="answers-bird">
       <div class="bird-list">
         <ul class="answers-list">
-          <li class="list-group-item"><span class="li-btn"></span>Ворон</li>
-          <li class="list-group-item"><span class="li-btn"></span>Журавль</li>
-          <li class="list-group-item"><span class="li-btn"></span>Ласточка</li>
-          <li class="list-group-item"><span class="li-btn"></span>Козодой</li>
-          <li class="list-group-item"><span class="li-btn"></span>Кукушка</li>
-          <li class="list-group-item"><span class="li-btn"></span>Синица</li>
+          <li class="answer-item"><span class="li-btn"></span>Ворон</li>
+          <li class="answer-item"><span class="li-btn"></span>Журавль</li>
+          <li class="answer-item"><span class="li-btn"></span>Ласточка</li>
+          <li class="answer-item"><span class="li-btn"></span>Козодой</li>
+          <li class="answer-item"><span class="li-btn"></span>Кукушка</li>
+          <li class="answer-item"><span class="li-btn"></span>Синица</li>
         </ul>
       </div>
       <div class="description-div">
