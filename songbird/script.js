@@ -3,6 +3,7 @@ import birdsDataEn from './src/birds-en.js';
 
 const audio = new Audio();
 const sounds = new Audio();
+const selectedAudio = new Audio();
 let currentData = birdsData;
 let stage = 0;
 let birdToGuess;
@@ -24,14 +25,24 @@ getRandomBird();
 // AUDIO PLAYER
 
 const playBtn = document.querySelector(".play-btn");
+const selectedPlayBtn = document.querySelector(".selected-play-btn");
 const volumeSlider = document.querySelector(".volume");
 const volumeIcon = document.querySelector(".volume-svg");
 let isPlaying = false;
+let selectedIsPlaying = false;
 
 //play pause
 function play() {
   const play = document.querySelector(".play-svg");
   const pause = document.querySelector(".pause-svg");
+  const selectedPlay = document.querySelector(".selected-play-svg");
+  const selectedPause = document.querySelector(".selected-pause-svg");
+  if (selectedIsPlaying) {
+    selectedIsPlaying = !selectedIsPlaying;
+    selectedPause.classList.remove("active");
+    selectedPlay.classList.add("active");
+    selectedAudio.pause();
+  };
   if (isPlaying) {
     isPlaying = !isPlaying;
     pause.classList.remove("active");
@@ -80,13 +91,16 @@ function changeVolume() {
   const muteVolume = document.querySelector(".mute-volume");
   const newVolume = volumeSlider.value / 100;
   audio.volume = newVolume;
+  selectedAudio.volume = newVolume;
   sounds.volume = newVolume;
   volumeSlider.style = `background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${audio.volume * 100}%, rgb(115, 115, 115) ${audio.currentTime / audio.duration * 100}%, rgb(115, 115, 115) 100%);`;
   if (audio.muted) {audio.muted = !audio.muted};
   if (audio.volume === 0) {
     audio.muted = true;
+    selectedAudio.muted = true;
     sounds.muted = true;
     audio.volume = 1;
+    selectedAudio.volume = 1;
     sounds.volume = 1;
     fullVolume.classList.add("hide");
     halfVolume.classList.add("hide");
@@ -109,6 +123,7 @@ function mute() {
   const muteVolume = document.querySelector(".mute-volume");
   if (!audio.muted && audio.volume !== 0) {
     audio.muted = true;
+    selectedAudio.muted = true;
     sounds.muted = true;
     fullVolume.classList.add("hide");
     halfVolume.classList.add("hide");
@@ -117,6 +132,7 @@ function mute() {
     volumeSlider.value = 0;
   } else if (audio.muted || audio.volume === 0) {
     audio.muted = false;
+    selectedAudio.muted = false;
     sounds.muted = false;
     muteVolume.classList.add("hide");
     volumeSlider.style = `background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${audio.volume * 100}%, rgb(115, 115, 115) ${audio.volume * 100}%, rgb(115, 115, 115) 100%);`;
@@ -149,6 +165,65 @@ function getTimeCodeFromNum(num) {
 playBtn.addEventListener('click', play)
 volumeSlider.addEventListener('input', changeVolume);
 volumeIcon.addEventListener("click", mute);
+
+// SECOND AUDIO PLAYER
+
+//play pause
+function selectedPlay() {
+  const play = document.querySelector(".play-svg");
+  const pause = document.querySelector(".pause-svg");
+  const selectedPlay = document.querySelector(".selected-play-svg");
+  const selectedPause = document.querySelector(".selected-pause-svg");
+  if (isPlaying) {
+    isPlaying = !isPlaying;
+    pause.classList.remove("active");
+    play.classList.add("active");
+    audio.pause();
+  };
+  if (selectedIsPlaying) {
+    selectedIsPlaying = !selectedIsPlaying;
+    selectedPause.classList.remove("active");
+    selectedPlay.classList.add("active");
+    selectedAudio.pause();
+  } else {
+    selectedIsPlaying = !selectedIsPlaying;
+    selectedPause.classList.add("active");
+    selectedPlay.classList.remove("active");
+    selectedAudio.play();
+  }
+};
+
+//reset player on end of playing
+selectedAudio.onended = () => {
+  const play = document.querySelector(".selected-play-svg");
+  const pause = document.querySelector(".selected-pause-svg");
+  selectedIsPlaying = false;
+  selectedAudio.currentTime = 0;
+  pause.classList.remove("active");
+  play.classList.add("active");
+}
+
+//click on timeline to skip around
+const selectedTimeline = document.querySelector(".selected-progress");
+selectedTimeline.addEventListener('input', () => {
+  const timeToSeek = selectedTimeline.value / 1000 * selectedAudio.duration;
+  selectedAudio.currentTime = timeToSeek;
+}, false);
+
+//check audio percentage and update time accordingly
+setInterval(() => {
+  const progressBar = document.querySelector(".selected-progress");
+  const start = document.querySelector(".selected-start");
+  progressBar.style = `background: linear-gradient(to right, rgb(0, 188, 140) 0%, rgb(61, 133, 140) ${selectedAudio.currentTime / selectedAudio.duration * 100}%, rgb(115, 115, 115) ${selectedAudio.currentTime / selectedAudio.duration * 100}%, rgb(115, 115, 115) 100%);`;
+  progressBar.value = selectedAudio.currentTime / selectedAudio.duration * 1000;
+  start.innerHTML = getTimeCodeFromNum(
+    selectedAudio.currentTime
+  );
+}, 100);
+
+
+//events of second player
+selectedPlayBtn.addEventListener('click', selectedPlay)
 
 // GUESS BIRD
 
@@ -184,10 +259,15 @@ function showBird(id) {
   const selectedBirdName = document.querySelector(".selected-bird-name");
   const selectedBirdSpecies = document.querySelector(".selected-bird-species");
   const selectedBirdDescription = document.querySelector(".description-text");
+  const duration = document.querySelector(".selected-end");
   selectedBirdImg.src = currentData[stage][id].image;
   selectedBirdName.innerHTML = currentData[stage][id].name;
   selectedBirdSpecies.innerHTML = currentData[stage][id].species;
   selectedBirdDescription.innerHTML = currentData[stage][id].description;
+  selectedAudio.src = currentData[stage][id].audio;
+  selectedAudio.addEventListener("loadedmetadata", () => {
+    duration.innerHTML = getTimeCodeFromNum(selectedAudio.duration);
+  });
   selectedBird.classList.add("show");
 };
 
