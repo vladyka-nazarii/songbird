@@ -5,7 +5,6 @@
   font-style: normal;
 }
 
-
 * {
   margin: 0;
   box-sizing: border-box;
@@ -51,6 +50,29 @@
   color: #008966;
 }
 
+.gallery-btn {
+  background-color: #303030;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  transition: .3s;
+}
+
+.gallery-btn:hover {
+  background-color: #008966;
+}
+
+.gallery-btn.active {
+  background-color: #00bc8c;
+}
+
+.gallery-btn.active:hover {
+  background-color: #00efb2;
+}
+
 .score-text {
   font-size: 18px;
   font-weight: 400;
@@ -66,6 +88,10 @@
   list-style: none;
   border-radius: 0.25rem;
   padding: 0;
+}
+
+.nav.hide {
+  display: none;
 }
 
 .nav .page-item:first-child {
@@ -598,6 +624,10 @@
 }
 
 @media (max-width: 640px) {
+
+  .logo {
+    width: 100px;
+  }
 
   .random-bird {
     flex-direction: column;
