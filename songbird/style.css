@@ -91,6 +91,10 @@
   margin-bottom: 25px;
 }
 
+.random-bird.hide {
+  display: none;
+}
+
 .bird-name-player {
   width: 100%;
   margin: 0 25px 0 40px;
@@ -232,6 +236,10 @@
 .answers-bird {
   display: flex;
   gap: 30px;
+}
+
+.answers-bird.hide {
+  display: none;
 }
 
 .bird-list, .description-div {
@@ -415,11 +423,73 @@
   transition: .3s;
 }
 
+.next-bnt.hide {
+  display: none;
+}
+
 .next-bnt.active {
   background-color: #00bc8c;
 }
 
 .next-bnt.active:hover {
+  background-color: #00efb2;
+}
+
+.game-over {
+  margin-top: 25px;
+  padding: 64px 32px;
+  background-color: #303030;
+  border-radius: 0.3rem;
+  display: none;
+}
+
+.game-over.show {
+  display: block;
+}
+
+.game-over-title {
+  text-align: center;
+  font-size: 64px;
+  margin-bottom: 10px;
+}
+
+.game-score-text {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.max-score-text {
+  text-align: center;
+  font-size: 46px;
+  margin-top: 30px;
+  color: #00bc8c;
+  display: none;
+}
+
+.max-score-text.show {
+  display: block;
+}
+
+.try-again-btn {
+  width: 100%;
+  min-height: 55px;
+  margin-top: 25px;
+  background-color: #00bc8c;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  color: white;
+  font-family: 'Roboto';
+  font-size: 15px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.try-again-btn.hide {
+  display: none;
+}
+
+.try-again-btn:hover {
   background-color: #00efb2;
 }
 

@@ -5,6 +5,7 @@ const audio = new Audio();
 const sounds = new Audio();
 const selectedAudio = new Audio();
 const nextBnt = document.querySelector(".next-bnt");
+const tryAgainBtn  = document.querySelector(".try-again-btn");
 let currentData = birdsData;
 let stage = 0;
 let birdToGuess;
@@ -15,6 +16,7 @@ let score = 0;
 function getRandomBird() {
   const duration = document.querySelector(".end");
   birdToGuess = Math.round(Math.random() * 5);
+  console.log(birdToGuess);
   audio.src = currentData[stage][birdToGuess].audio;
   audio.addEventListener("loadedmetadata", () => {
     duration.innerHTML = getTimeCodeFromNum(audio.duration);
@@ -306,7 +308,7 @@ function setNewBirds() {
   const birdList = document.querySelectorAll(".answer-item");
   const selectedBird = document.querySelector(".selected-bird");
   const selectedBirdDescription = document.querySelector(".description-text");
-  pageItems[stage - 1].classList.remove("active");
+  if (stage - 1 >= 0) {pageItems[stage - 1].classList.remove("active")};
   pageItems[stage].classList.add("active");
   birdImg.src = "./assets/img/bird.jpg";
   birdName.innerHTML = "* * * * * *";
@@ -319,18 +321,64 @@ function setNewBirds() {
 }
 
 function nextLevel() {
-  if (guess) {
-    stage += 1;
-    guess = false;
-    atempts = [];
-    audio.pause();
-    selectedAudio.pause();
-    getRandomBird();
-    nextBnt.classList.remove("active");
-    setNewBirds();
-    stopAudio();
-    selectedStopAudio();
+  if (stage === 5) {
+    gameOver();
+  } else {
+    if (guess) {
+      stage += 1;
+      guess = false;
+      atempts = [];
+      audio.pause();
+      selectedAudio.pause();
+      getRandomBird();
+      nextBnt.classList.remove("active");
+      setNewBirds();
+      stopAudio();
+      selectedStopAudio();
+    }
   }
 }
 
 nextBnt.addEventListener('click', nextLevel)
+
+function gameOver() {
+  const birdContainer = document.querySelector(".random-bird");
+  const birdAnswers = document.querySelector(".answers-bird");
+  const gameOverContainer = document.querySelector(".game-over");
+  const gameOverScore = document.querySelector(".game-score-text");
+  const maxScoreText  = document.querySelector(".max-score-text");
+  birdContainer.classList.add("hide");
+  birdAnswers.classList.add("hide");
+  nextBnt.classList.add("hide");
+  gameOverScore.innerHTML = `Вы прошли викторину и набрали ${score} из 30 возможных баллов`;
+  if (score === 30) {
+    tryAgainBtn.classList.add("hide");
+    maxScoreText.classList.add("show");
+  }
+  gameOverContainer.classList.add("show");
+}
+
+function tryAgain() {
+  const birdContainer = document.querySelector(".random-bird");
+  const birdAnswers = document.querySelector(".answers-bird");
+  const gameOverContainer = document.querySelector(".game-over");
+  const maxScoreText  = document.querySelector(".max-score-text");
+  const pageItems = document.querySelectorAll(".page-item");
+  const scoreHtml = document.querySelector(".score");
+  birdContainer.classList.remove("hide");
+  birdAnswers.classList.remove("hide");
+  nextBnt.classList.remove("hide");
+  tryAgainBtn.classList.remove("hide");
+  maxScoreText.classList.remove("show");
+  gameOverContainer.classList.remove("show");
+  stage = 0;
+  score = 0;
+  guess = false;
+  atempts = [];
+  scoreHtml.innerHTML = score;
+  pageItems[5].classList.remove("active");
+  getRandomBird();
+  setNewBirds();
+}
+
+tryAgainBtn.addEventListener('click', tryAgain);
