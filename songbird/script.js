@@ -340,6 +340,8 @@ function nextLevel() {
 
 nextBnt.addEventListener('click', nextLevel)
 
+let isGameEnded = false;
+
 function gameOver() {
   const birdContainer = document.querySelector(".random-bird");
   const birdAnswers = document.querySelector(".answers-bird");
@@ -355,6 +357,7 @@ function gameOver() {
     maxScoreText.classList.add("show");
   }
   gameOverContainer.classList.add("show");
+  isGameEnded = true;
 }
 
 function tryAgain() {
@@ -378,6 +381,7 @@ function tryAgain() {
   pageItems[5].classList.remove("active");
   getRandomBird();
   setNewBirds();
+  isGameEnded = false;
 }
 
 tryAgainBtn.addEventListener('click', tryAgain);
@@ -403,6 +407,7 @@ let ruLang = {
   message2: ` из 30 возможных баллов`,
   gameOver: 'Игра Окончена!',
   tryAgainBtn: 'Попробовать ещё раз!',
+  galleryBtn: 'Галерея',
 };
 let enLang = {
   score: `Score:
@@ -420,6 +425,7 @@ let enLang = {
   message2: ` out of 30 possible points`,
   gameOver: 'Game Over!',
   tryAgainBtn: 'Try again!',
+  galleryBtn: 'Gallery',
 };
 let currentLang = ruLang;
 
@@ -446,6 +452,7 @@ function setLangElements() {
   gameOverScore.innerHTML = currentLang.message1 + score + currentLang.message2;
   maxScoreText.innerHTML = currentLang.gameOver;
   tryAgainBtn.innerHTML = currentLang.tryAgainBtn;
+  galleryBtn.innerHTML = currentLang.galleryBtn;
 }
 
 function changeLang(lang) {
@@ -480,27 +487,36 @@ function showGallery() {
   const nav = document.querySelector(".nav");
   const birdContainer = document.querySelector(".random-bird");
   const birdAnswers = document.querySelector(".answers-bird");
+  const gameOverContainer = document.querySelector(".game-over");
   const gallery = document.querySelector(".gallery");
   stopAudio();
   selectedStopAudio();
   if (galleryOpen) {
     galleryOpen = !galleryOpen;
-    galleryBtn.classList.remove("active");
-    nav.classList.remove("hide");
-    birdContainer.classList.remove("hide");
-    birdAnswers.classList.remove("hide");
-    nextBnt.classList.remove("hide");
+    if (isGameEnded) {
+      gameOverContainer.classList.add("show");
+    } else {
+      galleryBtn.classList.remove("active");
+      nav.classList.remove("hide");
+      birdContainer.classList.remove("hide");
+      birdAnswers.classList.remove("hide");
+      nextBnt.classList.remove("hide");
+    };
     gallery.innerHTML = '';
   } else {
     galleryOpen = !galleryOpen;
-    galleryBtn.classList.add("active");
-    nav.classList.add("hide");
-    birdContainer.classList.add("hide");
-    birdAnswers.classList.add("hide");
-    nextBnt.classList.add("hide");
+    if (isGameEnded) {
+      gameOverContainer.classList.remove("show");
+    } else {
+      galleryBtn.classList.add("active");
+      nav.classList.add("hide");
+      birdContainer.classList.add("hide");
+      birdAnswers.classList.add("hide");
+      nextBnt.classList.add("hide");
+    };
     currentData.forEach(stage => 
       stage.forEach(bird => makeGallery(bird)));
-    }
+  }
 }
 
 function makeGallery(bird) {
