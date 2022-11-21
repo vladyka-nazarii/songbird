@@ -5,7 +5,6 @@
   font-style: normal;
 }
 
-
 * {
   margin: 0;
   box-sizing: border-box;
@@ -49,6 +48,29 @@
 .ru-lang:hover,
 .en-lang:hover {
   color: #008966;
+}
+
+.gallery-btn {
+  background-color: #303030;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  transition: .3s;
+}
+
+.gallery-btn:hover {
+  background-color: #008966;
+}
+
+.gallery-btn.active {
+  background-color: #00bc8c;
+}
+
+.gallery-btn.active:hover {
+  background-color: #00efb2;
 }
 
 .score-text {
@@ -602,6 +624,10 @@
 }
 
 @media (max-width: 640px) {
+
+  .logo {
+    width: 100px;
+  }
 
   .random-bird {
     flex-direction: column;

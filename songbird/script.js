@@ -449,6 +449,7 @@ function setLangElements() {
 }
 
 function changeLang(lang) {
+  const gallery = document.querySelector(".gallery");
   language = lang;
   localStorage.setItem('language', lang);
   if (lang === 'EN') {
@@ -460,6 +461,11 @@ function changeLang(lang) {
   };
   setLangElements();
   setNewBirds();
+  if (galleryOpen) {
+    gallery.innerHTML = '';
+    currentData.forEach(stage => 
+      stage.forEach(bird => makeGallery(bird)));
+  }
 }
 
 ruLangBtn.addEventListener('click', () => changeLang('RU'));
@@ -468,31 +474,74 @@ window.addEventListener('load', getLocalStorage);
 
 // GALLERY
 
-let gallery = false;
+let galleryOpen = false;
 
 function showGallery() {
   const nav = document.querySelector(".nav");
   const birdContainer = document.querySelector(".random-bird");
   const birdAnswers = document.querySelector(".answers-bird");
-  if (gallery) {
-    gallery = !gallery;
+  const gallery = document.querySelector(".gallery");
+  stopAudio();
+  selectedStopAudio();
+  if (galleryOpen) {
+    galleryOpen = !galleryOpen;
+    galleryBtn.classList.remove("active");
     nav.classList.remove("hide");
     birdContainer.classList.remove("hide");
     birdAnswers.classList.remove("hide");
     nextBnt.classList.remove("hide");
+    gallery.innerHTML = '';
   } else {
-    gallery = !gallery;
+    galleryOpen = !galleryOpen;
+    galleryBtn.classList.add("active");
     nav.classList.add("hide");
     birdContainer.classList.add("hide");
     birdAnswers.classList.add("hide");
     nextBnt.classList.add("hide");
-  }
+    currentData.forEach(stage => 
+      stage.forEach(bird => makeGallery(bird)));
+    }
 }
 
-function makeField() {
-  const container = document.createElement('div');
-  container.classList.add('field');
-  document.body.append(field);
+function makeGallery(bird) {
+  const gallery = document.querySelector(".gallery");
+  const description = document.createElement('div');
+  description.classList.add("description-div");
+  const birdContainer = document.createElement('div');
+  birdContainer.classList.add("selected-bird");
+  birdContainer.classList.add("show");
+  const imgContainer = document.createElement('div');
+  imgContainer.classList.add("selected-img-container");
+  const birdImg = document.createElement('img');
+  birdImg.classList.add("selected-bird-img");
+  birdImg.src = bird.image;
+  birdImg.alt = 'bird';
+  imgContainer.append(birdImg);
+  birdContainer.append(imgContainer);
+  const birdNamePlayer = document.createElement('div');
+  birdNamePlayer.classList.add("selected-bird-name-player");
+  const birdName = document.createElement('h4');
+  birdName.classList.add("selected-bird-name");
+  birdName.innerHTML = bird.name;
+  birdNamePlayer.append(birdName);
+  const birdSpecies = document.createElement('h5');
+  birdSpecies.classList.add("selected-bird-species");
+  birdSpecies.innerHTML = bird.species;
+  birdNamePlayer.append(birdSpecies);
+  const player = document.createElement('div');
+  player.classList.add("selected-player");
+  const htmlPlayer = document.createElement('audio');
+  htmlPlayer.controls = true;
+  htmlPlayer.src = bird.audio;
+  player.append(htmlPlayer);
+  birdNamePlayer.append(player);
+  birdContainer.append(birdNamePlayer);
+  description.append(birdContainer);
+  const descriptionText = document.createElement('p');
+  descriptionText.classList.add("description-text");
+  descriptionText.innerHTML = bird.description;
+  description.append(descriptionText);
+  gallery.append(description);
 };
 
 const galleryBtn = document.querySelector(".gallery-btn");
