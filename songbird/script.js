@@ -16,7 +16,6 @@ let score = 0;
 function getRandomBird() {
   const duration = document.querySelector(".end");
   birdToGuess = Math.round(Math.random() * 5);
-  console.log(birdToGuess);
   audio.src = currentData[stage][birdToGuess].audio;
   audio.addEventListener("loadedmetadata", () => {
     duration.innerHTML = getTimeCodeFromNum(audio.duration);
@@ -316,7 +315,7 @@ function setNewBirds() {
     e.innerHTML = `<span class="li-btn"></span>${currentData[stage][i].name}`;
   });
   setEventOnList();
-  selectedBirdDescription.innerHTML = "Послушайте плеер.<br>Выберите птицу из списка";
+  selectedBirdDescription.innerHTML = currentLang.description;
   selectedBird.classList.remove("show");
 }
 
@@ -382,3 +381,69 @@ function tryAgain() {
 }
 
 tryAgainBtn.addEventListener('click', tryAgain);
+
+// CHANGE LANGUAGE
+
+const ruLangBtn = document.querySelector(".ru-lang");
+const enLangBtn = document.querySelector(".en-lang");
+let language = 'RU';
+let ruLang = {
+  score: `Очки:
+  <span class="score">0</span>`,
+  stage0: 'Разминка',
+  stage1: 'Воробьиные',
+  stage2: 'Лесные птицы',
+  stage3: 'Певчие птицы',
+  stage4: 'Хищные птицы',
+  stage5: 'Морские птицы',
+  description: `Послушайте плеер.<br>Выберите птицу из списка`,
+};
+let enLang = {
+  score: `Score:
+  <span class="score">0</span>`,
+  stage0: 'Warm up',
+  stage1: 'Passerines',
+  stage2: 'Forest birds',
+  stage3: 'Songbirds',
+  stage4: 'Predator birds',
+  stage5: 'Sea birds',
+  description: `Listen to the player.<br>Select a bird from the list`,
+};
+let currentLang = ruLang;
+
+function getLocalStorage() {
+  if (localStorage.getItem('language')) {
+    if (localStorage.getItem('language') === 'EN') {
+      language = localStorage.getItem('language');
+      changeLang(language);
+    }};
+};
+
+function setLangElements() {
+  const scoreText = document.querySelector(".score-text");
+  const pageItems = document.querySelectorAll(".page-item");
+  scoreText.innerHTML = currentLang.score;
+  const scoreHtml = document.querySelector(".score");
+  scoreHtml.innerHTML = score;
+  pageItems.forEach((e, i) => e.innerHTML = currentLang[`stage${i}`]);
+}
+
+function changeLang(lang) {
+  language = lang;
+  localStorage.setItem('language', lang);
+  if (lang === 'EN') {
+    currentData = birdsDataEn;
+    currentLang = enLang;
+  } else {
+    currentData = birdsData;
+    currentLang = ruLang;
+  };
+  setLangElements();
+  setNewBirds();
+}
+
+
+
+window.addEventListener('load', getLocalStorage);
+ruLangBtn.addEventListener('click', () => changeLang('RU'));
+enLangBtn.addEventListener('click', () => changeLang('EN'));

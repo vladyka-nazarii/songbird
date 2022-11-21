@@ -37,6 +37,17 @@
   width: 200px;
 }
 
+.ru-lang,
+.en-lang {
+  cursor: pointer;
+  transition: .3s;
+}
+
+.ru-lang:hover,
+.en-lang:hover {
+  color: #008966;
+}
+
 .score-text {
   font-size: 18px;
   font-weight: 400;
@@ -533,6 +544,18 @@
   .bird-name-player {
     margin: 0 0 0 20px;
   }
+
+  .game-over-title {
+    font-size: 48px;
+  }
+  
+  .game-score-text {
+    font-size: 16px;
+  }
+  
+  .max-score-text {
+    font-size: 36px;
+  }
   
 }
 
@@ -558,6 +581,18 @@
   .selected-bird-name,
   .selected-bird-species {
     text-align: center;
+  }
+
+  .game-over-title {
+    font-size: 32px;
+  }
+  
+  .game-score-text {
+    font-size: 14px;
+  }
+  
+  .max-score-text {
+    font-size: 28px;
   }
 
 }
