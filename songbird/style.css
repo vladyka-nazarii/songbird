@@ -12,6 +12,9 @@
 }
 
 .body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Roboto';
   font-size: 15px;
   background-color: #222222;
@@ -502,6 +505,41 @@
 
 .try-again-btn:hover {
   background-color: #00efb2;
+}
+
+.footer {
+  max-width: 1140px;
+  width: 90%;
+  margin: auto auto 0 auto;
+  padding: 15px;
+}
+
+.rs-school {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #303030;
+  border: 1px solid #444;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.footer-rs-logo {
+  width: 33.3%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.footer-git-logo {
+  width: 33.3%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-text {
+  width: 33.3%;
+  text-align: center;
+  font-size: 18px;
 }
 
 @media (max-width: 1000px) {
