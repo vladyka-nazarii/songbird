@@ -349,7 +349,7 @@ function gameOver() {
   birdContainer.classList.add("hide");
   birdAnswers.classList.add("hide");
   nextBnt.classList.add("hide");
-  gameOverScore.innerHTML = `Вы прошли викторину и набрали ${score} из 30 возможных баллов`;
+  gameOverScore.innerHTML = currentLang.message1 + score + currentLang.message2;
   if (score === 30) {
     tryAgainBtn.classList.add("hide");
     maxScoreText.classList.add("show");
@@ -397,6 +397,12 @@ let ruLang = {
   stage4: 'Хищные птицы',
   stage5: 'Морские птицы',
   description: `Послушайте плеер.<br>Выберите птицу из списка`,
+  nextBtn: 'Следующий Уровень',
+  greet: 'Поздравляем!',
+  message1: `Вы прошли викторину и набрали `,
+  message2: ` из 30 возможных баллов`,
+  gameOver: 'Игра Окончена!',
+  tryAgainBtn: 'Попробовать ещё раз!',
 };
 let enLang = {
   score: `Score:
@@ -408,6 +414,12 @@ let enLang = {
   stage4: 'Predator birds',
   stage5: 'Sea birds',
   description: `Listen to the player.<br>Select a bird from the list`,
+  nextBtn: 'Next Level',
+  greet: 'Congratulations!',
+  message1: `You completed the quiz and scored `,
+  message2: ` out of 30 possible points`,
+  gameOver: 'Game Over!',
+  tryAgainBtn: 'Try again!',
 };
 let currentLang = ruLang;
 
@@ -422,10 +434,18 @@ function getLocalStorage() {
 function setLangElements() {
   const scoreText = document.querySelector(".score-text");
   const pageItems = document.querySelectorAll(".page-item");
+  const maxScoreText  = document.querySelector(".max-score-text");
+  const gameOverGreet  = document.querySelector(".game-over-title");
+  const gameOverScore = document.querySelector(".game-score-text");
   scoreText.innerHTML = currentLang.score;
   const scoreHtml = document.querySelector(".score");
   scoreHtml.innerHTML = score;
   pageItems.forEach((e, i) => e.innerHTML = currentLang[`stage${i}`]);
+  nextBnt.innerHTML = currentLang.nextBtn;
+  gameOverGreet.innerHTML = currentLang.greet;
+  gameOverScore.innerHTML = currentLang.message1 + score + currentLang.message2;
+  maxScoreText.innerHTML = currentLang.gameOver;
+  tryAgainBtn.innerHTML = currentLang.tryAgainBtn;
 }
 
 function changeLang(lang) {
@@ -442,8 +462,6 @@ function changeLang(lang) {
   setNewBirds();
 }
 
-
-
-window.addEventListener('load', getLocalStorage);
 ruLangBtn.addEventListener('click', () => changeLang('RU'));
 enLangBtn.addEventListener('click', () => changeLang('EN'));
+window.addEventListener('load', getLocalStorage);
