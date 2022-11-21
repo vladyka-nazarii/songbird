@@ -68,6 +68,10 @@
   padding: 0;
 }
 
+.nav.hide {
+  display: none;
+}
+
 .nav .page-item:first-child {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;

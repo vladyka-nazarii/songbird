@@ -465,3 +465,29 @@ function changeLang(lang) {
 ruLangBtn.addEventListener('click', () => changeLang('RU'));
 enLangBtn.addEventListener('click', () => changeLang('EN'));
 window.addEventListener('load', getLocalStorage);
+
+// GALLERY
+
+let gallery = false;
+
+function showGallery() {
+  const nav = document.querySelector(".nav");
+  const birdContainer = document.querySelector(".random-bird");
+  const birdAnswers = document.querySelector(".answers-bird");
+  if (gallery) {
+    gallery = !gallery;
+    nav.classList.remove("hide");
+    birdContainer.classList.remove("hide");
+    birdAnswers.classList.remove("hide");
+    nextBnt.classList.remove("hide");
+  } else {
+    gallery = !gallery;
+    nav.classList.add("hide");
+    birdContainer.classList.add("hide");
+    birdAnswers.classList.add("hide");
+    nextBnt.classList.add("hide");
+  }
+}
+
+const galleryBtn = document.querySelector(".gallery-btn");
+galleryBtn.addEventListener('click', showGallery);
