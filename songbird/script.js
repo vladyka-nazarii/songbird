@@ -16,7 +16,6 @@ let score = 0;
 function getRandomBird() {
   const duration = document.querySelector(".end");
   birdToGuess = Math.round(Math.random() * 5);
-  console.log(birdToGuess);
   audio.src = currentData[stage][birdToGuess].audio;
   audio.addEventListener("loadedmetadata", () => {
     duration.innerHTML = getTimeCodeFromNum(audio.duration);
