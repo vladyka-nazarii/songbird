@@ -37,6 +37,17 @@
   width: 200px;
 }
 
+.ru-lang,
+.en-lang {
+  cursor: pointer;
+  transition: .3s;
+}
+
+.ru-lang:hover,
+.en-lang:hover {
+  color: #008966;
+}
+
 .score-text {
   font-size: 18px;
   font-weight: 400;

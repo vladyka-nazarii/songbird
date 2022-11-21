@@ -381,3 +381,45 @@ function tryAgain() {
 }
 
 tryAgainBtn.addEventListener('click', tryAgain);
+
+// CHANGE LANGUAGE
+
+const ruLangBtn = document.querySelector(".ru-lang");
+const enLangBtn = document.querySelector(".en-lang");
+let language = 'RU';
+let ruLang = {
+  stage0: 'Разминка',
+  stage1: 'Воробьиные',
+  stage2: 'Лесные птицы',
+  stage3: 'Певчие птицы',
+  stage4: 'Хищные птицы',
+  stage5: 'Морские птицы',
+};
+let enLang = {
+  stage0: 'Warm up',
+  stage1: 'Passerines',
+  stage2: 'Forest birds',
+  stage3: 'Songbirds',
+  stage4: 'Predator birds',
+  stage5: 'Sea birds',
+};
+let currentLang = ruLang;
+
+function getLocalStorage() {
+  if (localStorage.getItem('language')) {
+    if (localStorage.getItem('language') === 'EN') {
+      language = localStorage.getItem('language');
+      changeLang(language);
+    }};
+};
+
+function changeLang(lang) {
+  language = lang;
+  localStorage.setItem('language', lang);
+}
+
+
+
+window.addEventListener('load', getLocalStorage);
+ruLangBtn.addEventListener('click', () => changeLang('RU'));
+enLangBtn.addEventListener('click', () => changeLang('EN'));
