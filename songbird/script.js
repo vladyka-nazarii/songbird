@@ -4,11 +4,12 @@ import birdsDataEn from './src/birds-en.js';
 const audio = new Audio();
 const sounds = new Audio();
 const selectedAudio = new Audio();
+const nextBnt = document.querySelector(".next-bnt");
 let currentData = birdsData;
 let stage = 0;
 let birdToGuess;
 let guess = false;
-const atempts = [];
+let atempts = [];
 let score = 0;
 
 function getRandomBird() {
@@ -58,8 +59,13 @@ function play() {
 
 //reset player on end of playing
 audio.onended = () => {
+  stopAudio();
+}
+
+function stopAudio() {
   const play = document.querySelector(".play-svg");
   const pause = document.querySelector(".pause-svg");
+  audio.pause();
   isPlaying = false;
   audio.currentTime = 0;
   pause.classList.remove("active");
@@ -195,13 +201,18 @@ function selectedPlay() {
 
 //reset player on end of playing
 selectedAudio.onended = () => {
+  selectedStopAudio();
+}
+
+function selectedStopAudio() {
   const play = document.querySelector(".selected-play-svg");
   const pause = document.querySelector(".selected-pause-svg");
+  selectedAudio.pause();
   selectedIsPlaying = false;
   selectedAudio.currentTime = 0;
   pause.classList.remove("active");
   play.classList.add("active");
-}
+};
 
 //click on timeline to skip around
 const selectedTimeline = document.querySelector(".selected-progress");
@@ -226,11 +237,14 @@ setInterval(() => {
 selectedPlayBtn.addEventListener('click', selectedPlay)
 
 // GUESS BIRD
+function setEventOnList() {
+  const birdList = document.querySelectorAll(".answer-item");
+  birdList.forEach((e, i) => {
+    e.addEventListener('click', () => checkGuess(i));
+  });
+};
 
-const birdList = document.querySelectorAll(".answer-item");
-birdList.forEach((e, i) => {
-  e.addEventListener('click', () => checkGuess(i));
-});
+setEventOnList();
 
 function checkGuess(index) {
   const btns = document.querySelectorAll(".li-btn");
@@ -269,6 +283,7 @@ function showBird(id) {
     duration.innerHTML = getTimeCodeFromNum(selectedAudio.duration);
   });
   selectedBird.classList.add("show");
+  selectedStopAudio();
 };
 
 function win() {
@@ -280,4 +295,42 @@ function win() {
   scoreHtml.innerHTML = score;
   birdImg.src = currentData[stage][birdToGuess].image;
   birdName.innerHTML = currentData[stage][birdToGuess].name;
+  nextBnt.classList.add("active");
+  stopAudio();
 };
+
+function setNewBirds() {
+  const birdImg = document.querySelector(".bird-img");
+  const birdName = document.querySelector(".bird-name");
+  const pageItems = document.querySelectorAll(".page-item");
+  const birdList = document.querySelectorAll(".answer-item");
+  const selectedBird = document.querySelector(".selected-bird");
+  const selectedBirdDescription = document.querySelector(".description-text");
+  pageItems[stage - 1].classList.remove("active");
+  pageItems[stage].classList.add("active");
+  birdImg.src = "./assets/img/bird.jpg";
+  birdName.innerHTML = "* * * * * *";
+  birdList.forEach((e, i) => {
+    e.innerHTML = `<span class="li-btn"></span>${currentData[stage][i].name}`;
+  });
+  setEventOnList();
+  selectedBirdDescription.innerHTML = "Послушайте плеер.<br>Выберите птицу из списка";
+  selectedBird.classList.remove("show");
+}
+
+function nextLevel() {
+  if (guess) {
+    stage += 1;
+    guess = false;
+    atempts = [];
+    audio.pause();
+    selectedAudio.pause();
+    getRandomBird();
+    nextBnt.classList.remove("active");
+    setNewBirds();
+    stopAudio();
+    selectedStopAudio();
+  }
+}
+
+nextBnt.addEventListener('click', nextLevel)

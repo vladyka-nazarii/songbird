@@ -126,6 +126,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   transition: .2s;
   width: 40px;
   height: 40px;
@@ -189,11 +190,11 @@
   display: flex;
   align-items: center;
   width: 20%;
-  margin-top: 3px;
 }
 
 .volume-svg {
-  width: 50px;
+  flex-shrink: 0;
+  width: 40px;
   cursor: pointer;
 }
 
@@ -235,13 +236,13 @@
 
 .bird-list, .description-div {
   width: 100%;
-  background-color: #303030;
-  border-radius: 0.25rem;
 }
 
 .answers-list {
   list-style: none;
   padding: 0;
+  background-color: #303030;
+  border-radius: 0.25rem;
 }
 
 .answers-list .answer-item:first-child {
@@ -325,6 +326,7 @@
 
 .selected-play-btn {
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   transition: .2s;
@@ -411,4 +413,81 @@
   font-size: 15px;
   cursor: pointer;
   transition: .3s;
+}
+
+.next-bnt.active {
+  background-color: #00bc8c;
+}
+
+.next-bnt.active:hover {
+  background-color: #00efb2;
+}
+
+@media (max-width: 1000px) {
+
+  .selected-bird.show {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .selected-bird-name,
+  .selected-bird-species {
+    text-align: center;
+  }
+
+  .volume-controls {
+    width: 30%;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .answers-bird {
+    flex-direction: column;
+  }
+
+  .selected-bird.show {
+    flex-direction: row;
+  }
+
+  .selected-bird-name,
+  .selected-bird-species {
+    text-align: start;
+  }
+
+  .volume-controls {
+    width: 40%;
+  }
+
+  .bird-name-player {
+    margin: 0 0 0 20px;
+  }
+  
+}
+
+@media (max-width: 640px) {
+
+  .random-bird {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-container {
+    margin-bottom: 25px;
+  }
+
+  .bird-name {
+    text-align: center;
+  }
+
+  .selected-bird.show {
+    flex-direction: column;
+  }
+
+  .selected-bird-name,
+  .selected-bird-species {
+    text-align: center;
+  }
+
 }
