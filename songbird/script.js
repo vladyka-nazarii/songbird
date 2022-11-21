@@ -315,7 +315,7 @@ function setNewBirds() {
     e.innerHTML = `<span class="li-btn"></span>${currentData[stage][i].name}`;
   });
   setEventOnList();
-  selectedBirdDescription.innerHTML = "Послушайте плеер.<br>Выберите птицу из списка";
+  selectedBirdDescription.innerHTML = 'Послушайте плеер.<br>Выберите птицу из списка';
   selectedBird.classList.remove("show");
 }
 
@@ -388,20 +388,26 @@ const ruLangBtn = document.querySelector(".ru-lang");
 const enLangBtn = document.querySelector(".en-lang");
 let language = 'RU';
 let ruLang = {
+  score: `Очки:
+  <span class="score">0</span>`,
   stage0: 'Разминка',
   stage1: 'Воробьиные',
   stage2: 'Лесные птицы',
   stage3: 'Певчие птицы',
   stage4: 'Хищные птицы',
   stage5: 'Морские птицы',
+  description: 'Послушайте плеер.<br>Выберите птицу из списка',
 };
 let enLang = {
+  score: `Score:
+  <span class="score">0</span>`,
   stage0: 'Warm up',
   stage1: 'Passerines',
   stage2: 'Forest birds',
   stage3: 'Songbirds',
   stage4: 'Predator birds',
   stage5: 'Sea birds',
+  description: 'Listen to the player.<br>Select a bird from the list',
 };
 let currentLang = ruLang;
 
@@ -413,9 +419,27 @@ function getLocalStorage() {
     }};
 };
 
+function setLangElements() {
+  const scoreText = document.querySelector(".score-text");
+  const pageItems = document.querySelectorAll(".page-item");
+  scoreText.innerHTML = currentLang.score;
+  const scoreHtml = document.querySelector(".score");
+  scoreHtml.innerHTML = score;
+  pageItems.forEach((e, i) => e.innerHTML = currentLang[`stage${i}`]);
+}
+
 function changeLang(lang) {
   language = lang;
   localStorage.setItem('language', lang);
+  if (lang === 'EN') {
+    currentData = birdsDataEn;
+    currentLang = enLang;
+  } else {
+    currentData = birdsData;
+    currentLang = ruLang;
+  };
+  setLangElements();
+  setNewBirds();
 }
 
 
