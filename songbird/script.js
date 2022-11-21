@@ -489,5 +489,11 @@ function showGallery() {
   }
 }
 
+function makeField() {
+  const container = document.createElement('div');
+  container.classList.add('field');
+  document.body.append(field);
+};
+
 const galleryBtn = document.querySelector(".gallery-btn");
 galleryBtn.addEventListener('click', showGallery);
