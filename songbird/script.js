@@ -315,7 +315,7 @@ function setNewBirds() {
     e.innerHTML = `<span class="li-btn"></span>${currentData[stage][i].name}`;
   });
   setEventOnList();
-  selectedBirdDescription.innerHTML = 'Послушайте плеер.<br>Выберите птицу из списка';
+  selectedBirdDescription.innerHTML = currentLang.description;
   selectedBird.classList.remove("show");
 }
 
@@ -396,7 +396,7 @@ let ruLang = {
   stage3: 'Певчие птицы',
   stage4: 'Хищные птицы',
   stage5: 'Морские птицы',
-  description: 'Послушайте плеер.<br>Выберите птицу из списка',
+  description: `Послушайте плеер.<br>Выберите птицу из списка`,
 };
 let enLang = {
   score: `Score:
@@ -407,7 +407,7 @@ let enLang = {
   stage3: 'Songbirds',
   stage4: 'Predator birds',
   stage5: 'Sea birds',
-  description: 'Listen to the player.<br>Select a bird from the list',
+  description: `Listen to the player.<br>Select a bird from the list`,
 };
 let currentLang = ruLang;
 
