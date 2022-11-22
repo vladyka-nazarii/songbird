@@ -12,14 +12,15 @@
   <header class="header">
     <div class="top">
       <img class="logo" src="./assets/img/logo.svg" alt="logo">
+      <button class="game-btn">Викторина</button>
+      <button class="gallery-btn">Галерея</button>
       <span class="ru-lang">RU</span>
       <span class="en-lang">EN</span>
-      <button class="gallery-btn">Галерея</button>
-      <h2 class="score-text">Очки:
+      <h2 class="score-text hide">Очки:
         <span class="score">0</span>
       </h2>
     </div>
-    <ul class="nav">
+    <ul class="nav hide">
       <li class="page-item active">Разминка</li>
       <li class="page-item">Воробьиные</li>
       <li class="page-item">Лесные птицы</li>
@@ -29,7 +30,11 @@
     </ul>
   </header>
   <main class="main">
-    <div class="random-bird">
+    <div class="start-page">
+      <video class="video" src="./assets/video/video.mp4" autoplay muted loop></video>
+      <button class="start-game-btn">Начать Игру</button>
+    </div>
+    <div class="random-bird hide">
       <div class="img-container">
         <img class="bird-img" src="./assets/img/bird.jpg" alt="bird">
       </div>
@@ -63,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="answers-bird">
+    <div class="answers-bird hide">
       <div class="bird-list">
         <ul class="answers-list">
           <li class="answer-item"><span class="li-btn"></span>Ворон</li>
@@ -104,7 +109,7 @@
         <p class="description-text">Послушайте плеер.<br>Выберите птицу из списка</p>
       </div>
     </div>
-    <button class="next-bnt">Следующий Уровень</button>
+    <button class="next-bnt hide">Следующий Уровень</button>
     <div class="game-over">
       <h1 class="game-over-title">Поздравляем!</h1>
       <p class="game-score-text"></p>

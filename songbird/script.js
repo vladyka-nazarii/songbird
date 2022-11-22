@@ -408,6 +408,8 @@ let ruLang = {
   gameOver: 'Игра Окончена!',
   tryAgainBtn: 'Попробовать ещё раз!',
   galleryBtn: 'Галерея',
+  gameBtn: 'Викторина',
+  startGameBtn: 'Начать Игру',
 };
 let enLang = {
   score: `Score:
@@ -426,6 +428,8 @@ let enLang = {
   gameOver: 'Game Over!',
   tryAgainBtn: 'Try again!',
   galleryBtn: 'Gallery',
+  gameBtn: 'Quiz',
+  startGameBtn: 'Start Game',
 };
 let currentLang = ruLang;
 
@@ -453,10 +457,11 @@ function setLangElements() {
   maxScoreText.innerHTML = currentLang.gameOver;
   tryAgainBtn.innerHTML = currentLang.tryAgainBtn;
   galleryBtn.innerHTML = currentLang.galleryBtn;
+  gameBtn.innerHTML = currentLang.gameBtn;
+  startGameBtn.innerHTML = currentLang.startGameBtn;
 }
 
 function changeLang(lang) {
-  const gallery = document.querySelector(".gallery");
   language = lang;
   localStorage.setItem('language', lang);
   if (lang === 'EN') {
@@ -468,11 +473,8 @@ function changeLang(lang) {
   };
   setLangElements();
   setNewBirds();
-  if (galleryOpen) {
-    gallery.innerHTML = '';
-    currentData.forEach(stage => 
-      stage.forEach(bird => makeGallery(bird)));
-  }
+  hideGalleryPage();
+  showGalleryPage();
 }
 
 ruLangBtn.addEventListener('click', () => changeLang('RU'));
@@ -480,44 +482,6 @@ enLangBtn.addEventListener('click', () => changeLang('EN'));
 window.addEventListener('load', getLocalStorage);
 
 // GALLERY
-
-let galleryOpen = false;
-
-function showGallery() {
-  const nav = document.querySelector(".nav");
-  const birdContainer = document.querySelector(".random-bird");
-  const birdAnswers = document.querySelector(".answers-bird");
-  const gameOverContainer = document.querySelector(".game-over");
-  const gallery = document.querySelector(".gallery");
-  stopAudio();
-  selectedStopAudio();
-  if (galleryOpen) {
-    galleryOpen = !galleryOpen;
-    if (isGameEnded) {
-      gameOverContainer.classList.add("show");
-    } else {
-      galleryBtn.classList.remove("active");
-      nav.classList.remove("hide");
-      birdContainer.classList.remove("hide");
-      birdAnswers.classList.remove("hide");
-      nextBnt.classList.remove("hide");
-    };
-    gallery.innerHTML = '';
-  } else {
-    galleryOpen = !galleryOpen;
-    if (isGameEnded) {
-      gameOverContainer.classList.remove("show");
-    } else {
-      galleryBtn.classList.add("active");
-      nav.classList.add("hide");
-      birdContainer.classList.add("hide");
-      birdAnswers.classList.add("hide");
-      nextBnt.classList.add("hide");
-    };
-    currentData.forEach(stage => 
-      stage.forEach(bird => makeGallery(bird)));
-  }
-}
 
 function makeGallery(bird) {
   const gallery = document.querySelector(".gallery");
@@ -560,5 +524,91 @@ function makeGallery(bird) {
   gallery.append(description);
 };
 
+const logoBtn = document.querySelector(".logo");
+const gameBtn = document.querySelector(".game-btn");
 const galleryBtn = document.querySelector(".gallery-btn");
-galleryBtn.addEventListener('click', showGallery);
+const startGameBtn = document.querySelector(".start-game-btn");
+
+logoBtn.addEventListener('click', () => {
+  hideGamePage();
+  hideGalleryPage();
+  showStartPage();
+});
+
+gameBtn.addEventListener('click', () => {
+  hideStartPage();
+  hideGalleryPage();
+  showGamePage();
+});
+
+galleryBtn.addEventListener('click', () => {
+  hideStartPage();
+  hideGamePage();
+  showGalleryPage();
+});
+
+startGameBtn.addEventListener('click', () => {
+  hideStartPage();
+  hideGalleryPage();
+  showGamePage();
+});
+
+function showStartPage() {
+  const startPage = document.querySelector(".start-page");
+  startPage.classList.remove("hide");
+};
+
+function hideStartPage() {
+  const startPage = document.querySelector(".start-page");
+  startPage.classList.add("hide");
+};
+
+function showGamePage() {
+  const scoreText = document.querySelector(".score-text");
+  const nav = document.querySelector(".nav");
+  const birdContainer = document.querySelector(".random-bird");
+  const birdAnswers = document.querySelector(".answers-bird");
+  const gameOverContainer = document.querySelector(".game-over");
+  gameBtn.classList.add("active");
+  scoreText.classList.remove("hide");
+  nav.classList.remove("hide");
+  if (isGameEnded) {
+    gameOverContainer.classList.add("show");
+  } else {
+    birdContainer.classList.remove("hide");
+    birdAnswers.classList.remove("hide");
+    nextBnt.classList.remove("hide");
+  };
+};
+
+function hideGamePage() {
+  const scoreText = document.querySelector(".score-text");
+  const nav = document.querySelector(".nav");
+  const birdContainer = document.querySelector(".random-bird");
+  const birdAnswers = document.querySelector(".answers-bird");
+  const gameOverContainer = document.querySelector(".game-over");
+  gameBtn.classList.remove("active");
+  scoreText.classList.add("hide");
+  nav.classList.add("hide");
+  if (isGameEnded) {
+    gameOverContainer.classList.remove("show");
+  } else {
+    birdContainer.classList.add("hide");
+    birdAnswers.classList.add("hide");
+    nextBnt.classList.add("hide");
+  };
+  stopAudio();
+  selectedStopAudio();
+}
+
+function showGalleryPage() {
+  galleryBtn.classList.add("active");
+  currentData.forEach(stage => 
+    stage.forEach(bird => makeGallery(bird)));
+};
+
+function hideGalleryPage() {
+  const gallery = document.querySelector(".gallery");
+  galleryBtn.classList.remove("active");
+  gallery.innerHTML = '';
+};
