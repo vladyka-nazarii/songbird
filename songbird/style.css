@@ -37,6 +37,36 @@
 
 .logo {
   width: 200px;
+  cursor: pointer;
+  padding: 5px;
+  transition: .3s;
+}
+
+.gallery-btn,
+.game-btn {
+  background-color: #303030;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  transition: .3s;
+}
+
+.gallery-btn:hover,
+.game-btn:hover {
+  background-color: #008966;
+}
+
+.gallery-btn.active,
+.game-btn.active {
+  background-color: #00bc8c;
+}
+
+.gallery-btn.active:hover,
+.game-btn.active:hover {
+  background-color: #00efb2;
 }
 
 .ru-lang,
@@ -48,29 +78,6 @@
 .ru-lang:hover,
 .en-lang:hover {
   color: #008966;
-}
-
-.gallery-btn {
-  background-color: #303030;
-  border: 1px solid #444;
-  border-radius: 0.25rem;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  padding: 5px;
-  transition: .3s;
-}
-
-.gallery-btn:hover {
-  background-color: #008966;
-}
-
-.gallery-btn.active {
-  background-color: #00bc8c;
-}
-
-.gallery-btn.active:hover {
-  background-color: #00efb2;
 }
 
 .score-text {
@@ -120,6 +127,29 @@
   width: 90%;
   margin: 0 auto;
   padding: 15px;
+}
+
+.video {
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+.start-game-btn {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 25px;
+  background-color: #00bc8c;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  color: white;
+  font-family: 'Roboto';
+  font-size: 15px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.start-game-btn:hover {
+  background-color: #00efb2;
 }
 
 .random-bird {
@@ -544,16 +574,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #303030;
-  border: 1px solid #444;
-  padding: 1rem;
-  border-radius: 0.25rem;
 }
 
 .footer-rs-logo {
   width: 33.3%;
   display: flex;
   justify-content: flex-start;
+}
+
+.rs-school-logo,
+.git-logo {
+  transition: .3s;
+}
+
+.logo:hover,
+.rs-school-logo:hover,
+.git-logo:hover {
+  transform: scale(1.1);
 }
 
 .footer-git-logo {
