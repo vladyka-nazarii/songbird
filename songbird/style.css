@@ -663,7 +663,20 @@
 @media (max-width: 640px) {
 
   .logo {
-    width: 100px;
+    width: 120px;
+    padding: 2px;
+  }
+
+  .gallery-btn,
+  .game-btn {
+    font-size: 14px;
+    padding: 2px;
+  }
+
+  .ru-lang,
+  .en-lang,
+  .score-text {
+    font-size: 14px;
   }
 
   .random-bird {
@@ -698,6 +711,14 @@
   
   .max-score-text {
     font-size: 28px;
+  }
+
+}
+
+@media (max-width: 440px) {
+
+  .logo {
+    width: 70px;
   }
 
 }
