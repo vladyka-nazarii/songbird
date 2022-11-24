@@ -473,8 +473,10 @@ function changeLang(lang) {
   };
   setLangElements();
   setNewBirds();
-  hideGalleryPage();
-  showGalleryPage();
+  if (galleryIsActive) {
+    hideGalleryPage();
+    showGalleryPage();
+  }
 }
 
 ruLangBtn.addEventListener('click', () => changeLang('RU'));
@@ -528,6 +530,7 @@ const logoBtn = document.querySelector(".logo");
 const gameBtn = document.querySelector(".game-btn");
 const galleryBtn = document.querySelector(".gallery-btn");
 const startGameBtn = document.querySelector(".start-game-btn");
+let galleryIsActive = false;
 
 logoBtn.addEventListener('click', () => {
   hideGamePage();
@@ -602,12 +605,14 @@ function hideGamePage() {
 }
 
 function showGalleryPage() {
+  galleryIsActive = true;
   galleryBtn.classList.add("active");
   currentData.forEach(stage => 
     stage.forEach(bird => makeGallery(bird)));
 };
 
 function hideGalleryPage() {
+  galleryIsActive = false;
   const gallery = document.querySelector(".gallery");
   galleryBtn.classList.remove("active");
   gallery.innerHTML = '';
