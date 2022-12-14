@@ -12,7 +12,7 @@ export interface INews {
     content: string,
 }
 
-export interface ISorce {
+export interface ISource {
     id: string,
     name: string,
     description: string,
