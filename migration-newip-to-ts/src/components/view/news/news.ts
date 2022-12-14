@@ -5,11 +5,11 @@ class News {
     draw(data: IResponse[]) {
         const news: IResponse[] = data.length >= 10 ? data.filter((_item: IResponse, idx: number) => idx < 10) : data;
 
-        const fragment = document.createDocumentFragment() as DocumentFragment;
-        const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
+        const fragment: DocumentFragment = document.createDocumentFragment() as DocumentFragment;
+        const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
         news.forEach((item: IResponse, idx: number) => {
-            const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
+            const newsClone: HTMLTemplateElement = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (idx % 2) (newsClone.querySelector('.news__item') as HTMLDivElement).classList.add('alt');
 

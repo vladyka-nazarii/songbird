@@ -1,4 +1,4 @@
-export interface IResponse {
+export interface INews {
     source: {
         id: string | null,
         name: string,
@@ -10,4 +10,14 @@ export interface IResponse {
     urlToImage: string,
     publishedAt: string,
     content: string,
+}
+
+export interface ISorce {
+    id: string,
+    name: string,
+    description: string,
+    url: string,
+    category: string,
+    language: string,
+    country: string,
 }
