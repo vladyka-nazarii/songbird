@@ -1,14 +1,14 @@
 import './news.css';
-import { IResponse } from '../../../types/index';
+import { INews } from '../../../types/index';
 
 class News {
-    draw(data: IResponse[]) {
-        const news: IResponse[] = data.length >= 10 ? data.filter((_item: IResponse, idx: number) => idx < 10) : data;
+    draw(data: INews[]) {
+        const news: INews[] = data.length >= 10 ? data.filter((_item: INews, idx: number) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment() as DocumentFragment;
         const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
-        news.forEach((item: IResponse, idx: number) => {
+        news.forEach((item: INews, idx: number) => {
             const newsClone: HTMLTemplateElement = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (idx % 2) (newsClone.querySelector('.news__item') as HTMLDivElement).classList.add('alt');
