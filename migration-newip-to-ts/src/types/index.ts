@@ -1,14 +1,13 @@
 export interface IResponse {
-    status: string,
-    sources: [
-        id: string,
+    source: {
+        id: string | null,
         name: string,
-        description: string,
-        url: string,
-        category: string,
-        language: string,
-        country: string,
-    ]
+    },
+    author: string | null,
+    title: string,
+    description: string,
+    url: string,
+    urlToImage: string,
+    publishedAt: string,
+    content: string,
 }
-
-export default IResponse;
