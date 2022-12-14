@@ -1,14 +1,16 @@
+import { Options, Callback } from "../../types/index";
+
 class Loader {
     baseLink: string;
-    options: {[key: string]: string};
-    constructor(baseLink: string, options: {[key: string]: string}) {
+    options: Options;
+    constructor(baseLink: string, options: Options) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {} },
-        callback = (): void => {
+        { endpoint, options = {} }: {endpoint: string, options?: Options},
+        callback: Callback = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -25,8 +27,8 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: {[key: string]: string}, endpoint: string) {
-        const urlOptions: {[key: string]: string} = { ...this.options, ...options };
+    makeUrl(options: Options, endpoint: string) {
+        const urlOptions: Options = { ...this.options, ...options };
         let url: string = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -36,7 +38,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback, options: {[key: string]: string} = {}) {
+    load(method: string, endpoint: string, callback: Callback, options: Options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
