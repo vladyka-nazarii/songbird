@@ -1,8 +1,8 @@
-import { INewsResp, ISourceResp, Options } from '../../types/index';
+import { INewsResp, ISourceResp, Options, ErrorEnum } from '../../types/index';
 
 class Loader {
-    baseLink: string;
-    options: Options;
+    private readonly baseLink: string;
+    private options: Options;
     constructor(baseLink: string, options: Options) {
         this.baseLink = baseLink;
         this.options = options;
@@ -19,7 +19,7 @@ class Loader {
 
     errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === ErrorEnum.Unauthorized || res.status === ErrorEnum.NotFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
