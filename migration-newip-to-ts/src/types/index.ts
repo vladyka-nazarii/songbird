@@ -33,6 +33,4 @@ export interface ISourceResp {
     sources: ISource[],
 }
 
-export type Callback = <T>(data?: T) => void;
-
 export type Options = {[key: string]: string};
