@@ -8,6 +8,7 @@ class News {
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
+        const newsContainer = document.querySelector('.news') as HTMLDivElement;
 
         news.forEach((item, idx) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
@@ -34,8 +35,8 @@ class News {
             fragment.append(newsClone);
         });
 
-        (document.querySelector('.news') as HTMLDivElement).innerHTML = '';
-        document.querySelector('.news')?.appendChild(fragment);
+        newsContainer.innerHTML = '';
+        newsContainer.appendChild(fragment);
     }
 }
 
