@@ -9,7 +9,7 @@ class News {
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
-        news.forEach((item: INews, idx: number) => {
+        news.forEach((item, idx) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (idx % 2) newsClone.querySelector('.news__item')?.classList.add('alt');
@@ -29,13 +29,13 @@ class News {
             (newsClone.querySelector('.news__description-source') as HTMLHeadingElement).textContent = item.source.name;
             (newsClone.querySelector('.news__description-content') as HTMLParagraphElement).textContent =
                 item.description;
-            (newsClone.querySelector('.news__read-more a') as HTMLParagraphElement).setAttribute('href', item.url);
+            newsClone.querySelector('.news__read-more a')?.setAttribute('href', item.url);
 
             fragment.append(newsClone);
         });
 
         (document.querySelector('.news') as HTMLDivElement).innerHTML = '';
-        (document.querySelector('.news') as HTMLDivElement).appendChild(fragment);
+        document.querySelector('.news')?.appendChild(fragment);
     }
 }
 
