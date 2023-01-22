@@ -1,5 +1,3 @@
-import { hello } from './test';
+import { getCarImage } from './ui/get-car-image';
 
-import './styles.scss';
-
-hello();
+document.body.appendChild(getCarImage('red'));

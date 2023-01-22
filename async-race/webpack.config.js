@@ -51,7 +51,7 @@ module.exports = ({ develop }) => ({
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Async Race',
-      favicon: './public/favicon.ico',
+      favicon: './public/favico.ico',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
