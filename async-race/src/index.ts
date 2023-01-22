@@ -1,3 +1,5 @@
-import { getCarImage } from './ui/get-car-image';
+import { renderTrack } from './ui/render-track';
 
-document.body.appendChild(getCarImage('red'));
+import './styles.scss';
+
+document.body.innerHTML = renderTrack(15, 'tesla', 'red', false);

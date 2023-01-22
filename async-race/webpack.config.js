@@ -3,10 +3,10 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
-const devServer = (isDev) => (!isDev ? {} : { devServer: { open: true, hot: true } });
+const devServer = (isDev) =>
+  !isDev ? {} : { devServer: { open: true, hot: true, static: resolve(__dirname, 'public') } };
 
 module.exports = ({ develop }) => ({
   mode: develop ? 'development' : 'production',
@@ -23,26 +23,10 @@ module.exports = ({ develop }) => ({
   module: {
     rules: [
       {
-        test: /\.[tj]s$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
-      },
-      {
-        test: /\.(?:woff(2)|eot|ttf|otf|svg)$/i,
-        type: 'asset/inline',
-      },
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      { test: /\.ts$/i, use: 'ts-loader' },
     ],
   },
   resolve: {
@@ -51,10 +35,7 @@ module.exports = ({ develop }) => ({
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Async Race',
-      favicon: './public/favico.ico',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
+      favicon: './public/favicon.ico',
     }),
     new CopyPlugin({
       patterns: [{ from: './public' }],
@@ -62,5 +43,4 @@ module.exports = ({ develop }) => ({
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new ESLintWebpackPlugin({ extensions: ['ts', 'js'] }),
   ],
-  stats: { children: true },
 });
