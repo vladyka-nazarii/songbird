@@ -5,9 +5,14 @@ export const renderTrack = (id: number, name: string, color: string, isEngineSta
     ${getGarageControls(id, name)}
   </div>
   <div class="road">
-    <div class="car-controls">
-    ${getCarControls(id, isEngineStarted)}
+    <div class="launch">
+      <div class="car-controls">
+        ${getCarControls(id, isEngineStarted)}
+      </div>
+      <div class="car" id="car-${id}">
+        ${getCarImage(id, color)}
+      </div>
     </div>
-    ${getCarImage(color)}
+    <img class="flag" src="./flag.png" alt="finish">
   </div>
   `;

@@ -6,7 +6,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
 const devServer = (isDev) =>
-  !isDev ? {} : { devServer: { open: true, hot: true, static: resolve(__dirname, 'public') } };
+  !isDev
+    ? {}
+    : { devServer: { open: true, hot: true, client: { overlay: false }, static: resolve(__dirname, 'public') } };
 
 module.exports = ({ develop }) => ({
   mode: develop ? 'development' : 'production',

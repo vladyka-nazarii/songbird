@@ -1,5 +1,5 @@
-import { renderTrack } from './ui/render-track';
+import { renderPage } from './ui/render-page';
 
 import './styles.scss';
 
-document.body.innerHTML = renderTrack(15, 'tesla', 'red', false);
+document.body.innerHTML = `${renderPage()}`;
