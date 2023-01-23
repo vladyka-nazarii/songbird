@@ -1,9 +1,12 @@
 import { renderPage } from './ui/render-page';
+import { addListeners } from './utils/listeners';
 
 import './styles.scss';
 
-document.body.innerHTML = `${renderPage()}`;
+renderPage();
 
 // render();
 // await updateStateGarage();
 // listen());
+
+addListeners();
