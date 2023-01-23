@@ -1,8 +1,4 @@
-interface IWinner {
-  id: number;
-  wins: number;
-  time: number;
-}
+import { IWinner } from './interface';
 
 const base = 'http://localhost:3000';
 

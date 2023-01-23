@@ -45,4 +45,7 @@ module.exports = ({ develop }) => ({
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new ESLintWebpackPlugin({ extensions: ['ts', 'js'] }),
   ],
+  experiments: {
+    topLevelAwait: true,
+  },
 });
