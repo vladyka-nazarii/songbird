@@ -1,4 +1,6 @@
-import { updateGarage } from '../ui/update-garage';
+import { stopEngine } from '../api/engine';
+import { setDefaultPosition } from '../utils/animation';
+import { store } from '../utils/store';
 
 export const addResetListener = () => {
   const resetButton = document.querySelector('#reset') as HTMLButtonElement;
@@ -7,7 +9,11 @@ export const addResetListener = () => {
     const startButtons = document.querySelectorAll('.start-engine-button') as NodeListOf<HTMLButtonElement>;
     const stopButtons = document.querySelectorAll('.stop-engine-button') as NodeListOf<HTMLButtonElement>;
     resetButton.disabled = true;
-    await updateGarage();
+    store.cars.forEach(async (car) => {
+      await stopEngine(car.id);
+      store.animationReset.push(car.id);
+      setDefaultPosition(car.id);
+    });
     raceButton.disabled = false;
     startButtons.forEach((button) => (button.disabled = false));
     stopButtons.forEach((button) => (button.disabled = true));

@@ -10,6 +10,7 @@ export const addRaceListener = () => {
     const stopButtons = document.querySelectorAll('.stop-engine-button') as NodeListOf<HTMLButtonElement>;
     raceButton.disabled = true;
     store.cars.forEach(async (car) => {
+      store.animationReset = store.animationReset.filter((animation) => animation !== car.id);
       const { velocity, distance } = await startEngine(car.id);
       animatePosition(car.id, findDistance(), distance / velocity);
     });

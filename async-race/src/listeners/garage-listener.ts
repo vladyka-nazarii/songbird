@@ -4,7 +4,7 @@ import { deleteWinner } from '../api/winners';
 import { store } from '../utils/store';
 import { updateGarage } from '../ui/update-garage';
 import { updateWinners } from '../ui/update-winners';
-import { animatePosition, findDistance } from '../utils/animation';
+import { animatePosition, findDistance, setDefaultPosition } from '../utils/animation';
 
 const removeCar = async (target: HTMLElement) => {
   const id = +target.id.replace('remove-car-', '');
@@ -33,6 +33,7 @@ const driveCar = async (target: HTMLElement) => {
   const id = +targetButton.id.replace('start-engine-car-', '');
   const stopButton = document.querySelector(`#stop-engine-car-${id}`) as HTMLButtonElement;
   targetButton.disabled = true;
+  store.animationReset = store.animationReset.filter((animation) => animation !== id);
   const { velocity, distance } = await startEngine(id);
   animatePosition(id, findDistance(), distance / velocity);
   stopButton.disabled = false;
@@ -43,9 +44,10 @@ const stopCar = async (target: HTMLElement) => {
   const id = +targetButton.id.replace('stop-engine-car-', '');
   const startButton = document.querySelector(`#start-engine-car-${id}`) as HTMLButtonElement;
   targetButton.disabled = true;
-  startButton.disabled = false;
   await stopEngine(id);
   store.animationReset.push(id);
+  setDefaultPosition(id);
+  startButton.disabled = false;
 };
 
 export const addGarageListeners = () => {
