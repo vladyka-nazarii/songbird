@@ -24,4 +24,5 @@ export const store: IStore = {
   view: View.Garage,
   sortBy: null,
   sortOrder: null,
+  selectedID: undefined,
 };

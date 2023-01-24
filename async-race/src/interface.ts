@@ -63,4 +63,5 @@ export interface IStore {
   view: View;
   sortBy: Sort | null;
   sortOrder: Order | null;
+  selectedID?: number;
 }

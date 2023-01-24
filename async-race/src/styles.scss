@@ -77,21 +77,30 @@ body {
   width: 50%;
   border: solid 1px black;
   border-radius: 5px;
-}
+  border-spacing: 0;
+  font-size: 24px;
+  margin: 20px 0;
 
-.winners-table td {
-  text-align: center;
-  border-top: solid 1px black;
-  border-right: solid 1px black;
-}
+  & td {
+    text-align: center;
+    border-top: solid 1px black;
+    border-right: solid 1px black;
+    padding: 0;
+  }
 
-.winners-table tr td:last-child {
-  border-right: none;
+  & th {
+    border-right: solid 1px black;
+    padding: 0;
+  }
+
+  & tr td:last-child,
+  & tr th:last-child {
+    border-right: none;
+  }
 }
 
 .winner-car {
-  min-width: 50px;
-  width: 100%;
+  min-width: 80px;
 }
 
 .hide {

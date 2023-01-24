@@ -8,8 +8,12 @@ export const renderPage = () => {
   document.body.innerHTML = `
     ${renderHeader()}
     ${renderGarageView()}
-    ${renderGarage()}
-    ${renderWinners()}
+    <div class="garage-container">
+      ${renderGarage()}
+    </div>
+    <div class="winners-container hide">
+      ${renderWinners()}
+    </div>
     ${renderPagination()}
   `;
 };
