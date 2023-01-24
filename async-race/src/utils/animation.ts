@@ -21,7 +21,7 @@ export const animatePosition = (id: number, offset: number, duration: number) =>
   const frontWheel = document.querySelector(`#front-wheel-${id}`) as SVGElement;
   const rearWheel = document.querySelector(`#rear-wheel-${id}`) as SVGElement;
 
-  car.style.transition = frontWheel.style.transition = rearWheel.style.transition = 'ease-out 1s';
+  car.style.transition = frontWheel.style.transition = rearWheel.style.transition = 'ease-out 0.3s';
 
   let currentX = 0;
   let currentR = 0;

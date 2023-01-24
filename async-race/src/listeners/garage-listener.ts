@@ -1,5 +1,5 @@
 import { deleteCar } from '../api/cars';
-import { startEngine, stopEngine } from '../api/engine';
+import { drive, startEngine, stopEngine } from '../api/engine';
 import { deleteWinner } from '../api/winners';
 import { store } from '../utils/store';
 import { updateGarage } from '../ui/update-garage';
@@ -33,10 +33,13 @@ const driveCar = async (target: HTMLElement) => {
   const id = +targetButton.id.replace('start-engine-car-', '');
   const stopButton = document.querySelector(`#stop-engine-car-${id}`) as HTMLButtonElement;
   targetButton.disabled = true;
+  store.animationStop = store.animationStop.filter((animation) => animation !== id);
   store.animationReset = store.animationReset.filter((animation) => animation !== id);
   const { velocity, distance } = await startEngine(id);
   animatePosition(id, findDistance(), distance / velocity);
   stopButton.disabled = false;
+  const error = await drive(id);
+  if (!error.success) store.animationStop.push(id);
 };
 
 const stopCar = async (target: HTMLElement) => {
