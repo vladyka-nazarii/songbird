@@ -1,4 +1,5 @@
-import { IWinnerCar } from '../interface';
+import { IWinner } from '../interface';
+import { findWinnerData } from '../utils/find-winer-data';
 import { store } from '../utils/store';
 import { getCarIcon } from './render-track-components';
 
@@ -13,15 +14,15 @@ export const renderWinners = (): string => `
     <th>Wins</th>
     <th>Best time (seconds)</th>
   </tr>
-  ${store.winnersCars
+  ${store.winners
     .map(
-      (winnerCar: IWinnerCar, index: number) => `
+      (winner: IWinner, index: number) => `
       <tr>
         <td>${index + 1}</td>
-        <td>${getCarIcon(winnerCar.color)}</td>
-        <td>${winnerCar.name}</td>
-        <td>${winnerCar.wins}</td>
-        <td>${winnerCar.time}</td>
+        <td>${getCarIcon(findWinnerData(winner).color)}</td>
+        <td>${findWinnerData(winner).name}</td>
+        <td>${winner.wins}</td>
+        <td>${winner.time}</td>
       </tr>
     `,
     )

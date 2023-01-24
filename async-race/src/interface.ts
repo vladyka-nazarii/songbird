@@ -24,14 +24,6 @@ export interface IWinner {
   time: number;
 }
 
-export interface IWinnerCar {
-  id: number;
-  name?: string;
-  color?: string;
-  wins: number;
-  time: number;
-}
-
 export enum Order {
   ByAsc = 'ASC',
   ByDesc = 'DESC',
@@ -86,7 +78,7 @@ export interface IStore {
   cars: ICar[];
   carsCount: string | null;
   winnersPage: number;
-  winnersCars: IWinnerCar[];
+  winners: IWinner[];
   winnersCount: string | null;
   view: View;
   sortBy: Sort | null;
