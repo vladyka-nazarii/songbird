@@ -1,8 +1,6 @@
 import { getWinners } from '../api/winners';
-import { CountType, Limit, PageType } from '../interface';
 import { renderWinners } from '../ui/render-winners';
 import { store } from '../utils/store';
-import { updatePagintion } from './update-pagination';
 
 export const updateWinners = async () => {
   const winnersContainer = document.querySelector('.winners-container') as HTMLDivElement;
@@ -11,5 +9,4 @@ export const updateWinners = async () => {
   store.winnersCount = (await getWinners(store.carsPage)).count;
 
   winnersContainer.innerHTML = renderWinners();
-  updatePagintion(PageType.WinnersPage, CountType.WinnersCount, Limit.Winners);
 };

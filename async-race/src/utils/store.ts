@@ -25,4 +25,6 @@ export const store: IStore = {
   sortBy: null,
   sortOrder: null,
   selectedID: undefined,
+  animationStop: [],
+  animationReset: [],
 };

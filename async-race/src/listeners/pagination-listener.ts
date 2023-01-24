@@ -1,7 +1,8 @@
-import { View } from '../interface';
+import { CountType, Limit, PageType, View } from '../interface';
 import { store } from '../utils/store';
 import { updateGarage } from '../ui/update-garage';
 import { updateWinners } from '../ui/update-winners';
+import { updatePagintion } from '../ui/update-pagination';
 
 export const addPaginationListener = () => {
   const pagination = document.querySelector('.pagination') as HTMLDivElement;
@@ -15,6 +16,7 @@ export const addPaginationListener = () => {
       if (target.id === 'prev') store.winnersPage -= 1;
       else store.winnersPage += 1;
       await updateWinners();
+      updatePagintion(PageType.WinnersPage, CountType.WinnersCount, Limit.Winners);
     }
   });
 };

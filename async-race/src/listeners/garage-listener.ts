@@ -1,5 +1,5 @@
 import { deleteCar } from '../api/cars';
-import { startEngine } from '../api/engine';
+import { startEngine, stopEngine } from '../api/engine';
 import { deleteWinner } from '../api/winners';
 import { store } from '../utils/store';
 import { updateGarage } from '../ui/update-garage';
@@ -10,8 +10,8 @@ const removeCar = async (target: HTMLElement) => {
   const id = +target.id.replace('remove-car-', '');
   await deleteCar(id);
   await deleteWinner(id);
-  await updateGarage();
   await updateWinners();
+  await updateGarage();
 };
 
 const selectCar = async (target: HTMLElement) => {
@@ -44,6 +44,8 @@ const stopCar = async (target: HTMLElement) => {
   const startButton = document.querySelector(`#start-engine-car-${id}`) as HTMLButtonElement;
   targetButton.disabled = true;
   startButton.disabled = false;
+  await stopEngine(id);
+  store.animationReset.push(id);
 };
 
 export const addGarageListeners = () => {

@@ -91,4 +91,6 @@ export interface IStore {
   sortBy: Sort | null;
   sortOrder: Order | null;
   selectedID?: number;
+  animationStop: number[];
+  animationReset: number[];
 }
