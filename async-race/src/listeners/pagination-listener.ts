@@ -1,7 +1,7 @@
 import { View } from '../interface';
 import { store } from '../utils/store';
-import { updateGarage } from '../utils/update-garage';
-import { updateWinners } from '../utils/update-winners';
+import { updateGarage } from '../ui/update-garage';
+import { updateWinners } from '../ui/update-winners';
 
 export const addPaginationListener = () => {
   const pagination = document.querySelector('.pagination') as HTMLDivElement;

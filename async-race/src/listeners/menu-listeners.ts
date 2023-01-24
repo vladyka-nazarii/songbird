@@ -1,6 +1,6 @@
 import { store } from '../utils/store';
 import { CountType, Limit, PageType, View } from '../interface';
-import { updatePagintion } from '../utils/update-pagination';
+import { updatePagintion } from '../ui/update-pagination';
 
 export const addToGarageListener = () => {
   const toGarageButton = document.querySelector('#garage-menu') as HTMLButtonElement;

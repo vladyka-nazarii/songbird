@@ -1,7 +1,7 @@
 import { getWinners } from '../api/winners';
 import { CountType, Limit, PageType } from '../interface';
 import { renderWinners } from '../ui/render-winners';
-import { store } from './store';
+import { store } from '../utils/store';
 import { updatePagintion } from './update-pagination';
 
 export const updateWinners = async () => {

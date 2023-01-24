@@ -1,6 +1,6 @@
 import { Generate } from '../interface';
 import { generateNewCars } from '../utils/generate-cars';
-import { updateGarage } from '../utils/update-garage';
+import { updateGarage } from '../ui/update-garage';
 
 export const addGenerateListener = () => {
   const generateButton = document.querySelector('#generate') as HTMLButtonElement;

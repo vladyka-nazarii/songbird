@@ -2,7 +2,7 @@ import { IDrive, IEngine } from '../interface';
 import { engine } from './base';
 
 export const startEngine = async (id: number): Promise<IEngine> =>
-  (await fetch(`${engine}?id=${id}&status=started`)).json();
+  (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
 
 export const stopEngine = async (id: number): Promise<IEngine> =>
   (await fetch(`${engine}?id=${id}&status=stopped`)).json();

@@ -14,7 +14,7 @@ export const renderGarageView = (): string => `
   </div>
   <div class="race-control">
     <button class="button" id="race">Race</button>
-    <button class="button" id="reset">Reset</button>
+    <button class="button" id="reset" disabled>Reset</button>
     <button class="button" id="generate">Generate</button>
   </div>
   </div>

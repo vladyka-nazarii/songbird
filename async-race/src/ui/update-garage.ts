@@ -1,7 +1,7 @@
 import { getCars } from '../api/cars';
 import { CountType, Limit, PageType } from '../interface';
-import { renderGarage } from '../ui/render-garage';
-import { store } from './store';
+import { renderGarage } from './render-garage';
+import { store } from '../utils/store';
 import { updatePagintion } from './update-pagination';
 
 export const updateGarage = async () => {

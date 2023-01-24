@@ -1,5 +1,5 @@
 import { CountType, Limit, Page, PageType } from '../interface';
-import { store } from './store';
+import { store } from '../utils/store';
 
 export const updatePagintion = (page: PageType, count: CountType, limit: Limit) => {
   const prevButton = document.querySelector('#prev') as HTMLButtonElement;

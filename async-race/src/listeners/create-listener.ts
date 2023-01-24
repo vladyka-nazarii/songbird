@@ -1,5 +1,5 @@
 import { createCar } from '../api/cars';
-import { updateGarage } from '../utils/update-garage';
+import { updateGarage } from '../ui/update-garage';
 
 export const addCreateListener = () => {
   const createSubmitButton = document.querySelector('#create-submit') as HTMLButtonElement;
