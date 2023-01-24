@@ -67,6 +67,14 @@ export enum CountType {
   WinnersCount = 'winnersCount',
 }
 
+export enum Color {
+  Max = 255,
+}
+
+export enum Generate {
+  Number = 100,
+}
+
 export interface IResponse<Type> {
   items: Type[];
   count: string | null;
