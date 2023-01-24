@@ -1,3 +1,7 @@
+import { store } from '../utils/store';
+import { CountType, Limit, PageType, View } from '../interface';
+import { updatePagintion } from '../utils/update-pagination';
+
 export const addToGarageListener = () => {
   const toGarageButton = document.querySelector('#garage-menu') as HTMLButtonElement;
   toGarageButton.addEventListener('click', () => {
@@ -8,6 +12,9 @@ export const addToGarageListener = () => {
     garageView.classList.remove('hide');
     garageContainer.classList.remove('hide');
     winnersContainer.classList.add('hide');
+
+    store.view = View.Garage;
+    updatePagintion(PageType.CarsPage, CountType.CarsCount, Limit.Cars);
   });
 };
 
@@ -21,5 +28,8 @@ export const addToWinnersListener = () => {
     garageView.classList.add('hide');
     garageContainer.classList.add('hide');
     winnersContainer.classList.remove('hide');
+
+    store.view = View.Winners;
+    updatePagintion(PageType.WinnersPage, CountType.WinnersCount, Limit.Winners);
   });
 };

@@ -48,6 +48,25 @@ export enum View {
   Winners = 'winners',
 }
 
+export enum Limit {
+  Cars = 7,
+  Winners = 10,
+}
+
+export enum Page {
+  First = 1,
+}
+
+export enum PageType {
+  CarsPage = 'carsPage',
+  WinnersPage = 'winnersPage',
+}
+
+export enum CountType {
+  CarsCount = 'carsCount',
+  WinnersCount = 'winnersCount',
+}
+
 export interface IResponse<Type> {
   items: Type[];
   count: string | null;
