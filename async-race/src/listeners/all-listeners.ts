@@ -5,6 +5,7 @@ import { addToGarageListener, addToWinnersListener } from './menu-listeners';
 import { addPaginationListener } from './pagination-listener';
 import { addRaceListener } from './race-listener';
 import { addResetListener } from './reset-listener';
+import { addSortingListener } from './sorting-listener';
 import { addUpdateListener } from './update-listener';
 
 export const addListeners = () => {
@@ -17,4 +18,5 @@ export const addListeners = () => {
   addGenerateListener();
   addGarageListeners();
   addPaginationListener();
+  addSortingListener();
 };

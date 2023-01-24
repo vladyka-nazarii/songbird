@@ -7,14 +7,17 @@ import { updatePagintion } from './update-pagination';
 export const updateGarage = async () => {
   const garageContainer = document.querySelector('.garage-container') as HTMLDivElement;
 
-  store.cars = (await getCars(store.carsPage, Limit.Cars)).items;
-  store.carsCount = (await getCars(store.carsPage, Limit.Cars)).count;
+  const { items: cars, count: carsCount } = await getCars(store.carsPage, Limit.Cars);
+
+  store.cars = cars;
+  store.carsCount = carsCount;
 
   if (store.carsCount) {
     if (Math.ceil(+store.carsCount / Limit.Cars) < store.carsPage) {
       store.carsPage -= 1;
-      store.cars = (await getCars(store.carsPage, Limit.Cars)).items;
-      store.carsCount = (await getCars(store.carsPage, Limit.Cars)).count;
+      const { items: newCars, count: newCarsCount } = await getCars(store.carsPage, Limit.Cars);
+      store.cars = newCars;
+      store.carsCount = newCarsCount;
     }
   }
 

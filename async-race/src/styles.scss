@@ -93,6 +93,10 @@ body {
   & tr th:last-child {
     border-right: none;
   }
+
+  .sorting-button {
+    cursor: pointer;
+  }
 }
 
 .winner-car {

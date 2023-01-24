@@ -11,8 +11,8 @@ export const renderWinners = (): string => `
     <th>Number</th>
     <th>Car</th>
     <th>Name</th>
-    <th>Wins</th>
-    <th>Best time (seconds)</th>
+    <th class="sorting-button" id="wins">Wins</th>
+    <th class="sorting-button" id="time">Best time (seconds)</th>
   </tr>
   ${store.winners
     .map(

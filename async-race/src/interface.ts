@@ -24,14 +24,18 @@ export interface IWinner {
   time: number;
 }
 
+export enum OrderButton {
+  Wins = 'wins',
+  Time = 'time',
+}
+
 export enum Order {
   ByAsc = 'ASC',
   ByDesc = 'DESC',
 }
 
 export enum Sort {
-  ById = 'id',
-  ByWins = 'winners',
+  ByWins = 'wins',
   ByTime = 'time',
 }
 
@@ -81,8 +85,8 @@ export interface IStore {
   winners: IWinner[];
   winnersCount: string | null;
   view: View;
-  sortBy: Sort | null;
-  sortOrder: Order | null;
+  sortBy?: Sort;
+  sortOrder?: Order;
   selectedID?: number;
   animationStop: number[];
   animationReset: number[];
