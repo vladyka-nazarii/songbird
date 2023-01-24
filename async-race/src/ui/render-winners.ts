@@ -1,5 +1,6 @@
 import { IWinnerCar } from '../interface';
 import { store } from '../utils/store';
+import { getCarIcon } from './render-track-components';
 
 export const renderWinners = (): string => `
   <div class="winners-container hide">
@@ -18,7 +19,7 @@ export const renderWinners = (): string => `
         (winnerCar: IWinnerCar, index: number) => `
         <tr>
           <td>${index + 1}</td>
-          <td>${winnerCar.color}</td>
+          <td>${getCarIcon(winnerCar.color)}</td>
           <td>${winnerCar.name}</td>
           <td>${winnerCar.wins}</td>
           <td>${winnerCar.time}</td>

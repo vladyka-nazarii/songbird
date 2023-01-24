@@ -73,6 +73,27 @@ body {
   margin-right: 160px;
 }
 
+.winners-table {
+  width: 50%;
+  border: solid 1px black;
+  border-radius: 5px;
+}
+
+.winners-table td {
+  text-align: center;
+  border-top: solid 1px black;
+  border-right: solid 1px black;
+}
+
+.winners-table tr td:last-child {
+  border-right: none;
+}
+
+.winner-car {
+  min-width: 50px;
+  width: 100%;
+}
+
 .hide {
   display: none;
 }
