@@ -29,7 +29,8 @@ export const animatePosition = (id: number, offset: number, duration: number) =>
   const dX = offset / framesCount;
   const rX = ((offset / 77.5) * 360) / framesCount;
 
-  const tick = () => {
+  const tick = (timestamp: number) => {
+    const carTime = store.time.find((time) => time.id === id);
     currentX += dX;
     currentR += rX;
     car.style.transform = `translateX(${currentX}px)`;
@@ -41,7 +42,9 @@ export const animatePosition = (id: number, offset: number, duration: number) =>
         cancelAnimationFrame(animationId);
         setDefaultPosition(id);
       }
+      if (carTime) carTime.time = timestamp;
+      else store.time.push({ id: id, time: timestamp });
     }
   };
-  tick();
+  tick(0);
 };

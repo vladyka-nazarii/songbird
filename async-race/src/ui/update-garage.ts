@@ -7,8 +7,8 @@ import { updatePagintion } from './update-pagination';
 export const updateGarage = async () => {
   const garageContainer = document.querySelector('.garage-container') as HTMLDivElement;
 
-  store.cars = (await getCars(store.carsPage)).items;
-  store.carsCount = (await getCars(store.carsPage)).count;
+  store.cars = (await getCars(store.carsPage, Limit.Cars)).items;
+  store.carsCount = (await getCars(store.carsPage, Limit.Cars)).count;
 
   if (store.carsCount) {
     if (Math.ceil(+store.carsCount / Limit.Cars) < store.carsPage) {

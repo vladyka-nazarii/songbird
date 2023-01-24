@@ -81,6 +81,7 @@ export interface IResponse<Type> {
 }
 
 export interface IStore {
+  allCars: ICar[];
   carsPage: number;
   cars: ICar[];
   carsCount: string | null;
@@ -93,4 +94,6 @@ export interface IStore {
   selectedID?: number;
   animationStop: number[];
   animationReset: number[];
+  time: { id: number; time: number }[];
+  winner?: number;
 }

@@ -7,13 +7,18 @@ const getSortOrder = (sort?: string, order?: string): string => {
   return '';
 };
 
+const getPageLimit = (page?: number, limit?: number): string => {
+  if (page && limit) return `?_page=${page}&_limit=${limit}`;
+  return '';
+};
+
 export const getWinners = async (
-  page: number,
-  limit = 10,
+  page?: number,
+  limit?: number,
   sort?: string,
   order?: string,
 ): Promise<IResponse<IWinner>> => {
-  const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${getSortOrder(sort, order)}`);
+  const response = await fetch(`${winners}${getPageLimit(page, limit)}${getSortOrder(sort, order)}`);
   const items = await response.json();
 
   return {
@@ -51,7 +56,7 @@ export const updateWinner = async (id: number, body: IWinner): Promise<IWinner> 
 export const deleteWinner = async (id: number): Promise<Record<string, never>> =>
   (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();
 
-export const saveWinner = async ({ id, time }: { id: number; time: number }) => {
+export const saveWinner = async (id: number, time: number) => {
   const winnerStatus = await getWinnerStatus(id);
 
   if (winnerStatus === 404) {

@@ -1,8 +1,11 @@
 import { ICar, INewCar, IResponse } from '../interface';
 import { garage } from './base';
 
-export const getCars = async (page: number, limit = 7): Promise<IResponse<ICar>> => {
-  const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
+export const getCars = async (page?: number, limit?: number): Promise<IResponse<ICar>> => {
+  let response = await fetch(garage);
+  if (page && limit) {
+    response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
+  }
 
   return {
     items: await response.json(),
