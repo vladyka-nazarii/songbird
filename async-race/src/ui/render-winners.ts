@@ -19,8 +19,8 @@ export const renderWinners = (): string => `
       (winner: IWinner, index: number) => `
       <tr>
         <td>${index + 1}</td>
-        <td>${getCarIcon(findWinnerData(winner).color)}</td>
-        <td>${findWinnerData(winner).name}</td>
+        <td>${getCarIcon(findWinnerData(winner.id).color)}</td>
+        <td>${findWinnerData(winner.id).name}</td>
         <td>${winner.wins}</td>
         <td>${winner.time}</td>
       </tr>

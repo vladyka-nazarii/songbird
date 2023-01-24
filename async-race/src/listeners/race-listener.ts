@@ -1,6 +1,7 @@
 import { drive, startEngine } from '../api/engine';
 import { animatePosition, findDistance } from '../utils/animation';
 import { setWinner } from '../utils/set-winner';
+import { showModal } from '../utils/show-modal';
 import { store } from '../utils/store';
 
 export const addRaceListener = () => {
@@ -21,6 +22,7 @@ export const addRaceListener = () => {
         if (!store.winner) {
           store.winner = car.id;
           setWinner(car.id);
+          showModal(car.id);
         }
       } else if (!error.success) {
         store.animationStop.push(car.id);
