@@ -10,9 +10,9 @@ export const addRaceListener = () => {
   raceButton.addEventListener('click', async () => {
     const resetButton = document.querySelector('#reset') as HTMLButtonElement;
     const startButtons = document.querySelectorAll('.start-engine-button') as NodeListOf<HTMLButtonElement>;
-    const stopButtons = document.querySelectorAll('.stop-engine-button') as NodeListOf<HTMLButtonElement>;
     const startTime = new Date().getTime();
     raceButton.disabled = true;
+    startButtons.forEach((button) => (button.disabled = true));
     store.animationStop = [];
     store.animationReset = [];
     store.winner = undefined;
@@ -36,7 +36,5 @@ export const addRaceListener = () => {
       }
     });
     resetButton.disabled = false;
-    startButtons.forEach((button) => (button.disabled = true));
-    stopButtons.forEach((button) => (button.disabled = false));
   });
 };

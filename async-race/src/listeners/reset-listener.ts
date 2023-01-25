@@ -7,7 +7,6 @@ export const addResetListener = () => {
   resetButton.addEventListener('click', async () => {
     const raceButton = document.querySelector('#race') as HTMLButtonElement;
     const startButtons = document.querySelectorAll('.start-engine-button') as NodeListOf<HTMLButtonElement>;
-    const stopButtons = document.querySelectorAll('.stop-engine-button') as NodeListOf<HTMLButtonElement>;
     resetButton.disabled = true;
     store.cars.forEach(async (car) => {
       await stopEngine(car.id);
@@ -16,6 +15,5 @@ export const addResetListener = () => {
     });
     raceButton.disabled = false;
     startButtons.forEach((button) => (button.disabled = false));
-    stopButtons.forEach((button) => (button.disabled = true));
   });
 };
