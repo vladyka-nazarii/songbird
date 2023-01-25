@@ -13,7 +13,7 @@ export const updateGarage = async () => {
   store.carsCount = carsCount;
 
   if (store.carsCount) {
-    if (Math.ceil(+store.carsCount / Limit.Cars) < store.carsPage) {
+    if (Math.ceil(+store.carsCount / Limit.Cars) < store.carsPage && store.carsPage !== 1) {
       store.carsPage -= 1;
       const { items: newCars, count: newCarsCount } = await getCars(store.carsPage, Limit.Cars);
       store.cars = newCars;

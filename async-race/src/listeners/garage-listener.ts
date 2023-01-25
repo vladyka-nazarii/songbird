@@ -9,9 +9,11 @@ import { animatePosition, findDistance, setDefaultPosition } from '../utils/anim
 const removeCar = async (target: HTMLElement) => {
   const id = +target.id.replace('remove-car-', '');
   await deleteCar(id);
-  await deleteWinner(id);
-  await updateWinners();
   await updateGarage();
+  if (store.winners.find((winner) => winner.id === id)) {
+    await deleteWinner(id);
+    await updateWinners();
+  }
 };
 
 const selectCar = async (target: HTMLElement) => {
