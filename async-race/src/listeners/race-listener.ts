@@ -1,6 +1,7 @@
 import { drive, startEngine } from '../api/engine';
+import { saveWinner } from '../api/winners';
+import { updateWinners } from '../ui/update-winners';
 import { animatePosition, findDistance } from '../utils/animation';
-import { setWinner } from '../utils/set-winner';
 import { showModal } from '../utils/show-modal';
 import { store } from '../utils/store';
 
@@ -10,6 +11,7 @@ export const addRaceListener = () => {
     const resetButton = document.querySelector('#reset') as HTMLButtonElement;
     const startButtons = document.querySelectorAll('.start-engine-button') as NodeListOf<HTMLButtonElement>;
     const stopButtons = document.querySelectorAll('.stop-engine-button') as NodeListOf<HTMLButtonElement>;
+    const startTime = new Date().getTime();
     raceButton.disabled = true;
     store.animationStop = [];
     store.animationReset = [];
@@ -20,9 +22,14 @@ export const addRaceListener = () => {
       const error = await drive(car.id);
       if (error.success) {
         if (!store.winner) {
-          store.winner = car.id;
-          setWinner(car.id);
-          showModal(car.id);
+          const time = Math.round((new Date().getTime() - startTime) / 10) / 100;
+          store.winner = {
+            id: car.id,
+            time: time,
+          };
+          await saveWinner(car.id, time);
+          await updateWinners();
+          showModal(car.id, time);
         }
       } else if (!error.success) {
         store.animationStop.push(car.id);

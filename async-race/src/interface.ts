@@ -90,6 +90,5 @@ export interface IStore {
   selectedID?: number;
   animationStop: number[];
   animationReset: number[];
-  time: { id: number; time: number }[];
-  winner?: number;
+  winner?: { id: number; time: number };
 }

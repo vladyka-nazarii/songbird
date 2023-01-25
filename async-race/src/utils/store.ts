@@ -20,6 +20,5 @@ export const store: IStore = {
   selectedID: undefined,
   animationStop: [],
   animationReset: [],
-  time: [],
   winner: undefined,
 };
