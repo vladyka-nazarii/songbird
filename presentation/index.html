@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Firebase</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/white.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-transition="slide" data-background="./examples/assets/social.png"></section>
+        <section data-background-transition="slide" data-background="./examples/assets/viewpage1.png"></section>
+        <section data-background-transition="slide" data-background="./examples/assets/viewpage2.png"></section>
+        <section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage3.png"></section>
+          <section id="fragments">
+            <h2>Create a Firebase project</h2>
+            <ol>
+              <li class="fragment fade-left">In the Firebase console, click Add project.</li>
+              <li class="fragment fade-left">If prompted, review and accept the Firebase terms.</li>
+              <li class="fragment fade-left">Click Continue.</li>
+              <li class="fragment fade-left">(Optional) Set up Google Analytics for your project.</li>
+              <li class="fragment fade-left">Click Create project.</li>
+            </ol>
+          </section id="fragments">
+          <section>
+            <h2>Register your app</h2>
+            <ol>
+              <li class="fragment fade-left">
+                In the center of the Firebase console's project overview page, click the Web icon (plat_web) to launch
+                the setup workflow.
+              </li>
+              <li class="fragment fade-left">
+                Enter your app's nickname. This nickname is an internal, convenience identifier and is only visible to
+                you in the Firebase console.
+              </li>
+              <li class="fragment fade-left">Click Register app.</li>
+              <li class="fragment fade-left">Follow the on-screen instructions to add and initialize the Firebase SDK in your app.</li>
+            </ol>
+          </section>
+          <section id="fragments">
+            <h4>Install the SDK and initialize Firebase</h4>
+            <p class="fragment fade-down" style="text-align: left">1. Install Firebase using npm:</p>
+            <pre data-id="code-animation"><code class="fragment fade-left" data-trim data-line-numbers>
+                npm install firebase
+              </code></pre>
+            <p class="fragment fade-down" style="text-align: left">
+              2. Initialize Firebase in your app and create a Firebase App object:
+            </p>
+            <pre data-id="code-animation"><code class="fragment fade-left" data-trim data-line-numbers>
+                import { initializeApp } from 'firebase/app';
+  
+                // TODO: Replace the following with your app's Firebase project configuration
+                const firebaseConfig = {
+                    //...
+                };
+                
+                const app = initializeApp(firebaseConfig);
+              </code></pre>
+          </section>
+          <section id="fragments">
+            <h4>Access Firebase in your app</h4>
+            <pre data-id="code-animation"><code class="fragment fade-left" data-trim data-line-numbers>
+              import { initializeApp } from 'firebase/app';
+              import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+              // Follow this pattern to import other Firebase services
+              // import { } from 'firebase/<service>';
+              
+              // TODO: Replace the following with your app's Firebase project configuration
+              const firebaseConfig = {
+                //...
+              };
+              
+              const app = initializeApp(firebaseConfig);
+              const db = getFirestore(app);
+              
+              // Get a list of cities from your database
+              async function getCities(db) {
+                const citiesCol = collection(db, 'cities');
+                const citySnapshot = await getDocs(citiesCol);
+                const cityList = citySnapshot.docs.map(doc => doc.data());
+                return cityList;
+              }
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage4.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage5.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage6.png"></section>
+        </section>
+        <section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage7.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage8.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage9.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage10.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage11.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage12.png"></section>
+        </section>
+        <section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage13.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage14.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage15.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage16.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage17.png"></section>
+          <section data-background-transition="slide" data-background="./examples/assets/viewpage18.png"></section>
+        </section>
+        <section
+          data-background-transition="slide"
+          data-background="./examples/assets/viewpage19.png"
+          style="text-align: left"
+        >
+          <h3>We can build app!</h3>
+          <ul>
+            <li>Fully integrated</li>
+            <li>Scales with you</li>
+          </ul>
+        </section>
+        <section
+          data-background-transition="slide"
+          data-background="./examples/assets/viewpage20.png"
+          style="text-align: left"
+        >
+          <h2>Thank you!</h2>
+          <ul>
+            <li style="display: flex; align-items: center; gap: 15px">
+              <a href="https://github.com/vladyka-nazarii" style="display: flex; align-items: center; gap: 15px; color: black"
+                ><img src="./examples/assets/github-logo.png" alt="rsschool" style="height: 50px"/>GitHub</a>
+            </li>
+            <li style="display: flex; align-items: center; gap: 15px">
+              <a href="https://rs.school/js/" style="display: flex; align-items: center; gap: 15px; color: black"
+                ><img src="./examples/assets/rs_school_js.svg" alt="rsschool" style="height: 50px"/>RS School</a>
+            </li>
+            <li style="display: flex; align-items: center; gap: 15px">
+              <img src="./examples/assets/avatar.png" alt="avatar" style="height: 100px" />Nazarii Vladyka
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
