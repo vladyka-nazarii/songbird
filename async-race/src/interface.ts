@@ -1,12 +1,12 @@
-export interface ICar {
-  name: string;
-  color: string;
-  id: number;
-}
+import { Order, Sort, View } from './enum';
 
 export interface INewCar {
   name: string;
   color: string;
+}
+
+export interface ICar extends INewCar {
+  id: number;
 }
 
 export interface IEngine {
@@ -24,53 +24,6 @@ export interface IWinner {
   time: number;
 }
 
-export enum OrderButton {
-  Wins = 'wins',
-  Time = 'time',
-}
-
-export enum Order {
-  ByAsc = 'ASC',
-  ByDesc = 'DESC',
-}
-
-export enum Sort {
-  ByWins = 'wins',
-  ByTime = 'time',
-}
-
-export enum View {
-  Garage = 'garage',
-  Winners = 'winners',
-}
-
-export enum Limit {
-  Cars = 7,
-  Winners = 10,
-}
-
-export enum Page {
-  First = 1,
-}
-
-export enum PageType {
-  CarsPage = 'carsPage',
-  WinnersPage = 'winnersPage',
-}
-
-export enum CountType {
-  CarsCount = 'carsCount',
-  WinnersCount = 'winnersCount',
-}
-
-export enum Color {
-  Max = 255,
-}
-
-export enum Generate {
-  Number = 100,
-}
-
 export interface IResponse<Type> {
   items: Type[];
   count: string | null;
@@ -85,10 +38,10 @@ export interface IStore {
   winners: IWinner[];
   winnersCount: string | null;
   view: View;
-  sortBy?: Sort;
-  sortOrder?: Order;
-  selectedID?: number;
+  sortBy: Sort | null;
+  sortOrder: Order | null;
+  selectedID: number | null;
   animationStop: number[];
   animationReset: number[];
-  winner?: { id: number; time: number };
+  winner: { id: number; time: number } | null;
 }

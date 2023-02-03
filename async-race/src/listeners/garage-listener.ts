@@ -6,8 +6,10 @@ import { updateGarage } from '../ui/update-garage';
 import { updateWinners } from '../ui/update-winners';
 import { animatePosition, findDistance, setDefaultPosition } from '../utils/animation';
 
+const getID = (target: HTMLElement, classname: string) => +target.id.replace(classname, '');
+
 const removeCar = async (target: HTMLElement) => {
-  const id = +target.id.replace('remove-car-', '');
+  const id = getID(target, 'remove-car-');
   await deleteCar(id);
   await updateGarage();
   if (store.winners.find((winner) => winner.id === id)) {
@@ -20,7 +22,7 @@ const selectCar = async (target: HTMLElement) => {
   const nameInput = document.querySelector('#update-name') as HTMLInputElement;
   const colorInput = document.querySelector('#update-color') as HTMLInputElement;
   const submitButton = document.querySelector('#update-submit') as HTMLButtonElement;
-  const id = +target.id.replace('select-car-', '');
+  const id = getID(target, 'select-car-');
   const currentCar = store.cars.find((car) => car.id === id);
   nameInput.disabled = false;
   nameInput.value = currentCar ? currentCar.name : '';
@@ -32,7 +34,7 @@ const selectCar = async (target: HTMLElement) => {
 
 const driveCar = async (target: HTMLElement) => {
   const targetButton = target as HTMLButtonElement;
-  const id = +targetButton.id.replace('start-engine-car-', '');
+  const id = getID(target, 'start-engine-car-');
   const stopButton = document.querySelector(`#stop-engine-car-${id}`) as HTMLButtonElement;
   targetButton.disabled = true;
   store.animationStop = store.animationStop.filter((animation) => animation !== id);
@@ -46,7 +48,7 @@ const driveCar = async (target: HTMLElement) => {
 
 const stopCar = async (target: HTMLElement) => {
   const targetButton = target as HTMLButtonElement;
-  const id = +targetButton.id.replace('stop-engine-car-', '');
+  const id = getID(target, 'stop-engine-car-');
   const startButton = document.querySelector(`#start-engine-car-${id}`) as HTMLButtonElement;
   targetButton.disabled = true;
   await stopEngine(id);

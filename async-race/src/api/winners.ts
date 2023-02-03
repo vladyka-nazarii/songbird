@@ -1,24 +1,26 @@
+import { Path } from '../enum';
 import { IResponse, IWinner } from '../interface';
-import { winners } from './base';
 import { getCar } from './cars';
 
-const getSortOrder = (sort?: string, order?: string): string => {
+const NOT_FOUND = 404;
+
+const getSortOrder = (sort?: string | null, order?: string | null): string => {
   if (sort && order) return `&_sort=${sort}&_order=${order}`;
   return '';
 };
 
-const getPageLimit = (page?: number, limit?: number): string => {
+const getPageLimit = (page?: number | null, limit?: number | null): string => {
   if (page && limit) return `?_page=${page}&_limit=${limit}`;
   return '';
 };
 
 export const getWinners = async (
-  page?: number,
-  limit?: number,
-  sort?: string,
-  order?: string,
+  page?: number | null,
+  limit?: number | null,
+  sort?: string | null,
+  order?: string | null,
 ): Promise<IResponse<IWinner>> => {
-  const response = await fetch(`${winners}${getPageLimit(page, limit)}${getSortOrder(sort, order)}`);
+  const response = await fetch(`${Path.Winners}${getPageLimit(page, limit)}${getSortOrder(sort, order)}`);
   const items = await response.json();
 
   return {
@@ -27,13 +29,13 @@ export const getWinners = async (
   };
 };
 
-export const getWinner = async (id: number): Promise<IWinner> => (await fetch(`${winners}/${id}`)).json();
+export const getWinner = async (id: number): Promise<IWinner> => (await fetch(`${Path.Winners}/${id}`)).json();
 
-export const getWinnerStatus = async (id: number) => (await fetch(`${winners}/${id}`)).status;
+export const getWinnerStatus = async (id: number) => (await fetch(`${Path.Winners}/${id}`)).status;
 
-export const createWinner = async (body: IWinner): Promise<IWinner> =>
+export const createWinner = async (body: IWinner) => {
   (
-    await fetch(winners, {
+    await fetch(Path.Winners, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -41,10 +43,11 @@ export const createWinner = async (body: IWinner): Promise<IWinner> =>
       },
     })
   ).json();
+};
 
-export const updateWinner = async (id: number, body: IWinner): Promise<IWinner> =>
+export const updateWinner = async (id: number, body: IWinner) => {
   (
-    await fetch(`${winners}/${id}`, {
+    await fetch(`${Path.Winners}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -52,14 +55,16 @@ export const updateWinner = async (id: number, body: IWinner): Promise<IWinner> 
       },
     })
   ).json();
+};
 
-export const deleteWinner = async (id: number): Promise<Record<string, never>> =>
-  (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();
+export const deleteWinner = async (id: number) => {
+  (await fetch(`${Path.Winners}/${id}`, { method: 'DELETE' })).json();
+};
 
 export const saveWinner = async (id: number, time: number) => {
   const winnerStatus = await getWinnerStatus(id);
 
-  if (winnerStatus === 404) {
+  if (winnerStatus === NOT_FOUND) {
     await createWinner({
       id,
       wins: 1,

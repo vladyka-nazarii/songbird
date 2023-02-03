@@ -1,14 +1,17 @@
 import { createCar } from '../api/cars';
-import { Color, INewCar } from '../interface';
+import { INewCar } from '../interface';
+
+const MAX_COLOR_NUMBER = 255;
+const CARS_TO_GENERATE = 100;
 
 const generateColor = (): string => {
-  const getRandomColor = () => Math.round(Math.random() * Color.Max).toString(16);
+  const getRandomColor = () => Math.round(Math.random() * MAX_COLOR_NUMBER).toString(16);
   return `#${getRandomColor()}${getRandomColor()}${getRandomColor()}`;
 };
 
 const generateName = (brand: string[], model: string[]): string => {
   return (
-    brand[Math.round(Math.random() * brand.length - 1)] + ' ' + model[Math.round(Math.random() * model.length - 1)]
+    brand[Math.round(Math.random() * (brand.length - 1))] + ' ' + model[Math.round(Math.random() * (model.length - 1))]
   );
 };
 
@@ -89,9 +92,9 @@ const carModels = [
   'Cayen',
 ];
 
-const generateCars = (count: number): INewCar[] => {
+const generateCars = (): INewCar[] => {
   const ArrayOfCars: INewCar[] = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < CARS_TO_GENERATE; i++) {
     ArrayOfCars.push({
       name: generateName(cartBrands, carModels),
       color: generateColor(),
@@ -101,6 +104,6 @@ const generateCars = (count: number): INewCar[] => {
   return ArrayOfCars;
 };
 
-export const generateNewCars = (count: number) => {
-  generateCars(count).forEach(async (car) => createCar(car));
+export const generateNewCars = () => {
+  generateCars().forEach(async (car) => createCar(car));
 };

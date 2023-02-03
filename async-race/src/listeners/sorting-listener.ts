@@ -1,4 +1,4 @@
-import { Order, OrderButton, Sort } from '../interface';
+import { Order, OrderButton, Sort } from '../enum';
 import { updateWinners } from '../ui/update-winners';
 import { store } from '../utils/store';
 

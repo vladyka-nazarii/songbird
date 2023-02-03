@@ -10,22 +10,22 @@ export const addRaceListener = () => {
   raceButton.addEventListener('click', async () => {
     const resetButton = document.querySelector('#reset') as HTMLButtonElement;
     const startButtons = document.querySelectorAll('.start-engine-button') as NodeListOf<HTMLButtonElement>;
-    const startTime = new Date().getTime();
+    const startTime = Date.now();
     raceButton.disabled = true;
     startButtons.forEach((button) => (button.disabled = true));
     store.animationStop = [];
     store.animationReset = [];
-    store.winner = undefined;
+    store.winner = null;
     store.cars.forEach(async (car) => {
       const { velocity, distance } = await startEngine(car.id);
       animatePosition(car.id, findDistance(), distance / velocity);
       const error = await drive(car.id);
       if (error.success) {
         if (!store.winner) {
-          const time = Math.round((new Date().getTime() - startTime) / 10) / 100;
+          const time = Math.round((Date.now() - startTime) / 10) / 100;
           store.winner = {
             id: car.id,
-            time: time,
+            time,
           };
           await saveWinner(car.id, time);
           await updateWinners();

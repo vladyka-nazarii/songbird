@@ -1,5 +1,5 @@
 import { getWinners } from '../api/winners';
-import { Limit } from '../interface';
+import { Limit } from '../enum';
 import { renderWinners } from '../ui/render-winners';
 import { store } from '../utils/store';
 

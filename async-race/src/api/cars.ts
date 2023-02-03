@@ -1,10 +1,12 @@
+import { Path } from '../enum';
 import { ICar, INewCar, IResponse } from '../interface';
-import { garage } from './base';
 
 export const getCars = async (page?: number, limit?: number): Promise<IResponse<ICar>> => {
-  let response = await fetch(garage);
+  let response: Response;
   if (page && limit) {
-    response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
+    response = await fetch(`${Path.Garage}?_page=${page}&_limit=${limit}`);
+  } else {
+    response = await fetch(Path.Garage);
   }
 
   return {
@@ -13,11 +15,11 @@ export const getCars = async (page?: number, limit?: number): Promise<IResponse<
   };
 };
 
-export const getCar = async (id: number): Promise<ICar> => (await fetch(`${garage}/${id}`)).json();
+export const getCar = async (id: number): Promise<ICar> => (await fetch(`${Path.Garage}/${id}`)).json();
 
-export const createCar = async (body: INewCar): Promise<ICar> =>
+export const createCar = async (body: INewCar) => {
   (
-    await fetch(garage, {
+    await fetch(Path.Garage, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
@@ -25,13 +27,15 @@ export const createCar = async (body: INewCar): Promise<ICar> =>
       },
     })
   ).json();
+};
 
-export const deleteCar = async (id: number): Promise<Record<string, never>> =>
-  (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();
+export const deleteCar = async (id: number) => {
+  (await fetch(`${Path.Garage}/${id}`, { method: 'DELETE' })).json();
+};
 
-export const updateCar = async (id: number, body: INewCar): Promise<ICar> =>
+export const updateCar = async (id: number, body: INewCar) => {
   (
-    await fetch(`${garage}/${id}`, {
+    await fetch(`${Path.Garage}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(body),
       headers: {
@@ -39,3 +43,4 @@ export const updateCar = async (id: number, body: INewCar): Promise<ICar> =>
       },
     })
   ).json();
+};

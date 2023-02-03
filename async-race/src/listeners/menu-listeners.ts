@@ -1,5 +1,5 @@
 import { store } from '../utils/store';
-import { CountType, Limit, PageType, View } from '../interface';
+import { CountType, Limit, PageType, View } from '../enum';
 import { updatePagintion } from '../ui/update-pagination';
 
 export const addToGarageListener = () => {

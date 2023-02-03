@@ -1,24 +1,25 @@
 import { getCars } from '../api/cars';
 import { getWinners } from '../api/winners';
-import { IStore, Limit, Page, View } from '../interface';
+import { FIRST_PAGE, Limit, View } from '../enum';
+import { IStore } from '../interface';
 
 const { items: allCars } = await getCars();
-const { items: cars, count: carsCount } = await getCars(Page.First, Limit.Cars);
-const { items: winners, count: winnersCount } = await getWinners(Page.First, Limit.Winners);
+const { items: cars, count: carsCount } = await getCars(FIRST_PAGE, Limit.Cars);
+const { items: winners, count: winnersCount } = await getWinners(FIRST_PAGE, Limit.Winners);
 
 export const store: IStore = {
   allCars,
-  carsPage: Page.First,
+  carsPage: FIRST_PAGE,
   cars,
   carsCount,
-  winnersPage: Page.First,
+  winnersPage: FIRST_PAGE,
   winners,
   winnersCount,
   view: View.Garage,
-  sortBy: undefined,
-  sortOrder: undefined,
-  selectedID: undefined,
+  sortBy: null,
+  sortOrder: null,
+  selectedID: null,
   animationStop: [],
   animationReset: [],
-  winner: undefined,
+  winner: null,
 };
