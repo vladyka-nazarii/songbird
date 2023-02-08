@@ -27,12 +27,12 @@ export interface IWinner {
 export interface IResponseCar {
   cars: ICar[];
   carsCount: string | null;
-};
+}
 
 export interface IResponseWinner {
   winners: IWinner[];
   winnersCount: string | null;
-};
+}
 
 export interface IStore {
   allCars: ICar[];
