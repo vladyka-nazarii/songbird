@@ -24,10 +24,15 @@ export interface IWinner {
   time: number;
 }
 
-export interface IResponse<Type> {
-  items: Type[];
-  count: string | null;
-}
+export interface IResponseCar {
+  cars: ICar[];
+  carsCount: string | null;
+};
+
+export interface IResponseWinner {
+  winners: IWinner[];
+  winnersCount: string | null;
+};
 
 export interface IStore {
   allCars: ICar[];

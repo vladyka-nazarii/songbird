@@ -6,12 +6,7 @@ import { store } from '../utils/store';
 export const updateWinners = async () => {
   const winnersContainer = document.querySelector('.winners-container') as HTMLDivElement;
 
-  const { items: winners, count: winnersCount } = await getWinners(
-    store.winnersPage,
-    Limit.Winners,
-    store.sortBy,
-    store.sortOrder,
-  );
+  const { winners, winnersCount } = await getWinners(store.winnersPage, Limit.Winners, store.sortBy, store.sortOrder);
 
   store.winners = winners;
   store.winnersCount = winnersCount;

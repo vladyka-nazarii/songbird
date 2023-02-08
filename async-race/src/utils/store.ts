@@ -3,9 +3,9 @@ import { getWinners } from '../api/winners';
 import { FIRST_PAGE, Limit, View } from '../enum';
 import { IStore } from '../interface';
 
-const { items: allCars } = await getCars();
-const { items: cars, count: carsCount } = await getCars(FIRST_PAGE, Limit.Cars);
-const { items: winners, count: winnersCount } = await getWinners(FIRST_PAGE, Limit.Winners);
+const { cars: allCars } = await getCars();
+const { cars, carsCount } = await getCars(FIRST_PAGE, Limit.Cars);
+const { winners, winnersCount } = await getWinners(FIRST_PAGE, Limit.Winners);
 
 export const store: IStore = {
   allCars,

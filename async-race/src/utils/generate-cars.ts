@@ -93,7 +93,7 @@ const carModels = [
 ];
 
 const generateCars = (): INewCar[] => {
-  return new Array(100).fill(null).map(() => ({
+  return new Array(CARS_TO_GENERATE).fill(null).map(() => ({
     name: generateName(cartBrands, carModels),
     color: generateColor(),
   }));

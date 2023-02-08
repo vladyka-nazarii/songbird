@@ -1,8 +1,8 @@
 import { Method, Path } from '../enum';
-import { ICar, INewCar, IResponse } from '../interface';
+import { ICar, INewCar, IResponseCar } from '../interface';
 import { fetchRequest } from '../utils/fetch';
 
-export const getCars = async (page?: number, limit?: number): Promise<IResponse<ICar>> => {
+export const getCars = async (page?: number, limit?: number): Promise<IResponseCar> => {
   let response: Response;
   if (page && limit) {
     response = await fetch(`${Path.Garage}?_page=${page}&_limit=${limit}`);
@@ -11,8 +11,8 @@ export const getCars = async (page?: number, limit?: number): Promise<IResponse<
   }
 
   return {
-    items: await response.json(),
-    count: response.headers.get('X-Total-Count'),
+    cars: await response.json(),
+    carsCount: response.headers.get('X-Total-Count'),
   };
 };
 

@@ -1,5 +1,5 @@
 import { Method, Path } from '../enum';
-import { IResponse, IWinner } from '../interface';
+import { IResponseWinner, IWinner } from '../interface';
 import { fetchRequest } from '../utils/fetch';
 import { getCar } from './cars';
 
@@ -20,13 +20,13 @@ export const getWinners = async (
   limit?: number | null,
   sort?: string | null,
   order?: string | null,
-): Promise<IResponse<IWinner>> => {
+): Promise<IResponseWinner> => {
   const response = await fetch(`${Path.Winners}${getPageLimit(page, limit)}${getSortOrder(sort, order)}`);
   const items = await response.json();
 
   return {
-    items: await Promise.all(items.map(async (winner: IWinner) => ({ ...winner, car: await getCar(winner.id) }))),
-    count: response.headers.get('X-Total-Count'),
+    winners: await Promise.all(items.map(async (winner: IWinner) => ({ ...winner, car: await getCar(winner.id) }))),
+    winnersCount: response.headers.get('X-Total-Count'),
   };
 };
 
