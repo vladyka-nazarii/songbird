@@ -93,15 +93,10 @@ const carModels = [
 ];
 
 const generateCars = (): INewCar[] => {
-  const ArrayOfCars: INewCar[] = [];
-  for (let i = 0; i < CARS_TO_GENERATE; i++) {
-    ArrayOfCars.push({
-      name: generateName(cartBrands, carModels),
-      color: generateColor(),
-    });
-  }
-
-  return ArrayOfCars;
+  return new Array(100).fill(null).map(() => ({
+    name: generateName(cartBrands, carModels),
+    color: generateColor(),
+  }));
 };
 
 export const generateNewCars = () => {

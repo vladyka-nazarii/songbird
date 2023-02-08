@@ -39,4 +39,11 @@ export enum CountType {
   WinnersCount = 'winnersCount',
 }
 
+export enum Method {
+  Post = 'POST',
+  Put = 'PUT',
+  Patch = 'PATCH',
+  Delete = 'DELETE',
+}
+
 export const FIRST_PAGE = 1;

@@ -1,5 +1,6 @@
-import { Path } from '../enum';
+import { Method, Path } from '../enum';
 import { IResponse, IWinner } from '../interface';
+import { fetchRequest } from '../utils/fetch';
 import { getCar } from './cars';
 
 const NOT_FOUND = 404;
@@ -34,31 +35,15 @@ export const getWinner = async (id: number): Promise<IWinner> => (await fetch(`$
 export const getWinnerStatus = async (id: number) => (await fetch(`${Path.Winners}/${id}`)).status;
 
 export const createWinner = async (body: IWinner) => {
-  (
-    await fetch(Path.Winners, {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  ).json();
+  fetchRequest(Path.Winners, Method.Post, body);
 };
 
 export const updateWinner = async (id: number, body: IWinner) => {
-  (
-    await fetch(`${Path.Winners}/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  ).json();
+  fetchRequest(`${Path.Winners}/${id}`, Method.Put, body);
 };
 
 export const deleteWinner = async (id: number) => {
-  (await fetch(`${Path.Winners}/${id}`, { method: 'DELETE' })).json();
+  (await fetch(`${Path.Winners}/${id}`, { method: Method.Delete })).json();
 };
 
 export const saveWinner = async (id: number, time: number) => {

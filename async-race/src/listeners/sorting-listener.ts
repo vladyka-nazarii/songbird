@@ -12,9 +12,7 @@ export const addSortingListener = () => {
       } else {
         store.sortBy = Sort.ByTime;
       }
-      if (store.sortOrder === Order.ByAsc) store.sortOrder = Order.ByDesc;
-      else if (store.sortOrder === Order.ByDesc) store.sortOrder = Order.ByAsc;
-      else store.sortOrder = Order.ByAsc;
+      store.sortOrder = store.sortOrder || store.sortOrder === Order.ByDesc ? Order.ByAsc : Order.ByDesc;
       await updateWinners();
     }
   });

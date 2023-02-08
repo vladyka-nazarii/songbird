@@ -5,8 +5,8 @@ export const updatePagintion = (page: PageType, count: CountType, limit: Limit) 
   const prevButton = document.querySelector('#prev') as HTMLButtonElement;
   const nextButton = document.querySelector('#next') as HTMLButtonElement;
   const countOfElements = store[count];
-  prevButton.disabled = store[page] !== FIRST_PAGE ? false : true;
+  prevButton.disabled = store[page] === FIRST_PAGE;
   if (countOfElements) {
-    nextButton.disabled = store[page] * limit < +countOfElements ? false : true;
+    nextButton.disabled = !(store[page] * limit < +countOfElements);
   }
 };
