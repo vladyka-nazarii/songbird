@@ -9,6 +9,6 @@ export const stopEngine = async (id: number) => {
 };
 
 export const drive = async (id: number): Promise<IDrive> => {
-  const res = await fetch(`${Path.Engine}?id=${id}&status=drive`, { method: Method.Patch }).catch();
+  const res = await fetch(`${Path.Engine}?id=${id}&status=drive`, { method: Method.Patch });
   return !res.ok ? { success: false } : { ...(await res.json()) };
 };
