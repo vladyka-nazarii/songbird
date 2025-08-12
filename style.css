@@ -69,13 +69,13 @@
   background-color: #00efb2;
 }
 
-.ru-lang,
+.ua-lang,
 .en-lang {
   cursor: pointer;
   transition: .3s;
 }
 
-.ru-lang:hover,
+.ua-lang:hover,
 .en-lang:hover {
   color: #008966;
 }
@@ -673,7 +673,7 @@
     padding: 2px;
   }
 
-  .ru-lang,
+  .ua-lang,
   .en-lang,
   .score-text {
     font-size: 14px;
