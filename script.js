@@ -388,28 +388,28 @@ tryAgainBtn.addEventListener('click', tryAgain);
 
 // CHANGE LANGUAGE
 
-const ruLangBtn = document.querySelector(".ru-lang");
+const ruLangBtn = document.querySelector(".ua-lang");
 const enLangBtn = document.querySelector(".en-lang");
-let language = 'RU';
-let ruLang = {
+let language = 'UA';
+let uaLang = {
   score: `Очки:
   <span class="score">0</span>`,
-  stage0: 'Разминка',
-  stage1: 'Воробьиные',
-  stage2: 'Лесные птицы',
-  stage3: 'Певчие птицы',
-  stage4: 'Хищные птицы',
-  stage5: 'Морские птицы',
-  description: `Послушайте плеер.<br>Выберите птицу из списка`,
-  nextBtn: 'Следующий Уровень',
-  greet: 'Поздравляем!',
-  message1: `Вы прошли викторину и набрали `,
-  message2: ` из 30 возможных баллов`,
-  gameOver: 'Игра Окончена!',
-  tryAgainBtn: 'Попробовать ещё раз!',
+  stage0: 'Розминка',
+  stage1: 'Горобчині',
+  stage2: 'Лісові птахи',
+  stage3: 'Співочі птахи',
+  stage4: 'Хижі птахи',
+  stage5: 'Морські птахи',
+  description: `Слухайте плеєр.<br>Виберіть птаха зі списку`,
+  nextBtn: 'Наступний рівень',
+  greet: 'Вітаємо!',
+  message1: `Ви пройшли вікторину та набрали `,
+  message2: ` з 30 можливих балів`,
+  gameOver: 'Гра закінчена!',
+  tryAgainBtn: 'Спробувати ще раз!',
   galleryBtn: 'Галерея',
-  gameBtn: 'Викторина',
-  startGameBtn: 'Начать Игру',
+  gameBtn: 'Вікторина',
+  startGameBtn: 'Почати Гру',
 };
 let enLang = {
   score: `Score:
@@ -431,7 +431,7 @@ let enLang = {
   gameBtn: 'Quiz',
   startGameBtn: 'Start Game',
 };
-let currentLang = ruLang;
+let currentLang = uaLang;
 
 function getLocalStorage() {
   if (localStorage.getItem('language')) {
@@ -469,7 +469,7 @@ function changeLang(lang) {
     currentLang = enLang;
   } else {
     currentData = birdsData;
-    currentLang = ruLang;
+    currentLang = uaLang;
   };
   setLangElements();
   setNewBirds();
@@ -479,7 +479,7 @@ function changeLang(lang) {
   }
 }
 
-ruLangBtn.addEventListener('click', () => changeLang('RU'));
+ruLangBtn.addEventListener('click', () => changeLang('UA'));
 enLangBtn.addEventListener('click', () => changeLang('EN'));
 window.addEventListener('load', getLocalStorage);
 
